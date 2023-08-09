@@ -1,2 +1,15 @@
 -armar diagrama
 
+-implementar fetch en la pagina productos.html para solicitar y mostrar los datos de categoria 101 en JSON
+
+-implementar funcionalidad de login
+
+-mejorar la experiencia de usuario cuando hace login
+
+-(desafiate) implentar redireccion a login.html si el usuario no está logeado en otras paginas
+
+-testear las funcionalidades
+
+-pull al main
+
+-realizar video explicativo
