@@ -5,61 +5,41 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>eMercado - Todo lo que busques está aquí</title>
-
-  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-  <link href="css/font-awesome.min.css" rel="stylesheet">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/style-productos.css">
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-    <div class="container">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav w-100 justify-content-between">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="categories.html">Categorías</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="sell.html">Vender</a>
-          </li>
-          <li class="nav-item">
-          </li>
-        </ul>
-      </div>
+  <nav class="nav">
+    <div class="nav__menu">
+      <img src="/img/logo.png" alt="logo de jovenes a programar">
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="categories.html">Categorías</a></li>
+        <li><a href="sell.html">Vender</a></li>
+      </ul>
+    </div>
+    <div class="nav__menu_User">
+      <a href="#" class="nav__menu_User__carrito"><img src="/img/carrito.png" alt="carrito de compras"></a>
+      <a href="#" class="nav__menu_User__user"><img src="/img/user-Icon.png" alt="imagen user"></a>
     </div>
   </nav>
-  <main class="pb-5 container">
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
+  <main class="main_productos">
+    <div class="main_productos__contenedor" id="contenedor">
+      <!-- Aqui se ponen los productos -->
     </div>
   </main>
-  <footer class="text-muted">
-    <div class="container">
-      <p class="float-end">
-        <a href="#">Volver arriba</a>
+  <footer class="footer_productos">
+    <div class="footer_productos__contenedor">
+      <p class="footer_productos__contenedor__parrafo">
+        <a class="footer_productos__contenedor__parrafo__link" href="#"> Volver arriba</a>
       </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
+      <p class="footer_productos__contenedor__parrafo">
+        Este sitio forma parte de 
+        <a class="footer_productos__contenedor__parrafo__link" href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
+      </p>
     </div>
   </footer>
-  <div id="spinner-wrapper">
-    <div class="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </div>
-  <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/products.js"></script>
 </body>

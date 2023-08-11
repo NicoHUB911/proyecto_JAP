@@ -1,0 +1,33 @@
+.mt-5 {margin-top: 0rem!important;}
+main{display: flex; justify-content: center; align-items: center; height: 100vh; height: 100dvh;}
+.login{display: flex; align-items: center; justify-content: center; height: 600px; width: 70%; min-width: 700px; border-radius: 10px; background-color: #aaaaaa; overflow: hidden;}
+.login img{width: 50%;}
+#formulario{width: 50%; height: 600px; display: flex; flex-direction: column; align-items: center; justify-content:space-around; padding: 20px; background-color: #212529; position: relative;}
+#formulario h4{color: #FCF404; font-family: 'Sedgwick Ave', cursive; font-size: 50px; letter-spacing: 5px;}
+.contTex{position: relative;}
+.formulario__contUser::before{content: ""; position: absolute; border-radius: 50%; width: 60px; height: 60px; background-color: #FCF404; top: -5px; left: -5px; background-image: url(/img/user-Icon.png); background-size: 100% 100%; z-index: 1;}
+.formulario__contUser::after{content: ""; position: absolute; border-radius: 50%; width: 60px; height: 60px; background-color: transparent; border: 4px dotted #212529; top: -5px; left: -5px; z-index: 2; animation: girar2 infinite linear 20s;}
+#formulario__usuario{border-radius: 50px;  width: 350px; outline: none; border: 4px solid #FCF404; font-family: sans-serif; font-size: 20px; padding: 8px 10px 8px 60px; background-color: #aaaaaa; color: #000;}
+.formulario__contPass::after{content: ""; position: absolute; border-radius: 50%; width: 60px; height: 60px; background-color: #FCF404; top: -5px; right: -5px; background-image: url(/img/pass-icon.png); background-size: 100% 100%; z-index: 1;}
+.formulario__contPass::before{content: ""; position: absolute; border-radius: 50%; width: 60px; height: 60px; background-color: transparent; border: 4px dotted #212529; top: -5px; right: -5px; z-index: 2; animation: girar1 infinite linear 20s;}
+#formulario__contraseña{border-radius: 50px; width: 350px; outline: none; border: 4px solid #FCF404; font-family: sans-serif; font-size: 20px; padding: 8px 60px 8px 20px; background-color: #aaaaaa; color: #000;}
+::placeholder{color: #000;}
+.formulario__boton{border-radius: 50px; background: linear-gradient(145deg, #23282c, #1e2125); box-shadow:  20px 20px 42px #0f1012, -20px -20px 42px #333a40; width: 200px; height: 50px; font-family: 'Sedgwick Ave', cursive; font-size: 20px; letter-spacing: 2px; border: none; color: #FCF404;}
+.formulario__boton:active{border-radius: 50px; background: #212529; box-shadow: inset 20px 20px 42px #0f1012, inset -20px -20px 42px #333a40; color: #b4b026;}
+#formulario__Aviso_user{position: absolute;  width: 160px; top: 180px; font-size: 17px; text-align: center; font-weight: bold; letter-spacing: 2px; font-family: 'Sedgwick Ave', cursive; padding: 1px; color: #FCF404; background-color: transparent; border-radius: 10px; animation: flotar infinite linear 0.5s; opacity: 0;}
+#formulario__Aviso_pass{position: absolute;  width: 160px; top: 318px; font-size: 17px; text-align: center; font-weight: bold; letter-spacing: 2px; font-family: 'Sedgwick Ave', cursive; padding: 1px; color: #FCF404; background-color: transparent; border-radius: 10px; animation: flotar infinite linear 0.5s; opacity: 0;}
+@keyframes girar1 {
+    0%{transform: rotate(0deg);}
+    100%{transform: rotate(360deg);}
+}
+@keyframes girar2 {
+    0%{transform: rotate(0deg);}
+    100%{transform: rotate(-360deg);}
+}
+@keyframes flotar {
+    0%{transform: translateY(0px);}
+    25%{transform: translateY(-2px);}
+    50%{transform: translateY(0px);}
+    75%{transform: translateY(2px);}
+    100%{transform: translateY(0px);}
+}
