@@ -14,8 +14,15 @@ main{display: flex; justify-content: center; align-items: center; height: 100vh;
 ::placeholder{color: #000;}
 .formulario__boton{border-radius: 50px; background: linear-gradient(145deg, #23282c, #1e2125); box-shadow:  20px 20px 42px #0f1012, -20px -20px 42px #333a40; width: 200px; height: 50px; font-family: 'Sedgwick Ave', cursive; font-size: 20px; letter-spacing: 2px; border: none; color: #FCF404;}
 .formulario__boton:active{border-radius: 50px; background: #212529; box-shadow: inset 20px 20px 42px #0f1012, inset -20px -20px 42px #333a40; color: #b4b026;}
-#formulario__Aviso_user{position: absolute;  width: 160px; top: 180px; font-size: 17px; text-align: center; font-weight: bold; letter-spacing: 2px; font-family: 'Sedgwick Ave', cursive; padding: 1px; color: #FCF404; background-color: transparent; border-radius: 10px; animation: flotar infinite linear 0.5s; opacity: 0;}
-#formulario__Aviso_pass{position: absolute;  width: 160px; top: 318px; font-size: 17px; text-align: center; font-weight: bold; letter-spacing: 2px; font-family: 'Sedgwick Ave', cursive; padding: 1px; color: #FCF404; background-color: transparent; border-radius: 10px; animation: flotar infinite linear 0.5s; opacity: 0;}
+#formulario__Aviso_user{position: absolute;  width: 160px; top: 166px; font-size: 17px; text-align: center; font-weight: bold; letter-spacing: 2px; font-family: 'Sedgwick Ave', cursive; padding: 1px; color: #FCF404; background-color: transparent; border-radius: 10px; animation: flotar infinite linear 0.5s; opacity: 0;}
+#formulario__Aviso_pass{position: absolute;  width: 160px; top: 300px; font-size: 17px; text-align: center; font-weight: bold; letter-spacing: 2px; font-family: 'Sedgwick Ave', cursive; padding: 1px; color: #FCF404; background-color: transparent; border-radius: 10px; animation: flotar infinite linear 0.5s; opacity: 0;}
+.formulario__contCheckbox{margin: -40px 0px;}
+.formulario__contCheckbox__checkbox{display: none;}
+.formulario__contCheckbox__checkbox__label{color: #FCF404; font-family: 'Sedgwick Ave', cursive; letter-spacing: 2px; margin-left: 5px; user-select: none; cursor: pointer; position: relative; padding-left: 60px;}
+.formulario__contCheckbox__checkbox__label::before{content: ""; width: 50px; height: 25px; background-color: #212529; position: absolute; left: 0px; top: -2px; border-radius: 50px; border: 2px solid #FCF404; transition: background 0.1s;}
+.formulario__contCheckbox__checkbox__label::after{content: ""; width: 18px; height: 18px; background-color: #aaaaaa; position: absolute; border-radius: 50%; left: 4px; top: 1px; border: 2px solid #212529; transition: left 0.3s;}
+.formulario__contCheckbox__checkbox:checked ~ .formulario__contCheckbox__checkbox__label::after{left: 28px;}
+.formulario__contCheckbox__checkbox:checked ~ .formulario__contCheckbox__checkbox__label::before{background-color: #FCF404;}
 @keyframes girar1 {
     0%{transform: rotate(0deg);}
     100%{transform: rotate(360deg);}

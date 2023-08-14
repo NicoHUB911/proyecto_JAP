@@ -5,25 +5,22 @@ fetch(URL_PRODUCTOS)
     if (!response.ok) {
       throw new Error('Error en la solicitud');
     }
-    return response.json(); // Convierte la respuesta en formato JSON
+    return response.json(); // Convierte la respuesta en formato JSON.
   })
   .then(data => {
-    // Aquí tienes acceso a los datos JSON en la variable "data"
-    console.log(data); // Muestra los datos en la consola para verificar
-    // Puedes llamar a una función para manipular los datos
-    procesarDatos(data);
+    // Aquí tienes acceso a los datos JSON en la variable "data".
+    //console.log(data);  Muestra los datos en la consola para verificar.
+    procesarDatos(data); // llamamos a prosesarDatos(datos) para manipular los datos.
   })
   .catch(error => {
     console.error('Hubo un error:', error);
 });
 
 function procesarDatos(data) {
-    // Aquí puedes realizar cualquier manipulación que necesites en los datos
-    // Por ejemplo, supongamos que el JSON tiene un array llamado "usuarios"
-    const productos = data.products;
+    const productos = data.products; // accedemos dentro de data, al array de objetos que se llama products (los productos/objetos con todas sus propiedades).
     let contenido = "";
-    
-    for (const producto of productos) {
+    // Aquí ponemos los datos en una variable string (con codigo html).
+    for (const producto of productos) { // recorremos el array que tiene los productos (productos es el array y producto el objeto por el que esta pasando (algo asi como el indice: [n] )).
         contenido += `
             <div onclick="setCatID(${data.catID})" class="main_productos__contenedor__carta">
                 <div class="main_productos__contenedor__carta__contenedorimg"><a class="" href="#"><img src="${producto.image}" alt="${producto.name}" class="main_productos__contenedor__carta__contenedorimg__img"></a></div>
@@ -41,6 +38,6 @@ function procesarDatos(data) {
                 </div>
             </div>
             `
-        document.getElementById("contenedor").innerHTML = contenido;
+        document.getElementById("contenedor").innerHTML = contenido; // aqui ponemos ese codigo html dentro del contenedor al que hacemos referencia.
     }
 }
