@@ -219,3 +219,5 @@ body{background-color: #e9e9e9;}
 @keyframes girar1 {0%{transform: rotate(0deg);}100%{transform: rotate(360deg);}}
 @keyframes girar2 {0%{transform: rotate(0deg);}100%{transform: rotate(-360deg);}}
 @keyframes flotar {0%{transform: translateY(0px);}25%{transform: translateY(-5px);}50%{transform: translateY(0px);}75%{transform: translateY(5px);}100%{transform: translateY(0px);}}
+/*---------PRODUCTOS---------*/
+.tarjeta{margin-top: 20px;}
