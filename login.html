@@ -6,25 +6,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>eMercado - Todo lo que busques está aquí</title>
   
+  <!--Font_family_de_google-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@300&display=swap" rel="stylesheet">
+
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
-  <style>
-    body {
-      background-color: rgb(248, 249, 250);
-    }
-  </style>
 </head>
 
 <body>
-  <main class="mt-5">
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+  <main class="min-vh-100 d-flex align-items-center">
+    <div class="contenedor container h-100">
+      <div class="row">
+        <img class="contenedor__row__img col-lg-6" src="/img/login.png" alt="Baner de E-mercado">
+        <form id="formulario" class="contenedor__row__form col-lg-6 bg-dark container d-flex justify-content-evenly flex-column align-items-center" action="">
+          <h3 class="contenedor__row__form__titulo"><span id="formulario__Aviso_user"></span><span id="formulario__Aviso_pass"></span>Login</h3>
+          <div class="icono1"><input class="rounded-pill" type="text" id="usuario" placeholder="Usuario"></div>
+          <div class="d-flex flex-column">
+            <div class="icono2"><input class="rounded-pill" type="password" id="contraseña" placeholder="Contraseña"></div>
+            <div class="d-flex justify-content-center mt-4"><input id="checkboxLogin" type="checkbox"><label class="contenedor__row__form__labelCheckbox" for="checkboxLogin">Recuerdame</label></div>
+          </div>
+          <input class="contenedor__row__form__enviar rounded-pill p-2" type="submit">
+        </form>
       </div>
     </div>
   </main>
-  <footer class="text-muted">
+  <footer class="text-muted bg-dark">
     <div class="container">
       <p class="float-end">
         <a href="#">Volver arriba</a>
