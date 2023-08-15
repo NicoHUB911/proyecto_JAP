@@ -191,7 +191,8 @@ a.custom-card:hover {
 
 /*_______________________________________________________Estilos__Personalizados_______________________________________________________*/
 body{background-color: #e9e9e9;}
-/*-----------LOGIN-----------*/
+
+/*-----------------------------------------------------LOGIN-----------------------------------------------------*/
 .contenedor{background-color: #bebebe; border-radius: 10px; overflow: hidden; box-shadow: 0px 0px 10px #000;}
 .contenedor__row__img{padding: 70px 0px;}
 .contenedor__row__form{height: 600px; position: relative;}
@@ -219,5 +220,26 @@ body{background-color: #e9e9e9;}
 @keyframes girar1 {0%{transform: rotate(0deg);}100%{transform: rotate(360deg);}}
 @keyframes girar2 {0%{transform: rotate(0deg);}100%{transform: rotate(-360deg);}}
 @keyframes flotar {0%{transform: translateY(0px);}25%{transform: translateY(-5px);}50%{transform: translateY(0px);}75%{transform: translateY(5px);}100%{transform: translateY(0px);}}
-/*---------PRODUCTOS---------*/
-.tarjeta{margin-top: 20px;}
+
+/*----------------------------------------------------NAV_GENERAL----------------------------------------------------*/
+.navegador{background-color: rgba(33, 37, 41, 0.9); height: 50px; border-bottom: 3px solid #f09100; z-index: 900;}
+.navegador__menu_1__lista{list-style: none;}
+.navegador__menu_1__lista__link{text-decoration: none; color: #fff; font-family: sans-serif; font-weight: bold; letter-spacing: 2px;}
+.navegador__menu_1__lista__link:hover{color: #fff;}
+.lineaDeAbajo{position: relative; overflow: hidden;}
+.lineaDeAbajo::before{content: ""; height: 3px; width: 100%; position: absolute; bottom: 0px; left: -100%; background-color: #f09100; transition: left 0.2s;}
+.lineaDeAbajo:hover::before{left: 0px;}
+/*-----------------------------------------------------PRODUCTOS-----------------------------------------------------*/
+.main_productos__contenedor__carta{width: 30%; min-width: 230px; margin-top: 30px; background-color: #dddddd; border-radius: 5px; overflow: hidden; box-shadow: 0px 0px 10px #000; position: relative;}
+.main_productos__contenedor__carta__contenedorimg{width: 100%; overflow: hidden; border-bottom: 3px solid #f09100;}
+.main_productos__contenedor__carta__contenedorimg__img{width: 100%; transition: transform 0.2s; margin-bottom: -5px;}
+.main_productos__contenedor__carta__contenedorimg__img:hover{transform: scale(1.2);}
+.main_productos__contenedor__carta__contenido{width: 100%;}
+.main_productos__contenedor__carta__contenido__titulo{padding: 10px 10px; display: inline-block;}
+.main_productos__contenedor__carta__contenido__titulo__a{font-size: 25px; color: #000; font-family: sans-serif; font-weight: 100; text-decoration: none;}
+.main_productos__contenedor__carta__contenido__titulo__a:hover{color: #a36200;}
+.main_productos__contenedor__carta__contenido__descripcion{font-size: 15px; color: #252525; padding: 10px 10px 60px 10px;}
+.main_productos__contenedor__carta__contenido__informacion{background-color: #f09100; display: flex; height: 50px; width: 100%; position: absolute; bottom: 0px;}
+.main_productos__contenedor__carta__contenido__informacion__datos1{border-right: 1px solid #000; width: 50%; display: flex; justify-content: center; align-items: center;}
+.main_productos__contenedor__carta__contenido__informacion__datos2{border-left: 1px solid #000; width: 50%; display: flex; justify-content: center; align-items: center;}
+.main_productos__contenedor__carta__contenido__informacion__datos__texto{font-size: 17px; color: #000; text-align: center;}
