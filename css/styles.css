@@ -209,12 +209,14 @@ input[type=password]::-ms-clear{display: none;}
 .icono2{position: relative;}
 .icono2::after{content: ""; width: 50px; height: 50px; border-radius: 50%; background-color: #f09100; position: absolute; right: 0px; bottom: -5px; background-image: url("https://drive.google.com/uc?export=view&id=1T_6cxbKTLf5as2i5KdOd9J2RGi0F_U7w"); background-size: 100%  100%; z-index: 1;}
 .icono2::before{content: ""; width: 50px; height: 50px; border-radius: 50%; border: 3px dotted #212529; position: absolute; right: 0px; bottom: -5px; animation: girar2 10s infinite linear; z-index: 2;}
+
 #icono2__ver_pass{display: none;}
 #icono2__ver_pass:checked + .label__icono2__ver_pass::before{opacity: 1;}
 #icono2__ver_pass:checked + .label__icono2__ver_pass::after{opacity: 0;}
 .label__icono2__ver_pass{background-color: #fff; width: 0px; height: 0px; right: 0px; top: 15px; position: absolute;  cursor: pointer;}
-.label__icono2__ver_pass::before{content: ""; width: 35px; height: 35px; position: absolute;top: -12px; right: 50px; opacity: 0; z-index: 5; background-image: url("https://drive.google.com/uc?export=view&id=1O1NEpGZTu-jXBiY1Y1_Z-DfJ-0rjrLXa"); background-size: 100% 100%; user-select: none;}
-.label__icono2__ver_pass::after{content: ""; width: 35px; height: 35px; position: absolute;top: -12px; right: 50px; opacity: 1; z-index: 2; background-image: url("https://drive.google.com/uc?export=view&id=1FI7sX4tmtFo1tDy32jth5H_AZatr3QgZ"); background-size: 100% 100%; user-select: none;}
+.label__icono2__ver_pass::before{content: ""; width: 35px; height: 35px; position: absolute; top: 297px; right: 240px; z-index: 5; opacity: 0; background-image: url("https://drive.google.com/uc?export=view&id=1O1NEpGZTu-jXBiY1Y1_Z-DfJ-0rjrLXa"); background-size: 100% 100%; user-select: none;}
+.label__icono2__ver_pass::after{content: ""; width: 35px; height: 35px; position: absolute; top: 297px; right: 240px; z-index: 5; opacity: 1; background-image: url("https://drive.google.com/uc?export=view&id=1FI7sX4tmtFo1tDy32jth5H_AZatr3QgZ"); background-size: 100% 100%; user-select: none;}
+
 ::placeholder{color: #000;}
 #checkboxLogin{display: none;}
 .contenedor__row__form__labelCheckbox{position: relative; padding-left: 60px; cursor: pointer; user-select: none;}
