@@ -59,3 +59,10 @@ nav_btn_responsive.addEventListener("click", ()=>{
     nav_contenedor_general.style.height = "260px";
   }
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const divsPadre = document.getElementsByClassName("navegador__menu_2")
+  // modificar para que esté en todos los html
+  const display = document.getElementById("data");
+  display.innerHTML = localStorage.getItem("usuario");
+});
