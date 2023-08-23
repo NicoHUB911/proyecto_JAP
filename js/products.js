@@ -1,4 +1,9 @@
-const URL_PRODUCTOS = "https://japceibal.github.io/emercado-api/cats_products/101.json";
+document.addEventListener("DOMContentLoaded", function() {
+  const catID = localStorage.getItem("catID"); // Obtener el catID del localStorage
+
+  if (catID) {
+      const URL_PRODUCTOS = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`;
+console.log("Cargando productos para la categoría:", catID); // Probar si la función está siendo llamada
 
 fetch(URL_PRODUCTOS)
   .then(response => {
@@ -14,6 +19,8 @@ fetch(URL_PRODUCTOS)
   })
   .catch(error => {
     console.error('Hubo un error:', error);
+});
+}
 });
 
 function procesarDatos(data) {
