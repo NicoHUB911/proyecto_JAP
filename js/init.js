@@ -79,4 +79,38 @@ document.addEventListener("DOMContentLoaded", () => {
       <a id="img_user" class="d-flex align-items-center rounded-circle" href="my-profile.html"><img class="h-100" src="img/user-Icon.png" alt="logo de usuario (menu de usuario)"></a>
 	`;
 
+  
 });
+
+
+/*
+  HOLA SOY NICOLAS. ESTE CODIGO ES POR SI LO QUIEREN HACER CON EL SESSION Y NO CON EL LOCAL.
+
+  document.addEventListener("DOMContentLoaded", () => {
+
+    if (localStorage.getItem("usuario") === null) { // compruebo si el local no tiene algun valor para usuario
+      mostrarUserName(sessionStorage.getItem("usuario"));
+    }else{   // de no ser asi le mando el del local.
+      mostrarUserName(localStorage.getItem("usuario"));
+    }
+
+  });
+
+  // la funcion modularizada para mostrar el nombre
+  function mostrarUserName(nombre) {
+  // obtenemos el div al que le vamos a agregar los tres botones (icono de perfil, nombre de usuario y carrito)
+  // como el metodo getElementsByClassName devuelve una lista espicificamos que vamos a trabajar solo con el primer elemento [0]
+    const parentDivs = document.getElementsByClassName("navegador__menu_2")[0];
+   
+  
+  // usando innerHTML con Template strings (tipo ${}) le ponemos el ya contenido de toda la sección con formato html
+    parentDivs.innerHTML = `
+      <a id="img_carrito" class="d-flex align-items-center me-3 rounded-circle" href="#"><img class="h-100" src="img/carrito.png" alt="carrito de compras"></a>
+      <a href="my-profile.html"><div class="navegador__menu_2__lista__link"><span id="data">${nombre}</span></div></a>
+      <a id="img_user" class="d-flex align-items-center rounded-circle" href="my-profile.html"><img class="h-100" src="img/user-Icon.png" alt="logo de usuario (menu de usuario)"></a>
+    `;
+  }
+
+  AGREGAR ESTO AL LOGIN EN LA PARTE DE LOGEARSE (EN LA DEL SESION): sessionStorage.setItem("usuario", `${user.value}`);
+
+*/
