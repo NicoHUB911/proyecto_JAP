@@ -60,9 +60,23 @@ nav_btn_responsive.addEventListener("click", ()=>{
   }
 });
 
+
+
 document.addEventListener("DOMContentLoaded", () => {
-  const divsPadre = document.getElementsByClassName("navegador__menu_2")
-  // modificar para que esté en todos los html
-  const display = document.getElementById("data");
-  display.innerHTML = localStorage.getItem("usuario");
+// obtenemos el nombre de usuario que está en localStorage
+	const userName = localStorage.getItem("usuario");
+
+
+// obtenemos el div al que le vamos a agregar los tres botones (icono de perfil, nombre de usuario y carrito)
+// como el metodo getElementsByClassName devuelve una lista espicificamos que vamos a trabajar solo con el primer elemento [0]
+	const parentDivs = document.getElementsByClassName("navegador__menu_2")[0];
+ 
+
+// usando innerHTML con Template strings (tipo ${}) le ponemos el ya contenido de toda la sección con formato html
+	parentDivs.innerHTML = `
+	<a id="img_carrito" class="d-flex align-items-center me-3 rounded-circle" href="#"><img class="h-100" src="img/carrito.png" alt="carrito de compras"></a>
+      <a href="my-profile.html"><div class="navegador__menu_2__lista__link"><span id="data">${userName}</span></div></a>
+      <a id="img_user" class="d-flex align-items-center rounded-circle" href="my-profile.html"><img class="h-100" src="img/user-Icon.png" alt="logo de usuario (menu de usuario)"></a>
+	`;
+
 });
