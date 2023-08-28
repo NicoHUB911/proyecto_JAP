@@ -6,6 +6,34 @@ let currentSortCriteria = undefined;
 let minCount = undefined;
 let maxCount = undefined;
 
+function sortCategories(criteria, array){
+    let result = [];
+    if (criteria === ORDER_ASC_BY_NAME)
+    {
+        result = array.sort(function(a, b) {
+            if ( a.name < b.name ){ return -1; }
+            if ( a.name > b.name ){ return 1; }
+            return 0;
+        });
+    }else if (criteria === ORDER_DESC_BY_NAME){
+        result = array.sort(function(a, b) {
+            if ( a.name > b.name ){ return -1; }
+            if ( a.name < b.name ){ return 1; }
+            return 0;
+        });
+    }else if (criteria === ORDER_BY_PROD_COUNT){
+        result = array.sort(function(a, b) {
+            let aCount = parseInt(a.productCount);
+            let bCount = parseInt(b.productCount);
+
+            if ( aCount > bCount ){ return -1; }
+            if ( aCount < bCount ){ return 1; }
+            return 0;
+        });
+    }
+
+    return result;
+}
 
 function setCatID(id) { // establece el catID para poder mostrar en productos los... de la categoria que se desea
     localStorage.setItem("catID", id);
@@ -45,8 +73,7 @@ function showCategoriesList(){
         document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
     }
 }
-
-
+//funcion para mostrar solo las categorias que se buscaron y no tener que modificar CurrentCategories
 function showSearchedCategoriesList(categories){
 
     let htmlContentToAppend = "";
@@ -78,18 +105,7 @@ function showSearchedCategoriesList(categories){
     }
 }
 
-function sortAndShowCategories(sortCriteria, categoriesArray){
-    currentSortCriteria = sortCriteria;
 
-    if(categoriesArray != undefined){
-        currentCategoriesArray = categoriesArray;
-    }
-
-    currentCategoriesArray = sortCategories(currentSortCriteria, currentCategoriesArray);
-
-    //Muestro las categorías ordenadas
-    showCategoriesList();
-}
 function Buscar(valorDeBusqueda){
     if (valorDeBusqueda){
     const SearchedCategoriesArray=currentCategoriesArray.filter(categoria=>{
@@ -106,7 +122,6 @@ function Buscar(valorDeBusqueda){
 }
 }
 
-
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
@@ -118,6 +133,7 @@ document.addEventListener("DOMContentLoaded", function(e){
             //sortAndShowCategories(ORDER_ASC_BY_NAME, resultObj.data);
         }
     });
+    //Codigo que se encarga de traer el buscador y llamar a la funcion correspondiente cuando se reciba un input
     const Buscador=this.getElementById("buscador");
     Buscador.addEventListener('input', ()=>{
         const Valor=Buscador.value.trim();
