@@ -524,6 +524,14 @@ input[type=password]::-ms-clear {
   .navegador__menu_1__lista__link:hover {
     color: #fff;
   }
+  
+  .navegador__menu_2__lista__link{
+	text-decoration: none;
+	color: #f09100;
+	font-family: sans-serif;
+	letter-spacing: 2px;
+	padding-right: 10px;
+  }
 
   .lineaDeAbajo {
     position: relative;
