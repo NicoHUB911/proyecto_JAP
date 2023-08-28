@@ -5,6 +5,25 @@ document.addEventListener("DOMContentLoaded", function() {
       const URL_PRODUCTOS = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`; // link del json con el catID especifico
 console.log("Cargando productos para la categoría:", catID); // Probar si la función está siendo llamada
 
+
+fetch(URL_PRODUCTOS)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Error en la solicitud');
+    }
+    return response.json(); // Convierte la respuesta en formato JSON.
+  })
+  .then(data => {
+    // Aquí tienes acceso a los datos JSON en la variable "data".
+    //console.log(data);  Muestra los datos en la consola para verificar.
+    procesarDatos(data); // llamamos a prosesarDatos(datos) para manipular los datos.
+  })
+  .catch(error => {
+    console.error('Hubo un error:', error);
+});
+}
+})
+
  /* traido de HTML */
 
 /* input Filtro */
@@ -91,26 +110,8 @@ localStorage.removeItem('prods')
 
 
 
-
 /* -------- */
 
-fetch(URL_PRODUCTOS)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Error en la solicitud');
-    }
-    return response.json(); // Convierte la respuesta en formato JSON.
-  })
-  .then(data => {
-    // Aquí tienes acceso a los datos JSON en la variable "data".
-    //console.log(data);  Muestra los datos en la consola para verificar.
-    procesarDatos(data); // llamamos a prosesarDatos(datos) para manipular los datos.
-  })
-  .catch(error => {
-    console.error('Hubo un error:', error);
-});
-}
-});
 
 function procesarDatos(data) {
   /* Si esta funcion viene del fetch, trae data.prodcuts y se guarda en productos, si viene de otro lado,(otro evento) viene sin el products y se guarda en productos */
