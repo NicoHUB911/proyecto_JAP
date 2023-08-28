@@ -6,34 +6,7 @@ let currentSortCriteria = undefined;
 let minCount = undefined;
 let maxCount = undefined;
 
-function sortCategories(criteria, array){
-    let result = [];
-    if (criteria === ORDER_ASC_BY_NAME)
-    {
-        result = array.sort(function(a, b) {
-            if ( a.name < b.name ){ return -1; }
-            if ( a.name > b.name ){ return 1; }
-            return 0;
-        });
-    }else if (criteria === ORDER_DESC_BY_NAME){
-        result = array.sort(function(a, b) {
-            if ( a.name > b.name ){ return -1; }
-            if ( a.name < b.name ){ return 1; }
-            return 0;
-        });
-    }else if (criteria === ORDER_BY_PROD_COUNT){
-        result = array.sort(function(a, b) {
-            let aCount = parseInt(a.productCount);
-            let bCount = parseInt(b.productCount);
 
-            if ( aCount > bCount ){ return -1; }
-            if ( aCount < bCount ){ return 1; }
-            return 0;
-        });
-    }
-
-    return result;
-}
 
 function setCatID(id) { // establece el catID para poder mostrar en productos los... de la categoria que se desea
     localStorage.setItem("catID", id);
@@ -116,9 +89,10 @@ function Buscar(valorDeBusqueda){
         correspondiente a minisculas y se devuelven solo los articulos que coinciden */
         return nombre.includes(terminoDeBusqueda) || descripcion.includes(terminoDeBusqueda);
     });
-    showSearchedCategoriesList(SearchedCategoriesArray); // se llama a una funcion para mostrar la busqueda en tiempo real.
+    return SearchedCategoriesArray;// Se devuelve el array filtrado.
 } else{
     showCategoriesList(); // si no hay criterio de busqueda se muestran todas las categorias.
+    return currentCategoriesArray;
 }
 }
 
@@ -136,20 +110,19 @@ document.addEventListener("DOMContentLoaded", function(e){
     //Codigo que se encarga de traer el buscador y llamar a la funcion correspondiente cuando se reciba un input
     const Buscador=this.getElementById("buscador");
     Buscador.addEventListener('input', ()=>{
-        const Valor=Buscador.value.trim();
-        Buscar(Valor);
+        showSearchedCategoriesList(Buscar(Buscador.value.trim()));
     }); 
 
     document.getElementById("sortAsc").addEventListener("click", function(){ // si apretan el filtro de orden alfabetico...
-        sortAndShowCategories(ORDER_ASC_BY_NAME);
+        sortAndShowCategories(ORDER_ASC_BY_NAME,Buscar(Buscador.value.trim()));
     });
 
     document.getElementById("sortDesc").addEventListener("click", function(){ // si apretan el filtro alfabetico (alreves)...
-        sortAndShowCategories(ORDER_DESC_BY_NAME);
+        sortAndShowCategories(ORDER_DESC_BY_NAME,Buscar(Buscador.value.trim()));
     });
 
     document.getElementById("sortByCount").addEventListener("click", function(){ // si apretan el filtro de cantidad de productos...
-        sortAndShowCategories(ORDER_BY_PROD_COUNT);
+        sortAndShowCategories(ORDER_BY_PROD_COUNT,Buscar(Buscador.value.trim())); // Se agrego adaptacion que hace que tome en cuenta si hay algo ingresado en el buscador
     });
 
     document.getElementById("clearRangeFilter").addEventListener("click", function(){ // limpia los campos de filtro
@@ -158,6 +131,7 @@ document.addEventListener("DOMContentLoaded", function(e){
 
         minCount = undefined;
         maxCount = undefined;
+        buscador.value = "";
 
         showCategoriesList();
     });
@@ -182,7 +156,7 @@ document.addEventListener("DOMContentLoaded", function(e){
             maxCount = undefined;
         }
 
-        showCategoriesList();
+        sortAndShowCategories(null,Buscar(Buscador.value)); // Se manda a mostrar el resultado de buscar pero filtrado ahora tambien por cantidad
     });
 });
 
@@ -195,6 +169,7 @@ function sortCategories(criteria, array){ // recibe un criterio para ordenar y u
         result = array.sort(function(a, b) { // lo guarda ordenado en result
             if ( a.name < b.name ){ return -1; }
             if ( a.name > b.name ){ return 1; }
+            
             return 0;
         });
     }else if (criteria === ORDER_DESC_BY_NAME){ // si el criterio es ordenarlos alreves (del alfabeto)...
@@ -207,7 +182,7 @@ function sortCategories(criteria, array){ // recibe un criterio para ordenar y u
         result = array.sort(function(a, b) {  // lo guarda ordenado en result
             let aCount = parseInt(a.productCount);
             let bCount = parseInt(b.productCount);
-
+            
             if ( aCount > bCount ){ return -1; }
             if ( aCount < bCount ){ return 1; }
             return 0;
@@ -220,14 +195,8 @@ function sortCategories(criteria, array){ // recibe un criterio para ordenar y u
 // funcion para llamar a la funcion que ordena por los filtros 
 //de cant de stock, alfabetico y alfabetico alreves.
 function sortAndShowCategories(sortCriteria, categoriesArray){
-    currentSortCriteria = sortCriteria; // guardamos el criterio para ordenar el array (categorias)
-
-    if(categoriesArray != undefined){ // si categoriesArray (el array que nos pasan como parametro) no tiene valor
-        currentCategoriesArray = categoriesArray; // currentCategoriesArray es un array bacio que definimos arriva del todo :)
-    }
-
-    currentCategoriesArray = sortCategories(currentSortCriteria, currentCategoriesArray); // usamos el array vacio dos veces (para pasarselo a la funcion que ordena todo)
-                                                                                            // y para igualar el resultado que nos devuelve la funcion a el (currentCategoriesArray)
-    //Muestro las categorías ordenadas
-    showCategoriesList();
-}
+    if(!sortCriteria){
+        showSearchedCategoriesList(categoriesArray);
+    } else {
+    showSearchedCategoriesList(sortCategories(sortCriteria,categoriesArray)); // muestro el resultado de las categorias filtradas
+}}

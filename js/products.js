@@ -72,6 +72,7 @@ localStorage.removeItem('prods')
     rangoMax.value = 0
     maxPrice.value = maximo
     minPrice.value = 0
+    buscador.value = "";
     localStorage.removeItem('prodsFiltrados')
     procesarDatos(JSON.parse(localStorage.getItem('prods')))
   })
