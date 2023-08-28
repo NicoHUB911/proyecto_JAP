@@ -36,3 +36,12 @@ user.addEventListener("focus",()=>{ // oculto los avisos si se hace click en los
 pass.addEventListener("focus",()=>{
     aviso2.style.opacity = "0";
 });
+
+document.addEventListener("DOMContentLoaded",()=>{
+    const botonEnviar = document.getElementById("boton");
+    botonEnviar.addEventListener('click',Guardar)
+});
+function Guardar() {
+    const input = document.getElementById("usuario");
+    localStorage.setItem("usuario", input.value);
+  }
