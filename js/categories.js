@@ -47,6 +47,66 @@ function showCategoriesList(){
 }
 
 
+function showSearchedCategoriesList(categories){
+
+    let htmlContentToAppend = "";
+    for(let i = 0; i < categories.length; i++){
+        let category = categories[i];
+
+        if (((minCount == undefined) || (minCount != undefined && parseInt(category.productCount) >= minCount)) &&
+            ((maxCount == undefined) || (maxCount != undefined && parseInt(category.productCount) <= maxCount))){
+
+            htmlContentToAppend += `
+            <div onclick="setCatID(${category.id})" class="list-group-item list-group-item-action cursor-active">
+                <div class="row">
+                    <div class="col-3">
+                        <img src="${category.imgSrc}" alt="${category.description}" class="img-thumbnail">
+                    </div>
+                    <div class="col">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h4 class="mb-1">${category.name}</h4>
+                            <small class="text-muted">${category.productCount} artículos</small>
+                        </div>
+                        <p class="mb-1">${category.description}</p>
+                    </div>
+                </div>
+            </div>
+            `
+        }
+
+        document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
+    }
+}
+
+function sortAndShowCategories(sortCriteria, categoriesArray){
+    currentSortCriteria = sortCriteria;
+
+    if(categoriesArray != undefined){
+        currentCategoriesArray = categoriesArray;
+    }
+
+    currentCategoriesArray = sortCategories(currentSortCriteria, currentCategoriesArray);
+
+    //Muestro las categorías ordenadas
+    showCategoriesList();
+}
+function Buscar(valorDeBusqueda){
+    if (valorDeBusqueda){
+    const SearchedCategoriesArray=currentCategoriesArray.filter(categoria=>{
+        const terminoDeBusqueda = valorDeBusqueda.toLowerCase();
+        const nombre=categoria.name.toLowerCase();
+        const descripcion=categoria.description.toLowerCase();
+        /*Se pasa el valor de busqueda, asi como la descripcion y el nombre de la categoria 
+        correspondiente a minisculas y se devuelven solo los articulos que coinciden */
+        return nombre.includes(terminoDeBusqueda) || descripcion.includes(terminoDeBusqueda);
+    });
+    showSearchedCategoriesList(SearchedCategoriesArray); // se llama a una funcion para mostrar la busqueda en tiempo real.
+} else{
+    showCategoriesList(); // si no hay criterio de busqueda se muestran todas las categorias.
+}
+}
+
+
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
@@ -58,6 +118,11 @@ document.addEventListener("DOMContentLoaded", function(e){
             //sortAndShowCategories(ORDER_ASC_BY_NAME, resultObj.data);
         }
     });
+    const Buscador=this.getElementById("buscador");
+    Buscador.addEventListener('input', ()=>{
+        const Valor=Buscador.value.trim();
+        Buscar(Valor);
+    }); 
 
     document.getElementById("sortAsc").addEventListener("click", function(){ // si apretan el filtro de orden alfabetico...
         sortAndShowCategories(ORDER_ASC_BY_NAME);
