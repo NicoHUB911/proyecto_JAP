@@ -6,7 +6,6 @@ let currentSortCriteria = undefined;
 let minCount = undefined;
 let maxCount = undefined;
 
-
 function sortCategories(criteria, array){
     let result = [];
     if (criteria === ORDER_ASC_BY_NAME)
@@ -36,11 +35,15 @@ function sortCategories(criteria, array){
     return result;
 }
 
-function setCatID(id) {
+function setCatID(id) { // establece el catID para poder mostrar en productos los... de la categoria que se desea
     localStorage.setItem("catID", id);
-    window.location = "products.html"
+    window.location = "products.html"  // lo mandas al products.html
 }
 
+/*________________________________________________para_abajo_estan_el_tema_de_los_filtros________________________________________________*/
+
+// funcion que te verifica si esta activado el filtro de mincount
+// y maxcount ( y lo filtra ). Lo termina mostrando en el contenedor cat-list-container.
 function showCategoriesList(){
 
     let htmlContentToAppend = "";
@@ -67,7 +70,6 @@ function showCategoriesList(){
             </div>
             `
         }
-
         document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
     }
 }
@@ -103,18 +105,6 @@ function showSearchedCategoriesList(categories){
     }
 }
 
-function sortAndShowCategories(sortCriteria, categoriesArray){
-    currentSortCriteria = sortCriteria;
-
-    if(categoriesArray != undefined){
-        currentCategoriesArray = categoriesArray;
-    }
-
-    currentCategoriesArray = sortCategories(currentSortCriteria, currentCategoriesArray);
-
-    //Muestro las categorías ordenadas
-    showCategoriesList();
-}
 
 function Buscar(valorDeBusqueda){
     if (valorDeBusqueda){
@@ -150,19 +140,19 @@ document.addEventListener("DOMContentLoaded", function(e){
         Buscar(Valor);
     }); 
 
-    document.getElementById("sortAsc").addEventListener("click", function(){
+    document.getElementById("sortAsc").addEventListener("click", function(){ // si apretan el filtro de orden alfabetico...
         sortAndShowCategories(ORDER_ASC_BY_NAME);
     });
 
-    document.getElementById("sortDesc").addEventListener("click", function(){
+    document.getElementById("sortDesc").addEventListener("click", function(){ // si apretan el filtro alfabetico (alreves)...
         sortAndShowCategories(ORDER_DESC_BY_NAME);
     });
 
-    document.getElementById("sortByCount").addEventListener("click", function(){
+    document.getElementById("sortByCount").addEventListener("click", function(){ // si apretan el filtro de cantidad de productos...
         sortAndShowCategories(ORDER_BY_PROD_COUNT);
     });
 
-    document.getElementById("clearRangeFilter").addEventListener("click", function(){
+    document.getElementById("clearRangeFilter").addEventListener("click", function(){ // limpia los campos de filtro
         document.getElementById("rangeFilterCountMin").value = "";
         document.getElementById("rangeFilterCountMax").value = "";
 
@@ -172,21 +162,21 @@ document.addEventListener("DOMContentLoaded", function(e){
         showCategoriesList();
     });
 
-    document.getElementById("rangeFilterCount").addEventListener("click", function(){
+    document.getElementById("rangeFilterCount").addEventListener("click", function(){ // cuando le haga click al boton de filtrar...
         //Obtengo el mínimo y máximo de los intervalos para filtrar por cantidad
         //de productos por categoría.
         minCount = document.getElementById("rangeFilterCountMin").value;
         maxCount = document.getElementById("rangeFilterCountMax").value;
 
         if ((minCount != undefined) && (minCount != "") && (parseInt(minCount)) >= 0){
-            minCount = parseInt(minCount);
+            minCount = parseInt(minCount); // transformo en valor numerico el minCount
         }
         else{
             minCount = undefined;
         }
 
         if ((maxCount != undefined) && (maxCount != "") && (parseInt(maxCount)) >= 0){
-            maxCount = parseInt(maxCount);
+            maxCount = parseInt(maxCount); // transformo en valor numerico el maxCount
         }
         else{
             maxCount = undefined;
@@ -195,3 +185,49 @@ document.addEventListener("DOMContentLoaded", function(e){
         showCategoriesList();
     });
 });
+
+
+// funcion para los filtros de cant de stock, 
+// alfabetico y alfabetico alreves.
+function sortCategories(criteria, array){ // recibe un criterio para ordenar y un array
+    let result = []; // para guardar el resultado
+    if (criteria === ORDER_ASC_BY_NAME){ // si el criterio es ordenarlos alfabeticamente...
+        result = array.sort(function(a, b) { // lo guarda ordenado en result
+            if ( a.name < b.name ){ return -1; }
+            if ( a.name > b.name ){ return 1; }
+            return 0;
+        });
+    }else if (criteria === ORDER_DESC_BY_NAME){ // si el criterio es ordenarlos alreves (del alfabeto)...
+        result = array.sort(function(a, b) { // lo guarda ordenado en result
+            if ( a.name > b.name ){ return -1; }
+            if ( a.name < b.name ){ return 1; }
+            return 0;
+        });
+    }else if (criteria === ORDER_BY_PROD_COUNT){ // si el criterio es por la cantidad de stock...
+        result = array.sort(function(a, b) {  // lo guarda ordenado en result
+            let aCount = parseInt(a.productCount);
+            let bCount = parseInt(b.productCount);
+
+            if ( aCount > bCount ){ return -1; }
+            if ( aCount < bCount ){ return 1; }
+            return 0;
+        });
+    }
+    return result; // la funcion returna el result con el criterio con el que se haya ordenado.
+}
+
+
+// funcion para llamar a la funcion que ordena por los filtros 
+//de cant de stock, alfabetico y alfabetico alreves.
+function sortAndShowCategories(sortCriteria, categoriesArray){
+    currentSortCriteria = sortCriteria; // guardamos el criterio para ordenar el array (categorias)
+
+    if(categoriesArray != undefined){ // si categoriesArray (el array que nos pasan como parametro) no tiene valor
+        currentCategoriesArray = categoriesArray; // currentCategoriesArray es un array bacio que definimos arriva del todo :)
+    }
+
+    currentCategoriesArray = sortCategories(currentSortCriteria, currentCategoriesArray); // usamos el array vacio dos veces (para pasarselo a la funcion que ordena todo)
+                                                                                            // y para igualar el resultado que nos devuelve la funcion a el (currentCategoriesArray)
+    //Muestro las categorías ordenadas
+    showCategoriesList();
+}
