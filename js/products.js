@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
       const URL_PRODUCTOS = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`; // link del json con el catID especifico
 console.log("Cargando productos para la categoría:", catID); // Probar si la función está siendo llamada
 
-/* traido de HTML */
+ /* traido de HTML */
 
 /* input Filtro */
   let minPrice = document.getElementById('minPrice')
