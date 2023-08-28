@@ -6,6 +6,9 @@ document.addEventListener("DOMContentLoaded", function() {
 console.log("Cargando productos para la categoría:", catID); // Probar si la función está siendo llamada
 
 
+
+
+
 fetch(URL_PRODUCTOS)
   .then(response => {
     if (!response.ok) {
@@ -23,6 +26,8 @@ fetch(URL_PRODUCTOS)
 });
 }
 })
+
+
 
  /* traido de HTML */
 
@@ -162,3 +167,34 @@ function procesarDatos(data) {
                   /* Si no hay prods, se muestra que no hay prods */
                   if(productos.length === 0)document.getElementById("contenedor_productos").innerHTML = "<h3 class='my-5'>No hay productos</h3>"
 }
+
+
+  // Funcionalidad al buscador:
+
+  const buscador = document.getElementById('buscador');
+
+  // agregamos un evento input al campo de búsqueda que se activa cada vez que se introduce o se borra texto en el campo.
+buscador.addEventListener('input', () => {
+  const searchTerm = buscador.value.toLowerCase().trim(); // Término de e búsquedan minúsculas sin espacios al principio y al final
+
+  let productosFiltrados = JSON.parse(localStorage.getItem('prods')); // Obtener todos los productos
+
+  // obtenemos los valores de los filtros de precio
+  const minPriceValue = minPrice.value !== '' ? parseFloat(minPrice.value) : 0;
+  const maxPriceValue = maxPrice.value !== '' ? parseFloat(maxPrice.value) : Infinity;
+
+  // filtramos por rango de precios
+  productosFiltrados = productosFiltrados.filter((producto) => {
+    return producto.cost >= minPriceValue && producto.cost <= maxPriceValue;
+  });
+
+  // Si hay término de búsqueda, filtramos por búsqueda
+  if (searchTerm) {
+    productosFiltrados = productosFiltrados.filter((producto) => {
+      return producto.name.toLowerCase().includes(searchTerm) || producto.description.toLowerCase().includes(searchTerm);
+    });
+  }
+
+  // llamamos a la funcion para mostrar los productos filtrados
+  procesarDatos(productosFiltrados);
+});
