@@ -48,7 +48,9 @@ function showCategoriesList(){
 }
 //funcion para mostrar solo las categorias que se buscaron y no tener que modificar CurrentCategories
 function showSearchedCategoriesList(categories){
-
+    if(categories.length==0){
+        document.getElementById("cat-list-container").innerHTML = "";
+    }
     let htmlContentToAppend = "";
     for(let i = 0; i < categories.length; i++){
         let category = categories[i];
@@ -87,8 +89,11 @@ function Buscar(valorDeBusqueda){
         const descripcion=categoria.description.toLowerCase();
         /*Se pasa el valor de busqueda, asi como la descripcion y el nombre de la categoria 
         correspondiente a minisculas y se devuelven solo los articulos que coinciden */
+        
         return nombre.includes(terminoDeBusqueda) || descripcion.includes(terminoDeBusqueda);
+        
     });
+    console.log(SearchedCategoriesArray);
     return SearchedCategoriesArray;// Se devuelve el array filtrado.
 } else{
     showCategoriesList(); // si no hay criterio de busqueda se muestran todas las categorias.
@@ -156,7 +161,7 @@ document.addEventListener("DOMContentLoaded", function(e){
             maxCount = undefined;
         }
 
-        sortAndShowCategories(null,Buscar(Buscador.value)); // Se manda a mostrar el resultado de buscar pero filtrado ahora tambien por cantidad
+        sortAndShowCategories(null,Buscar(Buscador.value.trim())); // Se manda a mostrar el resultado de buscar pero filtrado ahora tambien por cantidad
     });
 });
 
