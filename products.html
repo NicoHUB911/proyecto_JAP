@@ -32,35 +32,38 @@
 
 
   <!-- Creamos los botones de filtros y les pusimos ids para usarlos en js -->
-  <main class="pb-5 row mx-5 d-flex flex-column align-items-between" >
+  <main class="pb-5  mx-5 d-flex flex-column align-items-between min-vh-100" >
   
     
       <!-- Filter by price -->
-      <div class="pt-5 mt-4 px-5 d-flex justify-content-end gap-2 align-items-center" >
-	          <label class="mb-4">Buscar:</label>
-        <div class="d-flex flex-column mb-3">
-          <input type="search" name="search" id="buscador" class="rounded">
-        </div>
-        <label for="minPrice" class="mb-4">Precio</label>
-        <div class="d-flex flex-column">
-          <input type="number" name="minPrice" id="minPrice" placeholder="0" min="1">
-          <input type="range" name="rangoMin" id="rangoMin" value="0">
-        </div>
-        <div class="d-flex flex-column"> 
-          <input type="number" name="maxPrice" id="maxPrice" placeholder="20000" min="1">
-          
-          <input type="range" name="rangoMax" id="rangoMax" value="0" style="direction: rtl">
-        </div>
-        <button class="btn btn-outline-secondary mb-3" id="boton_Filtrar">Filtrar</button>
-        <button class="btn btn-outline-secondary mb-3" id="boton_Limpiar">Limpiar</button>
+      <div class=" pt-5 mt-4 px-5 d-flex justify-content-end gap-2 align-items-center flex-column" >
 
-        <button class="btn btn-outline-secondary mb-3" id="boton_menorAMayor"><i class="fa-solid fa-arrow-up-short-wide"></i></button>
-        <button class="btn btn-outline-secondary mb-3" id="boton_mayorAMenor"><i class="fa-solid fa-arrow-down-short-wide"></i></button>
-        <button class="btn btn-outline-secondary mb-3" id="boton_relevancia"><i class="fa-solid fa-arrow-up-short-wide"></i> Rel</button>
-
+        <div class="contenedorBuscador d-flex justify-content-center mb-3 position-relative">
+          <label class="labelBuscador" for="buscador" id="label_buscador"></label>
+          <input type="search" name="search" id="buscador" class="rounded-pill ps-5 pt-2 pb-2 pe-2" placeholder="Buscar"><!--buscador-->
+        </div>
+        <div class="contenedor_maxMinRangeLimpiarFiltrar d-flex">
+          <div class="d-flex flex-column"><!--precio_minimo-->
+            <input type="number" name="minPrice" id="minPrice" class="filtro_minMax" value="0" min="1">
+            <input type="range" name="rangoMin" id="rangoMin" class="filtro_rangeMaxMin" value="0">
+          </div>
+          <div class="d-flex flex-column"><!--precio_maximo-->
+            <input type="number" name="maxPrice" id="maxPrice" class="filtro_minMax" min="1">
+            <input type="range" name="rangoMax" id="rangoMax" class="filtro_rangeMaxMin" value="0" style="direction: rtl">
+          </div>
+          <div class="contenedor_filtrarYLimpiar">
+            <button class="boton_filtrar rounded-2 h-75 mb-3" id="boton_Filtrar">Filtrar</button>
+            <button class="boton_limpiar rounded-2 h-75 mb-3" id="boton_Limpiar">Limpiar</button>
+          </div>
+        </div>
+        <div class="contenedor_ordenar d-flex justify-content-evenly mt-2">
+          <button class="btn_ordenar mb-3 rounded-2" id="boton_menorAMayor"><i class="fa-solid fa-arrow-up-short-wide"></i></button>
+          <button class="btn_ordenar mb-3 rounded-2" id="boton_mayorAMenor"><i class="fa-solid fa-arrow-down-short-wide"></i></button>
+          <button class="btn_ordenar_rel mb-3 rounded-2" id="boton_relevancia"><i class="fa-solid fa-arrow-up-short-wide"></i> Rel</button>  
+        </div>
       </div>
 
-    <div id="contenedor_productos" class="container d-flex justify-content-evenly flex-wrap w-auto col-lg-12 "> 
+    <div id="contenedor_productos" class="container d-flex justify-content-evenly align-items-center flex-wrap w-auto  min-vh-100"> 
       
       <!--Aca se ponen los productos-->
     </div>

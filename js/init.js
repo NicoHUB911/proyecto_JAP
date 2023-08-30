@@ -8,6 +8,7 @@ const CART_BUY_URL = "https://japceibal.github.io/emercado-api/cart/buy.json";
 const EXT_TYPE = ".json";
 const nav_btn_responsive = document.getElementById("btn_nav_responsive");
 const nav_contenedor_general = document.getElementById("nav_tag");
+
 let estado_nav = false;
 
 document.addEventListener("DOMContentLoaded", function(){
@@ -15,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function(){
     window.location = "login.html"; // lo mando al login.
   }
 });
+
 
 let showSpinner = function(){
   document.getElementById("spinner-wrapper").style.display = "block";
@@ -49,7 +51,7 @@ let getJSONData = function(url){
     });
 }
 
-
+// para el boton del nav movile
 nav_btn_responsive.addEventListener("click", ()=>{
   if (estado_nav) {
     estado_nav = false;
@@ -59,6 +61,14 @@ nav_btn_responsive.addEventListener("click", ()=>{
     nav_contenedor_general.style.height = "260px";
   }
 });
+
+// para solucionar un bug con el nav movile, a la hora de cambiar la medida de la ventana
+// y tener abierto el nav movile al mismo tiempo.
+window.addEventListener("resize", ()=>{
+  if (window.innerWidth > 630) {
+    nav_contenedor_general.style.height = "50px";
+  }
+})
 
 
 

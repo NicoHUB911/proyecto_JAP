@@ -267,7 +267,7 @@ input[type=password]::-ms-clear {
   position: absolute;
   left: 0px;
   bottom: -5px;
-  background-image: url("https://drive.google.com/uc?export=view&id=1MVssEMU6SQn3aNG3TDq8FXhfZfnD7V72");
+  background-image: url("../img/user_icon.png");
   background-size: 100% 100%;
   z-index: 1;
 }
@@ -307,7 +307,7 @@ input[type=password]::-ms-clear {
   position: absolute;
   right: 0px;
   bottom: -5px;
-  background-image: url("https://drive.google.com/uc?export=view&id=1T_6cxbKTLf5as2i5KdOd9J2RGi0F_U7w");
+  background-image: url("../img/pass_icon.png");
   background-size: 100% 100%;
   z-index: 1;
 }
@@ -356,7 +356,7 @@ input[type=password]::-ms-clear {
   right: 50px;
   opacity: 0;
   z-index: 5;
-  background-image: url("https://drive.google.com/uc?export=view&id=1O1NEpGZTu-jXBiY1Y1_Z-DfJ-0rjrLXa");
+  background-image: url("../img/ojo_abierto.png");
   background-size: 100% 100%;
   user-select: none;
 }
@@ -370,13 +370,13 @@ input[type=password]::-ms-clear {
   right: 50px;
   opacity: 1;
   z-index: 2;
-  background-image: url("https://drive.google.com/uc?export=view&id=1FI7sX4tmtFo1tDy32jth5H_AZatr3QgZ");
+  background-image: url("../img/ojo_cerrado.png");
   background-size: 100% 100%;
   user-select: none;
 }
 
 ::placeholder {
-  color: #000;
+  color: #5f5f5f;
 }
 
 #checkboxLogin {
@@ -524,13 +524,13 @@ input[type=password]::-ms-clear {
   .navegador__menu_1__lista__link:hover {
     color: #fff;
   }
-  
-  .navegador__menu_2__lista__link{
-	text-decoration: none;
-	color: #f09100;
-	font-family: sans-serif;
-	letter-spacing: 2px;
-	padding-right: 10px;
+
+  .navegador__menu_2__lista__link {
+    text-decoration: none;
+    color: #f09100;
+    font-family: sans-serif;
+    letter-spacing: 2px;
+    padding-right: 10px;
   }
 
   .lineaDeAbajo {
@@ -673,6 +673,14 @@ input[type=password]::-ms-clear {
     left: 0px;
   }
 
+  .navegador__menu_2__lista__link {
+    text-decoration: none;
+    color: #f09100;
+    font-family: sans-serif;
+    letter-spacing: 2px;
+    padding-right: 10px;
+  }
+
   .navegador__menu_2 {
     position: absolute;
     height: 50px;
@@ -700,6 +708,239 @@ input[type=password]::-ms-clear {
 }
 
 /*-----------------------------------------------------PRODUCTOS-----------------------------------------------------*/
+/*_______________SEARCH_Y_FILTROS_______________*/
+
+@media only screen and (min-width: 650px) {
+
+  .labelBuscador::before {
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #f09100;
+    left: -2px;
+    top: -2px;
+    background-image: url("../img/buscar_icon.png");
+    background-size: 100% 100%;
+    border: 2px solid #3f4850;
+    cursor: pointer;
+  }
+
+  .contenedorBuscador input {
+    border: 3px solid #3f4850;
+    outline: none;
+    width: 400px;
+  }
+
+  .filtro_minMax {
+    width: 120px;
+    text-align: center;
+    border: 2px solid #3f4850;
+    border-radius: 10px;
+    margin-right: 10px;
+  }
+
+  .filtro_rangeMaxMin {
+    width: 120px;
+    outline: none;
+    accent-color: #f09100;
+  }
+
+  .boton_filtrar {
+    background-color: #fff;
+    color: #3f4850;
+    width: 80px;
+    font-family: sans-serif;
+    font-weight: bold;
+    outline: none;
+    border: 2px solid #3f4850;
+  }
+
+  .boton_filtrar:hover {
+    background-color: #3f4850;
+    color: #fff;
+  }
+
+  .boton_filtrar:active {
+    color: #f09100;
+    background-color: #fff;
+  }
+
+  .boton_limpiar {
+    background-color: #f09100;
+    color: #3f4850;
+    width: 80px;
+    font-family: sans-serif;
+    font-weight: bold;
+    outline: none;
+    border: 2px solid #3f4850;
+    margin-left: 5px;
+  }
+
+  .boton_limpiar:hover {
+    color: #fff;
+    background-color: #3f4850;
+  }
+
+  .boton_limpiar:active {
+    background-color: #f09100;
+  }
+
+  .contenedor_ordenar {
+    width: 356px;
+    height: auto;
+  }
+
+  .btn_ordenar {
+    width: 40px;
+    height: 40px;
+    color: #f09100;
+    border: 2px solid #3f4850;
+    outline: none;
+    background-color: #fff;
+  }
+
+  .btn_ordenar_rel {
+    width: 60px;
+    height: 40px;
+    color: #f09100;
+    border: 2px solid #3f4850;
+    outline: none;
+    background-color: #fff;
+  }
+
+  .btn_ordenar:hover {
+    background-color: #f09100;
+    color: #3f4850;
+  }
+
+  .btn_ordenar_rel:hover {
+    background-color: #f09100;
+    color: #3f4850;
+  }
+
+  .btn_ordenar:active {
+    background-color: #fff;
+  }
+
+  .btn_ordenar_rel:active {
+    background-color: #fff;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .labelBuscador::before {
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #f09100;
+    left: -2px;
+    top: -2px;
+    background-image: url("../img/buscar_icon.png");
+    background-size: 100% 100%;
+    border: 2px solid #3f4850;
+    cursor: pointer;
+  }
+
+  .contenedorBuscador input {
+    border: 3px solid #3f4850;
+    outline: none;
+    width: 300px;
+  }
+
+  .contenedor_filtrarYLimpiar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .contenedor_maxMinRangeLimpiarFiltrar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .filtro_minMax {
+    width: 120px;
+    text-align: center;
+    border: 2px solid #3f4850;
+    border-radius: 10px;
+  }
+
+  .filtro_rangeMaxMin {
+    width: 120px;
+    outline: none;
+    accent-color: #f09100;
+    margin-bottom: 8px;
+  }
+
+  .boton_filtrar {
+    background-color: #fff;
+    color: #3f4850;
+    width: 65px;
+    font-family: sans-serif;
+    font-weight: bold;
+    outline: none;
+    border: 2px solid #3f4850;
+  }
+
+  .boton_filtrar:hover {
+    background-color: #3f4850;
+    color: #fff;
+  }
+
+  .boton_limpiar {
+    background-color: #f09100;
+    color: #3f4850;
+    width: 72px;
+    font-family: sans-serif;
+    font-weight: bold;
+    outline: none;
+    border: 2px solid #3f4850;
+    margin-left: 5px;
+  }
+
+  .boton_limpiar:hover {
+    color: #fff;
+    background-color: #3f4850;
+  }
+
+  .contenedor_ordenar {
+    width: 100%;
+  }
+
+  .btn_ordenar {
+    width: 40px;
+    height: 40px;
+    color: #f09100;
+    border: 2px solid #3f4850;
+    outline: none;
+    background-color: #fff;
+  }
+
+  .btn_ordenar_rel {
+    min-width: 70px;
+    height: 40px;
+    color: #f09100;
+    border: 2px solid #3f4850;
+    outline: none;
+    background-color: #fff;
+  }
+
+  .btn_ordenar:hover {
+    background-color: #f09100;
+    color: #3f4850;
+  }
+
+  .btn_ordenar_rel:hover {
+    background-color: #f09100;
+    color: #3f4850;
+  }
+}
+
+/*_____________________MAIN_____________________*/
 .main_productos__contenedor__carta {
   width: 30%;
   min-width: 230px;

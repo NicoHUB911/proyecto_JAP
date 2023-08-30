@@ -2,32 +2,28 @@ document.addEventListener("DOMContentLoaded", function() {
   const catID = localStorage.getItem("catID"); // Obtener el catID del localStorage
 
   if (catID) {
-      const URL_PRODUCTOS = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`; // link del json con el catID especifico
-console.log("Cargando productos para la categoría:", catID); // Probar si la función está siendo llamada
+    const URL_PRODUCTOS = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`; // link del json con el catID especifico
+    console.log("Cargando productos para la categoría:", catID); // Probar si la función está siendo llamada
 
-
-
-
-
-fetch(URL_PRODUCTOS)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Error en la solicitud');
-    }
-    return response.json(); // Convierte la respuesta en formato JSON.
-  })
-  .then(data => {
-    // Aquí tienes acceso a los datos JSON en la variable "data".
-    //console.log(data);  Muestra los datos en la consola para verificar.
-    procesarDatos(data); // llamamos a prosesarDatos(datos) para manipular los datos.
-  })
-  .catch(error => {
-    console.error('Hubo un error:', error);
+    fetch(URL_PRODUCTOS)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Error en la solicitud');
+        }
+        return response.json(); // Convierte la respuesta en formato JSON.
+      })
+      .then(data => {
+        // Aquí tienes acceso a los datos JSON en la variable "data".
+        //console.log(data);  Muestra los datos en la consola para verificar.
+        procesarDatos(data); // llamamos a prosesarDatos(datos) para manipular los datos.
+      })
+      .catch(error => {
+        console.error('Hubo un error:', error);
+    });
+  }
 });
-}
-})
 
-
+/*==========================================================================FILTROS==========================================================================*/
 
  /* traido de HTML */
 
@@ -114,10 +110,37 @@ localStorage.removeItem('prods')
 
   })
 
+/*===============================================================================BUSCADOR===============================================================================*/
 
+const buscador = document.getElementById('buscador');
 
-/* -------- */
+// agregamos un evento input al campo de búsqueda que se activa cada vez que se introduce o se borra texto en el campo.
+buscador.addEventListener('input', () => {
+const searchTerm = buscador.value.toLowerCase().trim(); // Término de e búsquedan minúsculas sin espacios al principio y al final
 
+let productosFiltrados = JSON.parse(localStorage.getItem('prods')); // Obtener todos los productos
+
+// obtenemos los valores de los filtros de precio
+const minPriceValue = minPrice.value !== '' ? parseFloat(minPrice.value) : 0;
+const maxPriceValue = maxPrice.value !== '' ? parseFloat(maxPrice.value) : Infinity;
+
+// filtramos por rango de precios
+productosFiltrados = productosFiltrados.filter((producto) => {
+  return producto.cost >= minPriceValue && producto.cost <= maxPriceValue;
+});
+
+// Si hay término de búsqueda, filtramos por búsqueda
+if (searchTerm) {
+  productosFiltrados = productosFiltrados.filter((producto) => {
+    return producto.name.toLowerCase().includes(searchTerm) || producto.description.toLowerCase().includes(searchTerm);
+  });
+}
+
+// llamamos a la funcion para mostrar los productos filtrados
+procesarDatos(productosFiltrados);
+});
+
+/*=======================================================================MOSTRAR_PRODUCTOS=======================================================================*/
 
 function procesarDatos(data) {
   /* Si esta funcion viene del fetch, trae data.prodcuts y se guarda en productos, si viene de otro lado,(otro evento) viene sin el products y se guarda en productos */
@@ -154,48 +177,15 @@ function procesarDatos(data) {
                       </a>
                     </div>
                     `
-                    /* guarda el precio maximo de todos los productos */
-                    if(producto.cost > maximo) {
-                      maximo = producto.cost
-                      maxPrice.value = maximo
-                      rangoMax.value =0
-                      rangoMin.max = maximo
-
-                    }
-                    document.getElementById("contenedor_productos").innerHTML = contenido; // aqui ponemos ese codigo html dentro del contenedor al que hacemos referencia.
-                    
-                  }
-                  /* Si no hay prods, se muestra que no hay prods */
-                  if(productos.length === 0)document.getElementById("contenedor_productos").innerHTML = "<h3 class='my-5'>No hay productos</h3>"
+      /* guarda el precio maximo de todos los productos */
+      if(producto.cost > maximo) {
+        maximo = producto.cost
+        maxPrice.value = maximo
+        rangoMax.value =0
+        rangoMin.max = maximo
+      }
+      document.getElementById("contenedor_productos").innerHTML = contenido; // aqui ponemos ese codigo html dentro del contenedor al que hacemos referencia.                  
+    }
+  /* Si no hay prods, se muestra que no hay prods */
+  if(productos.length === 0)document.getElementById("contenedor_productos").innerHTML = "<h3 class='my-5'>No hay productos</h3>"
 }
-
-
-  // Funcionalidad al buscador:
-
-  const buscador = document.getElementById('buscador');
-
-  // agregamos un evento input al campo de búsqueda que se activa cada vez que se introduce o se borra texto en el campo.
-buscador.addEventListener('input', () => {
-  const searchTerm = buscador.value.toLowerCase().trim(); // Término de e búsquedan minúsculas sin espacios al principio y al final
-
-  let productosFiltrados = JSON.parse(localStorage.getItem('prods')); // Obtener todos los productos
-
-  // obtenemos los valores de los filtros de precio
-  const minPriceValue = minPrice.value !== '' ? parseFloat(minPrice.value) : 0;
-  const maxPriceValue = maxPrice.value !== '' ? parseFloat(maxPrice.value) : Infinity;
-
-  // filtramos por rango de precios
-  productosFiltrados = productosFiltrados.filter((producto) => {
-    return producto.cost >= minPriceValue && producto.cost <= maxPriceValue;
-  });
-
-  // Si hay término de búsqueda, filtramos por búsqueda
-  if (searchTerm) {
-    productosFiltrados = productosFiltrados.filter((producto) => {
-      return producto.name.toLowerCase().includes(searchTerm) || producto.description.toLowerCase().includes(searchTerm);
-    });
-  }
-
-  // llamamos a la funcion para mostrar los productos filtrados
-  procesarDatos(productosFiltrados);
-});
