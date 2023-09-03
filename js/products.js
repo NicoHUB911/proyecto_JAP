@@ -44,6 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
   let boton_relevancia = document.getElementById('boton_relevancia')
 
 localStorage.removeItem('prods')
+localStorage.removeItem('prodsFiltrados')
 
   /* Cuando se cambia el input slider minimo se pone el valor en el input number  de arriba*/
   rangoMin.addEventListener('input',(e)=>{
