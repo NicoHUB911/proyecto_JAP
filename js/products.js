@@ -1,6 +1,17 @@
 document.addEventListener("DOMContentLoaded", function() {
-  const catID = localStorage.getItem("catID"); // Obtener el catID del localStorage
+  try {
+    document.querySelector(".main_productos__contenedor__carta").addEventListener("click",()=>{
+  
+      window.location = "product-info.html";
+    })    
+  } catch (error) {
+    
+  }
 
+  
+  
+  
+  const catID = localStorage.getItem("catID"); // Obtener el catID del localStorage
   if (catID) {
     const URL_PRODUCTOS = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`; // link del json con el catID especifico
     console.log("Cargando productos para la categoría:", catID); // Probar si la función está siendo llamada
@@ -44,7 +55,6 @@ document.addEventListener("DOMContentLoaded", function() {
   let boton_relevancia = document.getElementById('boton_relevancia')
 
 localStorage.removeItem('prods')
-localStorage.removeItem('prodsFiltrados')
 
   /* Cuando se cambia el input slider minimo se pone el valor en el input number  de arriba*/
   rangoMin.addEventListener('input',(e)=>{
@@ -160,7 +170,7 @@ function procesarDatos(data) {
     // Aquí ponemos los datos en una variable string (con codigo html).
     for (const producto of productos) { // recorremos el array que tiene los productos (productos es el array y producto el objeto por el que esta pasando (algo asi como el indice: [n] )).
         contenido += `
-                    <div onclick="setCatID(${data.catID})" class="main_productos__contenedor__carta">
+                    <div onclick="goToProductInfo(${producto.id})" class="main_productos__contenedor__carta">
                     <a class="main_productos__contenedor__carta__link" href="#">
                         <div class="main_productos__contenedor__carta__contenedorimg"><img src="${producto.image}" alt="${producto.name}" class="main_productos__contenedor__carta__contenedorimg__img"></div>
                         <div class="main_productos__contenedor__carta__contenido">
@@ -189,4 +199,11 @@ function procesarDatos(data) {
     }
   /* Si no hay prods, se muestra que no hay prods */
   if(productos.length === 0)document.getElementById("contenedor_productos").innerHTML = "<h3 class='my-5'>No hay productos</h3>"
+}
+
+/*================================================================MANDAR_AL_PRODUCTO_SELECCIONADO================================================================*/
+
+function goToProductInfo(id) {
+  localStorage.setItem("IdProducto", id);
+  window.location = "product-info.html";
 }

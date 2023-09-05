@@ -1026,3 +1026,101 @@ input[type=password]::-ms-clear {
   color: #000;
   text-align: center;
 }
+
+/*----------------------------------------------------------PRODUCT_INFO----------------------------------------------------------*/
+/*_______________producto_______________*/
+#producto__info{
+  box-shadow: 0px 0px 5px #636363;
+  min-height: 500px;
+  display: flex; 
+  align-items: center;
+  border-radius: 3px;
+}
+
+.producto_info__contenedor__imgCont{
+  width: 50%;
+}
+
+.producto_info__contenedor__imgCont__imgprincipal{
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.producto_info__contenedor__imgCont__imgprincipal > img{
+  width: 100%;
+  transition: transform 0.2s;
+}
+.producto_info__contenedor__imgCont__imgprincipal > img:hover{
+  transform: scale(1.4);
+}
+
+.producto_info__contenedor__imgCont__imgElegibles{
+  justify-content: space-between;
+}
+
+.producto_info__contenedor__imgCont__imgElegibles img{
+  width: 24%;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.producto_info__contenedor__informacion{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border-radius: 5px;
+}
+
+.producto_info__contenedor__informacion__titulo{
+  text-align: center;
+  font-family: sans-serif;
+  letter-spacing: 5px;
+  color: #000;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #f09100;
+}
+
+.producto_info__contenedor__informacion__precio{
+  color: #000;
+  text-align: center;
+}
+
+.producto_info__contenedor__informacion__precio span{
+  color: #f09100;
+  padding-left: 10px;
+}
+
+.producto_info__contenedor__informacion__descripcion{
+  color: #000;
+}
+
+.producto_info__contenedor__informacion__otros{
+  display: flex;
+  justify-content: space-between;
+  color: #a36200;
+}
+
+/*____________comentarios____________*/
+
+#producto__coments{
+  min-height: 50vh;
+  width: 100%;
+  border-radius: 3px;
+  box-shadow: 0px 0px 5px #636363;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*____________relacionados____________*/
+
+#relacionados{
+  height: 100%;
+  width: 100%;
+  border-radius: 3px;
+  box-shadow: 0px 0px 5px #636363;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
