@@ -89,7 +89,8 @@ btnSubmit.addEventListener('click',()=>{
         } 
     }
     uploadComment(commentText.value,estrellasSeleccionadas) // Se llama a la funcion encargada de cargar y mostrar el comentario y se le envian los datos recibidos.
-    commentText.value=""
+    commentText.value="";
+    estrellas[0].checked=true; //Se resetean las estrellas y el textarea del comentario
 });
 
 function uploadComment(comentario,estrellas){
