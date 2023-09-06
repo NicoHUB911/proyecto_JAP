@@ -1124,12 +1124,60 @@ input[type=password]::-ms-clear {
     justify-content: center;
     align-items: center;
   }
-/*____________realcionados____________*/
+/*____________Estrellas____________*/
+.rating-group {
+  display: inline-flex;
+}
+
+/* make hover effect work properly in IE */
+.rating__icon {
+  pointer-events: none;
+}
+
+/* hide radio inputs */
+.rating__input {
+ position: absolute !important;
+ left: -9999px !important;
+}
+
+/* hide 'none' input from screenreaders */
+.rating__input--none {
+  display: none
+}
+
+/* set icon padding and size */
+.rating__label {
+  cursor: pointer;
+  padding: 0 0.1em;
+  font-size: 2rem;
+}
+
+/* set default star color */
+.rating__icon--star {
+  color: orange;
+}
+
+/* if any input is checked, make its following siblings grey */
+.rating__input:checked ~ .rating__label .rating__icon--star {
+  color: #ddd;
+}
+
+/* make all stars orange on rating group hover */
+.rating-group:hover .rating__label .rating__icon--star {
+  color: orange;
+}
+
+/* make hovered input's following siblings grey on hover */
+.rating__input:hover ~ .rating__label .rating__icon--star {
+  color: #ddd;
+}
+
+/*____________relacionados____________*/
   #relacionados {
     height: 100%;
     width: 100%;
     border-radius: 3px;
-    box-shadow: 0px 0px 5px #636363;
+    box-shadow: 0px 0px 5px #303030;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1222,4 +1270,5 @@ input[type=password]::-ms-clear {
     justify-content: center;
     align-items: center;
   }
+  
 }
