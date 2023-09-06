@@ -17,6 +17,8 @@ async function fetchData(url){
 // muestra la "informacion del producto"
 async function showProducto() {
     const datos = await fetchData(url)
+    datosGenerales = datos
+
     const container = document.getElementById("producto__info");
     container.innerHTML = 
     `
@@ -50,24 +52,17 @@ async function showComentarios() {
     comments.forEach(comment => {
         divOpinion.innerHTML += `
         <li class="list-group-item my-1" style="background-color:rgb(255,255,255,0);">
-            <p><span class='fw-bold'>${comment.user} </span> - <span>${comment.dateTime}</span> - <span id="${comment.user}"></span></p>
+            <p><span class='fw-bold'>${comment.user} </span> - <span>${comment.dateTime}</span> - <span>${mostrarEstrellas(comment.score)}</span></p>
             <p><span>${comment.description}</p>
         </li>
         `
-        mostrarEstrellas(comment.score,comment.user)
     });
-    //si no hay comentarios lo dice XD
-    if(comments.length === 0){document.getElementById('divOpinion').innerHTML += 'No hay comentarios'}
 }
-// esta funcion recorre 5 numero y si el score del producto es menor o igual a las estrellas (5) se pone  la estrella dorada y sino vacia
-function mostrarEstrellas(estrellas,userName){
-   [1,2,3,4,5].forEach(rating=>{
-       if(rating <= estrellas ){
-           document.getElementById(userName).innerHTML += '<span class="fa fa-star checked"></span>'
-        }else{
-            document.getElementById(userName).innerHTML += '<span class="fa fa-star"></span>'
-        }
-   })
+// esta funcion repite las estrellas el numero de valoraciones que hay y si no hay 5 estrellas pone las vacias
+function mostrarEstrellas(estrellas){
+    const niceStars =  '<span class="fa fa-star checked"></span>'.repeat(estrellas) 
+    const badStars = '<span class="fa fa-star"></span>'.repeat(5 - estrellas )
+    return niceStars + badStars
 }
 
 // muestra los productos relacionados
