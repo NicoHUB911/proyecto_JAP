@@ -1,6 +1,8 @@
 const url = `https://japceibal.github.io/emercado-api/products/${localStorage.getItem("IdProducto")}.json`;
 const UrlComments = `https://japceibal.github.io/emercado-api/products_comments/${localStorage.getItem("IdProducto")}.json`
 let datosGenerales;
+const btnSubmit=document.getElementById("btnSubmit");
+
 
 //rehicimos el fetch para poder usarlo en funciones XD
 async function fetchData(url){
@@ -70,13 +72,30 @@ function showRelacionados(datos) {
     // para proximas entregas
 }
 
-
-
-
 // cambia la imagen principal del producto
 function changeImg(indice) {
     const img = document.getElementById("imgPrincipal");
     img.src = `${datosGenerales.images[indice]}`;
+}
+
+btnSubmit.addEventListener('click',()=>{
+    const commentText=document.getElementById("UI_comment");
+    const estrellas = document.getElementsByName("rating3"); // Traemos todos los radio button de las estrellas
+    let estrellasSeleccionadas = ""; //Variable donde se va a guardar la cantidad de estrellas
+    for (let i = 0; i < estrellas.length; i++) { // se recorre el arreglo de estrellas que se trajo para encontrar la seleccionada
+        if (estrellas[i].checked) {
+            estrellasSeleccionadas = estrellas[i].value;
+          break; // Salir del bucle si se encuentra una seleccionado
+        } 
+    }
+    uploadComment(commentText.value,estrellasSeleccionadas) // Se llama a la funcion encargada de cargar y mostrar el comentario y se le envian los datos recibidos.
+    commentText.value=""
+});
+
+function uploadComment(comentario,estrellas){
+/*Hola vicky como estas acordate que hay que ponerle tambien al comentario la fecha actual,
+ creo que hay una forma facil de hacerlo pero no quise seguir avanzando para no acaparte mas */
+ console.log(comentario,estrellas); // te deje un console log para que veas como te llegan los datos
 }
 
 showProducto()
