@@ -50,6 +50,7 @@ async function showProducto() {
 // muestra los comentarios del producto, y las estrellas  llama a la funcion fetch y le hace un foreach y muestra todo, despues en el foreach llama a la funcion para mostrar las estrellas
 async function showComentarios() {
     const divOpinion = document.getElementById('opiniones')
+    
     const comments = await fetchData(UrlComments)
     comments.forEach(comment => {
         divOpinion.innerHTML += `
@@ -59,6 +60,17 @@ async function showComentarios() {
         </li>
         `
     });
+    
+  // Cargamos los comentarios del localStorage
+  const comentariosGuardados = JSON.parse(localStorage.getItem('comentarios')) || [];
+  comentariosGuardados.forEach(comentario => {
+    divOpinion.innerHTML += `
+      <li class="list-group-item my-1" style="background-color:rgb(255,255,255,0);">
+        <p><span class='fw-bold'>${comentario.usuario}</span> - <span>${comentario.fecha}</span> - <span>${mostrarEstrellas(comentario.estrellas)}</span></p>
+        <p><span>${comentario.contenido}</span></p>
+      </li>
+    `;
+  });
 }
 // esta funcion repite las estrellas el numero de valoraciones que hay y si no hay 5 estrellas pone las vacias
 function mostrarEstrellas(estrellas){
@@ -94,9 +106,42 @@ btnSubmit.addEventListener('click',()=>{
 });
 
 function uploadComment(comentario,estrellas){
-/*Hola vicky como estas acordate que hay que ponerle tambien al comentario la fecha actual,
- creo que hay una forma facil de hacerlo pero no quise seguir avanzando para no acaparte mas */
- console.log(comentario,estrellas); // te deje un console log para que veas como te llegan los datos
+
+    // Al obtener la fecha actual me carga distinto a los otros comentarios
+
+   // const fechaHoraActual = new date().toISOString();
+  const fechaHoraActual = new Date().toLocaleDateString('es-ES', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+  });
+
+  // Nuevo comentario HTML
+  const userName = localStorage.getItem("usuario");
+  
+  const nuevoComentario = {
+    usuario: userName,
+    fecha: fechaHoraActual,
+    contenido: comentario,
+    estrellas: estrellas,
+  };
+
+  // Obtenemos comentarios o si iniciamos si esta vacio
+  const comentariosGuardados = JSON.parse(localStorage.getItem('comentarios')) || [];
+
+  // Agregamos el nuevo comentario a los existentes
+  comentariosGuardados.push(nuevoComentario);
+
+  // Guardamos en el localStorage
+  localStorage.setItem('comentarios', JSON.stringify(comentariosGuardados));
+
+ 
+  showComentarios();
 }
+ // console.log(comentario,estrellas); // te deje un console log para que veas como te llegan los datos
+
 
 showProducto()
