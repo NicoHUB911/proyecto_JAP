@@ -1029,6 +1029,40 @@ input[type=password]::-ms-clear {
 
 /*----------------------------------------------------------PRODUCT_INFO----------------------------------------------------------*/
 /*_______________producto_______________*/
+.modal-content{
+	background-color:#e9e9e9;
+	font-family:sans-serif;
+}
+.modal-header{
+	border-bottom: 2px solid #f09100;
+}
+
+.producto_info__contenedor__informacion__otros a{
+	text-decoration:none;
+	color:#ef9000;
+}
+
+#btnSubmit{
+    background-color: #f09100;
+    color: #3f4850;
+    width: 80px;
+    font-family: sans-serif;
+    font-weight: bold;
+    outline: none;
+    border: 2px solid #3f4850;
+	border-radius:5px;
+    margin-left: 5px;
+}
+
+#btnSubmit:hover {
+    color: #fff;
+    background-color: #3f4850;
+}
+
+#btnSubmit:active {
+    background-color: #f09100;
+ }
+ 
 /* Estilos generales para pantalla grande */
 @media only screen and (min-width: 630px) {
 #main_producto {
@@ -1045,9 +1079,9 @@ input[type=password]::-ms-clear {
 
   #producto__info{
     box-shadow: 0px 0px 5px #636363;
-    min-height: 500px;
+    height: fit-content;
     display: flex; 
-    align-items: center;
+    align-items: start;
     border-radius: 3px;
   }
   
@@ -1112,7 +1146,7 @@ input[type=password]::-ms-clear {
   .producto_info__contenedor__informacion__otros{
     display: flex;
     justify-content: space-between;
-    color: #a36200;
+    color: #34383b;
   }
 /*____________comentarios____________*/
   #producto__coments {
@@ -1182,6 +1216,7 @@ input[type=password]::-ms-clear {
     justify-content: center;
     align-items: center;
   }
+  
 }
 /*_______________MOVILE_______________*/
 /* Estilos para dispositivos móviles*/
@@ -1247,7 +1282,7 @@ input[type=password]::-ms-clear {
   .producto_info__contenedor__informacion__otros{
     display: flex;
     justify-content: space-between;
-    color: #a36200;
+    color: #34383b;
   }
 
   #producto__coments {

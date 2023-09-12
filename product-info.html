@@ -41,19 +41,19 @@
       </article>
   
       <article class="w-100 p-4">
-        <div id="producto__coments" class="d-flex flex-column py-5">
+        <div id="producto__coments" class="d-flex flex-column py-3">
           
           <h2>Opiniones del producto</h2>
-          <ul id="opiniones" class="d-flex flex-column list-group flex-grow-1" >
+          <ul id="opiniones" class="d-flex flex-column list-group p-4 w-100 flex-grow-1" >
             
           </ul>
-          <div id="new_comment" class="p-4">
-            <h2>Deja tu comentario</h2>
+          <div id="new_comment" class=" w-75">
+            <h2>Dejá tu comentario</h2>
             <form action="javascript:void(0);" id="formNewComment">
               <label for="comment">Tu comentario:</label><br>
-              <textarea id="UI_comment" name="comment"></textarea>
+              <textarea rows=7 class="w-100" id="UI_comment" name="comment"></textarea>
               <br>
-              <label for="rating">Tu puntuacion:</label> <br>
+              <label for="rating">Tu puntuación:</label> <br>
               
               <div class="rating-group">
                 <input disabled checked class="rating__input rating__input--none" name="rating3" id="rating3-none" value="0" type="radio">
@@ -69,7 +69,9 @@
                 <input class="rating__input" name="rating3" id="rating3-5" value="5" type="radio">
               </div>
              <br>
+			 <div class="pt-3 float-end">
               <input type="submit" value="Enviar" id="btnSubmit">
+			  </div>
             </form>
           </div>
         </div>
@@ -83,6 +85,14 @@
     </aside>
 
   </main>
+  
+  <div id="fs-modal" class="modal">
+  <div class="modal-dialog modal-fullscreen">
+  	<div class="modal-content" id="img-modal">
+
+    </div>
+  </div>
+  </div>
 
 
   <footer class="text-muted bg-dark">
