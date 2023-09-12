@@ -27,17 +27,19 @@ function showCategoriesList(){
             ((maxCount == undefined) || (maxCount != undefined && parseInt(category.productCount) <= maxCount))){
 
             htmlContentToAppend += `
-            <div onclick="setCatID(${category.id})" class="list-group-item list-group-item-action cursor-active">
-                <div class="row">
-                    <div class="col-3">
-                        <img src="${category.imgSrc}" alt="${category.description}" class="img-thumbnail">
-                    </div>
-                    <div class="col">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h4 class="mb-1">${category.name}</h4>
-                            <small class="text-muted">${category.productCount} artículos</small>
+            <div onclick="setCatID(${category.id})" class="productCont m-1 position-relative rounded cursor-active">
+                <div class="productCont__imgCont"><img src="${category.imgSrc}" alt="${category.description}" class="productCont__imgCont__img position-absolute"></div> 
+                <div class="productCont__Cont position-absolute">
+                    <div class="h-100 w-100 position-relative">
+                        <div class="productCont__Cont__slider w-100 d-flex flex-column">
+                            <div class="productCont__Cont__slider__slide_1 w-100 h-50 d-flex justify-content-center align-items-center">
+                                <h4 class="productCont__Cont__slider__slide_1__title position-absolute">${category.name}</h4>
+                                <small class="productCont__Cont__slider__slide_1__count position-absolute">${category.productCount} artículos</small>
+                            </div>
+                            <div class="productCont__Cont__slider__slide_2 w-100 h-50 d-flex justify-content-center align-items-center p-3">
+                                <p class="productCont__Cont__slider__slide_2__descripcion">${category.description}</p>
+                            </div>
                         </div>
-                        <p class="mb-1">${category.description}</p>
                     </div>
                 </div>
             </div>
