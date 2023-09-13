@@ -1427,3 +1427,27 @@ input[type=password]::-ms-clear {
   font-size: 20px;
   text-align: center;
 }
+
+#autos {
+  width: 350px;
+  height: 350px;
+}
+
+#juguetes {
+  width: 350px;
+  height: 350px;
+}
+
+#muebles {
+  width: 350px;
+  height: 350px;
+}
+
+/*-------------------------------------------------------INDEX-------------------------------------------------------*/
+
+.mucho_mas{animation: rebotar 0.5s infinite cubic-bezier(.5, 0.05, 1, .5) alternate;}
+
+@keyframes rebotar {
+  0%{transform: translateY(0);}
+  100% {transform: translateY(10px);}
+}
