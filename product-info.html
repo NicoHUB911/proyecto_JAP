@@ -31,24 +31,20 @@
 
 
 
-  <main class="d-flex mt-5 min-vh-100" id="main_producto">
+  <main class="d-flex mt-5 min-vh-100" id="product_main">
 
-    <section class="d-flex flex-column" id="section_producto">
+    <section class="d-flex flex-column" id="product_section">
       <article class="w-100  p-4">
-        <div id="producto__info" class="p-4">
+        <div id="product__info" class="p-4">
 
         </div>
       </article>
   
       <article class="w-100 p-4">
-        <div id="producto__coments" class="d-flex flex-column py-3">
-          
-          <h2>Opiniones del producto</h2>
-          <ul id="opiniones" class="d-flex flex-column list-group p-4 w-100 flex-grow-1" >
-            
-          </ul>
-          <div id="new_comment" class=" w-75">
+	    <div id="product__coments" class="d-flex flex-column py-3">
+		  <div id="new_comment" class="w-75">
             <h2>Dejá tu comentario</h2>
+			
             <form action="javascript:void(0);" id="formNewComment">
               <label for="comment">Tu comentario:</label><br>
               <textarea rows=7 class="w-100" id="UI_comment" name="comment"></textarea>
@@ -74,12 +70,17 @@
 			  </div>
             </form>
           </div>
+		  
+		  <h2>Otras opiniones sobre el producto</h2>
+          <ul id="opiniones" class="d-flex flex-column list-group p-4 w-100 flex-grow-1" >
+            
+          </ul>
         </div>
       </article>
     </section>
 
-    <aside class="d-flex justify-content-center align-items-center p-4" id="aside_relacionados">
-      <div id="relacionados">
+    <aside class="d-flex justify-content-center align-items-center p-4" id="aside_related">
+      <div id="related_products">
         <p>seccion de productos relacionados</p>
       </div>
     </aside>

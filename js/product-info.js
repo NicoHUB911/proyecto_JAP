@@ -22,7 +22,7 @@ async function showProductInfo() {
     const objectProduct = await fetchData(PRODUCT_URL);
     apiData = objectProduct;
 	const modalContainer = document.getElementById("img-modal");
-    const container = document.getElementById("producto__info");
+    const container = document.getElementById("product__info");
 	
 	modalContainer.innerHTML = `
 	    <div class="modal-header">
