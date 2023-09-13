@@ -160,11 +160,11 @@ UI_SUBMIT_BUTTON.addEventListener('click',()=>{
 
 function uploadComment(message, rating){
 	
-// se obtiene fecha actual y se le da el formato que tienen los demás comentarios. Se usa la función padStart para asegurarnos que tengan 2 digitos.
+  // se obtiene fecha actual y se le da el formato que tienen los demás comentarios. Se usa la función padStart para asegurarnos que tengan 2 digitos.
   const uploadDate = new Date();
   
   const formattedDate = `
-		${uploadDate.getFullYear()}-${uploadDate.getMonth().toString().padStart(2, "0")}-${uploadDate.getDate().toString().padStart(2, "0")}
+		${uploadDate.getFullYear()}-${(uploadDate.getMonth() +1).toString().padStart(2, "0")}-${uploadDate.getDate().toString().padStart(2, "0")}
 		${uploadDate.getHours().toString().padStart(2, "0")}:${uploadDate.getMinutes().toString().padStart(2, "0")}:${uploadDate.getSeconds().toString().padStart(2, "0")}
   `
 
