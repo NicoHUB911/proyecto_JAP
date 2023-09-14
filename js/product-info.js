@@ -89,19 +89,15 @@ En caso contrario, ordena el array de mas reciente a mas antiguo y le hace un fo
 con template strings se llama a la funcion displayRating para mostrar las estrellas
 */
 async function displayComments() {
-    const divOpinion = document.getElementById('opiniones');
+    const divOpinion = document.getElementById('opiniones')
 	divOpinion.innerHTML= "";	
-	let APIcomments = [];
+    const APIcomments = await fetchData(COMMENTS_URL); 
 	
-	try { 
-		APIcomments = await fetchData(COMMENTS_URL); 
-	}
-	catch (e) {console.log("Error cargando comentarios: ", e)};
 	
     let comments = (JSON.parse(localStorage.getItem(`${PRODUCT_ID}_user_comments`))) || [];
-	
-	if(APIcomments) {
-		comments = comments.concat(APIcomments.sort((a, b) => {return new Date(b.dateTime) - new Date(a.dateTime)}));
+    comments = comments.concat(APIcomments.sort((a, b) => {return new Date(b.dateTime) - new Date(a.dateTime)}));
+    
+	if(comments.length !== 0) {
 		comments.forEach(comment => {
 			divOpinion.innerHTML += `
 			<li class="list-group-item" style="background-color:rgb(255,255,255,0);">
@@ -111,9 +107,9 @@ async function displayComments() {
 			`
 		});
 	} else {
-		divOpinion.innerHTML += `
+		divOpinion.innerHTML = `
 			<li class="list-group-item" style="background-color:#ff6054;">
-			<h2>Hubo un error cargando los commentarios.</h2></li>
+			<h2>No hay comentarios para mostrar.</h2></li>
 		`;
 	}
 }
