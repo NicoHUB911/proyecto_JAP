@@ -29,26 +29,26 @@ async function showProductInfo() {
 			<h1 class="modal-title fs-5">${objectProduct.name} \> imágenes</h1>
 			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
 		</div>
-		<div class="modal-body">
-			<div class="d-flex flex-wrap" >
+		<div class="modal-body bg-dark overflow-hidden">
+			<div class="d-flex flex-wrap align-items-center justify-content-center" >
 				<div class="col-md-2">
 					<div class="row g-0">
-						<div class="col-3 col-md-12">
-							<img onclick="changeModalImg(0)" class="img-thumbnail" src="${objectProduct.images[0]}" alt="primer imagen del producto">
+						<div class="col-3 col-md-12 mt-1 mb-1">
+							<img onclick="changeModalImg(0)" style="cursor: pointer;" class="img-thumbnail" src="${objectProduct.images[0]}" alt="primer imagen del producto">
 						</div>
-						<div class="col-3 col-md-12">
-							<img onclick="changeModalImg(1)" class="img-thumbnail" src="${objectProduct.images[1]}" alt="segunda imagen del producto">
+						<div class="col-3 col-md-12 mt-1 mb-1">
+							<img onclick="changeModalImg(1)" style="cursor: pointer;" class="img-thumbnail" src="${objectProduct.images[1]}" alt="segunda imagen del producto">
 						</div>
-						<div class="col-3 col-md-12">
-							<img onclick="changeModalImg(2)" class="img-thumbnail" src="${objectProduct.images[2]}" alt="tercera imagen del producto">
+						<div class="col-3 col-md-12 mt-1 mb-1">
+							<img onclick="changeModalImg(2)" style="cursor: pointer;" class="img-thumbnail" src="${objectProduct.images[2]}" alt="tercera imagen del producto">
 						</div>
-						<div class="col-3 col-md-12">
-							<img onclick="changeModalImg(3)" class="img-thumbnail" src="${objectProduct.images[3]}" alt="cuarta imagen del producto">
+						<div class="col-3 col-md-12 mt-1 mb-1">
+							<img onclick="changeModalImg(3)" style="cursor: pointer;" class="img-thumbnail" src="${objectProduct.images[3]}" alt="cuarta imagen del producto">
 						</div>
 					</div>
 				</div>
-				<div class="col-12 col-md-10">
-					<img id="main-modal-img" style="max-width:100%;"src="${objectProduct.images[0]}" alt="imagen principal del producto">
+				<div class="col-12 col-md-10 text-center">
+					<img id="main-modal-img" style="width:95%; max-height: 90vh;"src="${objectProduct.images[0]}" alt="imagen principal del producto">
 				</div>
 			</div>
 		</div>
@@ -56,7 +56,7 @@ async function showProductInfo() {
 	
     container.innerHTML = 
     `
-	<div class="producto_info__contenedor d-flex">
+	<div class="producto_info__contenedor d-flex flex-wrap justify-content-center">
 		<div class="producto_info__contenedor__imgCont">		
 			<div class="producto_info__contenedor__imgCont__imgprincipal">
 				<img data-bs-toggle="modal" data-bs-target="#fs-modal" id="imgPrincipal" src="${objectProduct.images[0]}" alt="imagen principal del producto">
@@ -69,9 +69,9 @@ async function showProductInfo() {
 			</div>
 		</div>
 
-        <div class="producto_info__contenedor__informacion ms-5 p-3">
+        <div class="producto_info__contenedor__informacion ps-5 p-3">
             <h1 class="producto_info__contenedor__informacion__titulo">${objectProduct.name}</h1>
-            <h2 class="producto_info__contenedor__informacion__precio"><span>${objectProduct.currency}:</span> ${objectProduct.cost}</h2>
+            <h2 class="producto_info__contenedor__informacion__precio"><span>${objectProduct.currency}</span> ${objectProduct.cost}</h2>
             <p class="producto_info__contenedor__informacion__descripcion"><b>Descripcion: </b>${objectProduct.description}</p>
             <p class="producto_info__contenedor__informacion__otros"><small>Categoria: <a href="products.html">${objectProduct.category}</a></small><small>Vendidos: ${objectProduct.soldCount}</small></p>
         </div>
