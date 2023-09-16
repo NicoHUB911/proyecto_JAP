@@ -28,19 +28,77 @@
       <a id="img_user" class="d-flex align-items-center rounded-circle" href="#"><img class="h-100" src="img/user-Icon.png" alt="logo de usuario (menu de usuario)"></a>
     </div>
   </nav>
-  <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+
+
+
+  <main class="d-flex mt-5 min-vh-100" id="product_main">
+
+    <section class="d-flex flex-column" id="product_section">
+      <article class="w-100  p-4">
+        <div id="product__info" class="p-5">
+
+        </div>
+      </article>
+  
+      <article class="w-100 p-4">
+        <div id="product__coments" class="d-flex flex-column py-3">
+          <div id="new_comment" class="w-75">
+            <h2>Dejá tu comentario</h2>
+            <form action="javascript:void(0);" id="formNewComment" class="pb-2">
+              <textarea rows=7 class="w-100" id="UI_comment" name="comment" placeholder="Tu comentario..."></textarea>
+              <br>
+              <div class="d-flex align-items-center justify-content-between flex-wrap">
+                <div class="d-flex align-items-center flex-wrap">
+                  <label for="rating" class="ms-3"><b>Califica:</b></label>
+                  <div class="rating-group">
+                    <input disabled checked class="rating__input rating__input--none" name="rating3" id="rating3-none" value="0" type="radio">
+                    <label aria-label="1 star" class="rating__label" for="rating3-1"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                    <input class="rating__input" name="rating3" id="rating3-1" value="1" type="radio">
+                    <label aria-label="2 stars" class="rating__label" for="rating3-2"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                    <input class="rating__input" name="rating3" id="rating3-2" value="2" type="radio">
+                    <label aria-label="3 stars" class="rating__label" for="rating3-3"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                    <input class="rating__input" name="rating3" id="rating3-3" value="3" type="radio">
+                    <label aria-label="4 stars" class="rating__label" for="rating3-4"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                    <input class="rating__input" name="rating3" id="rating3-4" value="4" type="radio">
+                    <label aria-label="5 stars" class="rating__label" for="rating3-5"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                    <input class="rating__input" name="rating3" id="rating3-5" value="5" type="radio">
+                  </div>
+                </div>
+                <input type="submit" value="Enviar" id="btnSubmit" class="me-3">
+              </div>
+            </form>
+          </div>
+          <h2 class="product__coments__otrasOP pt-3 mt-5">Otras opiniones sobre el producto</h2>
+          <ul id="opiniones" class="d-flex flex-column list-group p-4 w-100 flex-grow-1" >
+
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <aside class="d-flex justify-content-center align-items-center p-4" id="aside_related">
+      <div id="related_products">
+        <p>seccion de productos relacionados</p>
       </div>
-    </div>
+    </aside>
+
   </main>
-  <footer class="text-muted">
+  
+  <div id="fs-modal" class="modal">
+  <div class="modal-dialog modal-fullscreen">
+  	<div class="modal-content" id="img-modal">
+
+    </div>
+  </div>
+  </div>
+
+
+  <footer class="text-muted bg-dark">
     <div class="container">
       <p class="float-end">
-        <a href="#">Volver arriba</a>
+        <a class="link__footer" href="#">Volver arriba</a>
       </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
+      <p>Este sitio forma parte de <a class="link__footer" href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
     </div>
   </footer>
   <div id="spinner-wrapper">
