@@ -103,6 +103,19 @@ footer p {
   transform: translate(-50%, 0);
 }
 
+#data{
+  color: #000;
+  
+}
+
+.btn-warning{
+  background-color: #f09100 ;
+  border-color: #f09100;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
 .lds-ring {
   display: inline-block;
   position: relative;

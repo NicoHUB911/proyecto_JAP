@@ -84,12 +84,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // usando innerHTML con Template strings (tipo ${}) le ponemos el ya contenido de toda la sección con formato html
 	parentDivs.innerHTML = `
-	<a id="img_carrito" class="d-flex align-items-center me-3 rounded-circle" href="#"><img class="h-100" src="img/carrito.png" alt="carrito de compras"></a>
-      <a href="my-profile.html"><div class="navegador__menu_2__lista__link"><span id="data">${userName}</span></div></a>
-      <a id="img_user" class="d-flex align-items-center rounded-circle" href="my-profile.html"><img class="h-100" src="img/user-Icon.png" alt="logo de usuario (menu de usuario)"></a>
-	`;
+  <div class="dropdown nav-item"> 
+      <a class="btn btn-sm btn-warning dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"><div class="navegador__menu_2__lista__link"><span id="data">${userName}</span></div></a>
+      <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+            <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+            <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+            <li><a class="dropdown-item" id="btn-logout">Cerrar sesión</a></li> 
+          </ul>
+          </div>
+	`; //Se implementa mediante clases de bootstrap el menu desplegable para el usuario.
 
-  
+  const btnLogOut=document.getElementById("btn-logout");
+  btnLogOut.addEventListener('click',()=>{
+    localStorage.clear();
+    window.location.href = "login.html";
+  }) // Boton de deslogeo.
 });
 
 
