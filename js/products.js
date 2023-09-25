@@ -201,9 +201,3 @@ function procesarDatos(data) {
   if(productos.length === 0)document.getElementById("contenedor_productos").innerHTML = "<h3 class='my-5'>No hay productos</h3>"
 }
 
-/*================================================================MANDAR_AL_PRODUCTO_SELECCIONADO================================================================*/
-
-function goToProductInfo(id) {
-  localStorage.setItem("IdProducto", id);
-  window.location = "product-info.html";
-}

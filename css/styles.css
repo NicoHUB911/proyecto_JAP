@@ -525,12 +525,130 @@ input[type=password]::-ms-clear {
     color: #fff;
   }
 
-  .navegador__menu_2__lista__link {
+  .navegador__menu_2__link {
     text-decoration: none;
     color: #f09100;
     font-family: sans-serif;
     letter-spacing: 2px;
     padding-right: 10px;
+    user-select: none;
+  }
+
+  .navegador__menu_2__link_carrito{
+    position: fixed;
+    top: 55px;
+    right: -150px;
+    background-color: #ebebeb;
+    padding: 0px 10px 0 0;
+    border-radius: 20px;
+    border: 3px solid #ef9000;
+    height: 40px;
+    width: 150px;
+    color: #212529e6;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0px 0px 10px #acacac;
+    z-index: 1;
+    transition: transform 0.3s;
+  }
+
+  .navegador__menu_2__link_carrito:hover{
+    color: #ef9000;
+  }
+
+  .navegador__menu_2__link_modo{
+    position: fixed;
+    top: 103px;
+    right: -150px;
+    background-color: #ebebeb;
+    padding: 0px 10px 0 0;
+    border-radius: 20px;
+    border: 3px solid #ef9000;
+    height: 40px;
+    width: 150px;
+    color: #212529e6;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0px 0px 10px #acacac;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    transition: transform 0.4s;
+  }
+
+  .navegador__menu_2__link_modo:hover{
+    color: #ef9000;
+  }
+
+  .navegador__menu_2__link_user{
+    position: fixed;
+    top: 150px;
+    right: -150px;
+    background-color: #ebebeb;
+    padding: 0px 10px 0 0;
+    border-radius: 20px;
+    border: 3px solid #ef9000;
+    height: 40px;
+    width: 150px;
+    color: #212529e6;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0px 0px 10px #acacac;
+    z-index: 2;
+    transition: transform 0.5s;
+  }
+
+  .navegador__menu_2__link_user:hover{
+    color: #ef9000;
+  }
+
+  .navegador__menu_2__link_cerrarS{
+    position: fixed;
+    top: 198px;
+    right: -150px;
+    background-color: #ebebeb;
+    padding: 0px 10px 0 0;
+    border-radius: 20px;
+    border: 3px solid #ef9000;
+    height: 40px;
+    width: 150px;
+    color: #212529e6;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0px 0px 10px #acacac;
+    z-index: 3;
+    transition: transform 0.6s;
+  }
+
+  .navegador__menu_2__link_cerrarS:hover{
+    color: #ef9000;
+  }
+
+  .navegador__menu_2__link_modo__check{
+    width: 37px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .navegador__menu_2__link_modo__check__text{
+    cursor: pointer;
+  }
+
+  .navegador__menu_2__link_modo__check::before{
+    content: "";
+    width: 50%;
+    height: 50%;
+    border-radius: 50%;
+    border: 2px solid #ef9000;
+  }
+
+  #modoNav:checked ~ .navegador__menu_2__link_modo__check::before{
+    background-color: #212529e6;
+    border: none;
   }
 
   .lineaDeAbajo {
@@ -564,6 +682,8 @@ input[type=password]::-ms-clear {
 
   .navegador__menu_2 {
     height: 100%;
+    padding: 0 10px;
+    cursor: pointer;
   }
 
   .navegador__contenedor {
@@ -673,23 +793,119 @@ input[type=password]::-ms-clear {
     left: 0px;
   }
 
-  .navegador__menu_2__lista__link {
+  .navegador__menu_2 {
+    position: absolute;
+    height: 45px;
+    width: auto;
+    padding-right: 5px;
+    top: 200px;
+    left: 30px;
+    margin-left: 45px;
+    background-color: #fff;
+    border-radius: 25px;
+    border: 3px solid #ef9000;
+  }
+
+  .navegador__menu_2__link {
     text-decoration: none;
     color: #f09100;
+    font-weight: bold;
     font-family: sans-serif;
     letter-spacing: 2px;
+    margin-left: 10px;
     padding-right: 10px;
   }
 
-  .navegador__menu_2 {
+  .navegador__menu_2__link_carrito{
+    width: 200px;
+    height: 45px;
+    background-color: #fff;
+    border-radius: 35px;
+    border: 3px solid #ef9000;
     position: absolute;
-    height: 50px;
-    top: 200px;
-    left: 50px;
+    top: 52px;
+    left: -40px;
+    color: #ef9000;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
   }
 
-  #img_carrito {
-    height: 50px;
+  .navegador__menu_2__link_modo{
+    width: 200px;
+    height: 45px;
+    background-color: #fff;
+    border-radius: 35px;
+    border: 3px solid #ef9000;
+    position: absolute;
+    left: -40px;
+    top: 100px;
+    padding-left: 35px;
+    color: #ef9000;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+  }
+
+  .navegador__menu_2__link_user{
+    width: 200px;
+    height: 45px;
+    background-color: #fff;
+    border-radius: 35px;
+    border: 3px solid #ef9000;
+    position: absolute;
+    left: -40px;
+    top: 148px;
+    color: #ef9000;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+  }
+
+  .navegador__menu_2__link_cerrarS{
+    width: 200px;
+    height: 45px;
+    background-color: #fff;
+    border-radius: 35px;
+    border: 3px solid #ef9000;
+    position: absolute;
+    left: -40px;
+    top: 196px;
+    color: #ef9000;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+  }
+
+  .navegador__menu_2__link_carrito:hover,
+  .navegador__menu_2__link_modo:hover,
+  .navegador__menu_2__link_user:hover,
+  .navegador__menu_2__link_cerrarS:hover{
+    color: #303030;
+  }
+
+  .navegador__menu_2__link_modo__check__text{
+    cursor: pointer;
+  }
+
+  .navegador__menu_2__link_modo__check{
+    position: relative;
+  }
+
+  .navegador__menu_2__link_modo__check::before{
+    content: "";
+    position: absolute;
+    top: -12px;
+    left: -28px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 3px solid #ef9000;
+  }
+
+  #modoNav:checked ~ .navegador__menu_2__link_modo__check::before{
+    background-color: #212529e6;
+    border: none;
   }
 
   #img_user {
@@ -1249,8 +1465,10 @@ input[type=password]::-ms-clear {
     border-radius: 3px;
     box-shadow: 0px 0px 5px #303030;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-evenly;
     align-items: center;
+    flex-wrap: wrap;
   }
 
 }
@@ -1361,6 +1579,8 @@ input[type=password]::-ms-clear {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
   }
 
   .rating-group {
@@ -1499,4 +1719,13 @@ input[type=password]::-ms-clear {
 @keyframes rebotar {
   0%{transform: translateY(0);}
   100% {transform: translateY(10px);}
+}
+/*=======================MODO OSCURO=======================*/
+
+.modeDark{
+  filter: invert(100%);
+}
+
+.modeDark img{
+  filter: invert(100%);
 }

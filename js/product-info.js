@@ -14,8 +14,13 @@ async function fetchData(_url){
     }catch(e){
         console.log('error' + e)
     }
-
 };
+
+document.addEventListener("DOMContentLoaded", ()=>{
+    showProductInfo();
+    showRelatedProducts()
+})
+
 
 // muestra la informacion del producto y crea un modal de bootsrap para poder mostrar las imagenes más grandes si el usuario hace click en la imagen principal
 async function showProductInfo() {
@@ -187,4 +192,26 @@ function uploadComment(message, rating){
   displayComments();
 }
 
-showProductInfo();
+
+
+/*=============PRODUCTOS_RELACIONADOS=============*/
+
+async function showRelatedProducts() {
+    const products = await fetchData(PRODUCT_URL);
+
+    for (const product of products.relatedProducts) {
+        document.getElementById("related_products").innerHTML += `
+        <div onclick="goToProductInfo(${product.id})" class="main_productos__contenedor__carta">
+        <a class="main_productos__contenedor__carta__link" href="#">
+            <div class="main_productos__contenedor__carta__contenedorimg"><img src="${product.image}" alt="${product.name}" class="main_productos__contenedor__carta__contenedorimg__img"></div>
+            <div class="main_productos__contenedor__carta__contenido">
+                <h4 class="main_productos__contenedor__carta__contenido__titulo w-100 text-center">${product.name}</h4>    
+                <p class="main_productos__contenedor__carta__contenido__descripcion text-center">producto relacionado</p>
+                <div class="main_productos__contenedor__carta__contenido__informacion">
+                </div>
+            </div>
+          </a>
+        </div>
+        `;
+    }
+}
