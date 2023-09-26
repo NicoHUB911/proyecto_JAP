@@ -57,16 +57,39 @@ async function showProductInfo() {
     container.innerHTML = 
     `
 	<div class="producto_info__contenedor d-flex flex-wrap justify-content-center">
-		<div class="producto_info__contenedor__imgCont">		
-			<div class="producto_info__contenedor__imgCont__imgprincipal">
-				<img data-bs-toggle="modal" data-bs-target="#fs-modal" id="imgPrincipal" src="${objectProduct.images[0]}" alt="imagen principal del producto">
-			</div>
-			<div class="producto_info__contenedor__imgCont__imgElegibles d-flex pt-2">
-				<img onclick="changeImg(0)" src="${objectProduct.images[0]}" alt="primer imagen del producto">
-				<img onclick="changeImg(1)" src="${objectProduct.images[1]}" alt="segunda imagen del producto">
-				<img onclick="changeImg(2)" src="${objectProduct.images[2]}" alt="tercera imagen del producto">
-				<img onclick="changeImg(3)" src="${objectProduct.images[3]}" alt="cuarta imagen del producto">
-			</div>
+		<div class="producto_info__contenedor__imgCont carousel slide col-md-5" id="productImageCarousel" data-bs-ride="carousel" data-bs-interval="false">	
+          <div class="carousel-indicators">
+              <button type="button" data-bs-target="#productImageCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#productImageCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#productImageCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+              <button type="button" data-bs-target="#productImageCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+          </div>  
+            <div class="carousel-inner active">
+              <div class="carousel-item active producto_info__contenedor__imgCont__imgprincipal">
+         	     <img data-bs-toggle="modal" data-bs-target="#fs-modal" class="d-block w-100" id="imgPrincipal" src="${objectProduct.images[0]}" alt="imagen principal del producto">
+              </div>
+              <div class="carousel-item">
+                  <img data-bs-toggle="modal" data-bs-target="#fs-modal" src="${objectProduct.images[1]}" alt="segunda imagen del producto" class="d-block w-100">
+              </div>
+              <div class="carousel-item">
+                  <img data-bs-toggle="modal" data-bs-target="#fs-modal" src="${objectProduct.images[2]}" alt="tercera imagen del producto" class="d-block w-100">
+              </div>
+              <div class="carousel-item">
+                 <img data-bs-toggle="modal" data-bs-target="#fs-modal" src="${objectProduct.images[3]}" alt="cuarta imagen del producto" class="d-block w-100">
+              </div>
+            
+             <button class="carousel-control-prev" type="button" data-bs-target="#productImageCarousel" data-bs-slide="prev">
+             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+             <span class="visually-hidden">Previous</span>
+             </button>
+             <button class="carousel-control-next" type="button" data-bs-target="#productImageCarousel" data-bs-slide="next">
+             <span class="carousel-control-next-icon" aria-hidden="true"></span>
+             <span class="visually-hidden">Next</span>
+             </button>
+			
+		    </div>
+        
+
 		</div>
 
         <div class="producto_info__contenedor__informacion ps-5 p-3">
@@ -147,11 +170,6 @@ function goToProductInfo(id) {
     location.reload();
 }
 
-// cambia la imagen principal del producto
-function changeImg(i) {
-    const img = document.getElementById("imgPrincipal");
-    img.src = `${apiData.images[i]}`;
-}
 
 // cambia la imagen del modal
 function changeModalImg(i) {
