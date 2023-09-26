@@ -80,7 +80,8 @@ async function showProductInfo() {
     `
 	
 
-    displayComments()
+    displayComments();
+	showRelated(objectProduct);
 }
 
 /* muestra los comentarios del producto incluyendo las estrellas, llama a la funcion fetch dentro de un bloque try
@@ -122,8 +123,24 @@ function displayRating(rating){
 }
 
 // muestra los productos relacionados
-function showRelated(_param) {
-    // para proximas entregas
+function showRelated(productObject) {
+	const arrayRelated = productObject.relatedProducts;
+    const relatedContainer = document.getElementById("related_products");
+	arrayRelated.forEach(product => {
+		relatedContainer.innerHTML += `
+		<div class="flex-fill col-12 h-25">
+	  <div onclick="goToProductInfo(${product.id})" class="card mb-2">
+        <a class="main_productos__contenedor__carta__link" href="#">
+            <div class="main_productos__contenedor__carta__contenedorimg"><img src="${product.image}" alt="${product.name}" class="main_productos__contenedor__carta__contenedorimg__img"></div>
+            <div>
+                <h4 class="w-100 text-center">${product.name}</h4>    
+                </div>
+            </div>
+          </a>
+        </div>
+		</div>
+		`
+	});
 }
 
 // cambia la imagen principal del producto

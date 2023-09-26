@@ -1107,7 +1107,9 @@ input[type=password]::-ms-clear {
   }
 
   #aside_related {
+	top:6vh;
     flex-basis: 30%;
+	z-index:-1;
   }
 
   #product__info {
@@ -1422,6 +1424,11 @@ input[type=password]::-ms-clear {
   .rating__input:hover~.rating__label .rating__icon--star {
     color: #333333;
   }
+}
+
+
+.related_productos__contenedor__carta__link{
+	background-color: #212529;
 }
 
 /*-------------------------------------------------------CATEGORIES-------------------------------------------------------*/
