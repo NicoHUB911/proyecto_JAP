@@ -122,25 +122,29 @@ function displayRating(rating){
     return checkedStars + uncheckedStars;
 }
 
-// muestra los productos relacionados
+// muestra los productos relacionados con sus respectivos links en el apartado dedicado
 function showRelated(productObject) {
 	const arrayRelated = productObject.relatedProducts;
     const relatedContainer = document.getElementById("related_products");
 	arrayRelated.forEach(product => {
 		relatedContainer.innerHTML += `
-		<div class="flex-fill col-12 h-25">
-	  <div onclick="goToProductInfo(${product.id})" class="card mb-2">
-        <a class="main_productos__contenedor__carta__link" href="#">
-            <div class="main_productos__contenedor__carta__contenedorimg"><img src="${product.image}" alt="${product.name}" class="main_productos__contenedor__carta__contenedorimg__img"></div>
-            <div>
-                <h4 class="w-100 text-center">${product.name}</h4>    
-                </div>
-            </div>
-          </a>
-        </div>
+<div class="flex-fill col-12 h-25">
+	<a class="related_productos__contenedor__carta__link" href="#">
+		<div onclick="goToProductInfo(${product.id})" class="releated_products__contenedor__carta card rounded mb-2">
+			<div class="main_productos__contenedor__carta__contenedorimg"><img src="${product.image}" alt="${product.name}" class="main_productos__contenedor__carta__contenedorimg__img"></div>
+		<h4 class="w-100 text-center">${product.name}</h4>  
 		</div>
+	</a>
+</div>
 		`
 	});
+}
+
+
+// igual a la funcion que se encuentra en en products.js pero recarga la página en lugar de redireccionar
+function goToProductInfo(id) { 
+    localStorage.setItem("IdProducto", id);
+    location.reload();
 }
 
 // cambia la imagen principal del producto
