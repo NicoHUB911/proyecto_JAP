@@ -98,6 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnLogOut=document.getElementById("btn-logout");
   btnLogOut.addEventListener('click',()=>{
     localStorage.clear();
+    sessionStorage.clear();
     window.location.href = "login.html";
   }) // Boton de deslogeo.
   const btnTheme=document.getElementById("btn-theme");
