@@ -170,17 +170,17 @@ function procesarDatos(data) {
     // Aquí ponemos los datos en una variable string (con codigo html).
     for (const producto of productos) { // recorremos el array que tiene los productos (productos es el array y producto el objeto por el que esta pasando (algo asi como el indice: [n] )).
         contenido += `
-                    <div onclick="goToProductInfo(${producto.id})" class="main_productos__contenedor__carta">
+                    <div onclick="goToProductInfo(${producto.id})" class="main_productos__contenedor__carta change">
                     <a class="main_productos__contenedor__carta__link" href="#">
                         <div class="main_productos__contenedor__carta__contenedorimg"><img src="${producto.image}" alt="${producto.name}" class="main_productos__contenedor__carta__contenedorimg__img"></div>
-                        <div class="main_productos__contenedor__carta__contenido">
+                        <div class="main_productos__contenedor__carta__contenido change">
                             <h4 class="main_productos__contenedor__carta__contenido__titulo">${producto.name}</h4>    
-                            <p class="main_productos__contenedor__carta__contenido__descripcion">${producto.description}</p>
+                            <p class="main_productos__contenedor__carta__contenido__descripcion change">${producto.description}</p>
                             <div class="main_productos__contenedor__carta__contenido__informacion">
-                                <div class="main_productos__contenedor__carta__contenido__informacion__datos1">
-                                    <small class="main_productos__contenedor__carta__contenido__informacion__datos__texto">${producto.cost} ${producto.currency}</small>
+                                <div class="main_productos__contenedor__carta__contenido__informacion__datos1 ">
+                                    <small class="main_productos__contenedor__carta__contenido__informacion__datos__texto ">${producto.cost} ${producto.currency}</small>
                                 </div>
-                                <div class="main_productos__contenedor__carta__contenido__informacion__datos2">
+                                <div class="main_productos__contenedor__carta__contenido__informacion__datos2 ">
                                   <small class="main_productos__contenedor__carta__contenido__informacion__datos__texto">${producto.soldCount} Vendidos</small>
                                 </div>
                             </div>

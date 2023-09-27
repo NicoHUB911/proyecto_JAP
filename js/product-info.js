@@ -92,11 +92,11 @@ async function showProductInfo() {
 
 		</div>
 
-        <div class="producto_info__contenedor__informacion ps-5 p-3">
-            <h1 class="producto_info__contenedor__informacion__titulo">${objectProduct.name}</h1>
-            <h2 class="producto_info__contenedor__informacion__precio"><span>${objectProduct.currency}</span> ${objectProduct.cost}</h2>
-            <p class="producto_info__contenedor__informacion__descripcion"><b>Descripcion: </b>${objectProduct.description}</p>
-            <p class="producto_info__contenedor__informacion__otros"><small>Categoria: <a href="products.html">${objectProduct.category}</a></small><small>Vendidos: ${objectProduct.soldCount}</small></p>
+        <div class="producto_info__contenedor__informacion ps-5 p-3 change">
+            <h1 class="producto_info__contenedor__informacion__titulo ">${objectProduct.name}</h1>
+            <h2 class="producto_info__contenedor__informacion__precio "><span>${objectProduct.currency}</span> ${objectProduct.cost}</h2>
+            <p class="producto_info__contenedor__informacion__descripcion "><b>Descripcion: </b>${objectProduct.description}</p>
+            <p class="producto_info__contenedor__informacion__otros "><small>Categoria: <a href="products.html">${objectProduct.category}</a></small><small>Vendidos: ${objectProduct.soldCount}</small></p>
         </div>
 	</div>
 
@@ -124,12 +124,18 @@ async function displayComments() {
 	if(comments.length !== 0) {
 		comments.forEach(comment => {
 			divOpinion.innerHTML += `
-			<li class="list-group-item" style="background-color:rgb(255,255,255,0);">
-				<p><span class='fw-bold'>${comment.user} </span> - <span>${comment.dateTime}</span> - <span class="text-nowrap">${displayRating(comment.score)}</span></p>
-				<p class="text-break"><span>${comment.description}</p>
+			<li class="list-group-item change">
+				<p class="change"><span class='fw-bold'>${comment.user} </span> - <span>${comment.dateTime}</span> - <span class="text-nowrap">${displayRating(comment.score)}</span></p>
+				<p class="text-break change"><span>${comment.description}</p>
 			</li>
 			`
 		});
+        if(JSON.parse(localStorage.getItem('dark-light'))){
+            const divs = document.getElementsByClassName('change')
+            for (const div of divs) {
+              div.classList.add('dark-light')
+            }
+          }
 	} else {
 		divOpinion.innerHTML = `
 			<li class="list-group-item" style="background-color:#ff6054;">

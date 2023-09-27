@@ -89,9 +89,10 @@ document.addEventListener("DOMContentLoaded", () => {
       <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
             <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
             <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
-            <li><a class="dropdown-item" id="btn-logout">Cerrar sesión</a></li> 
-          </ul>
-          </div>
+            <li><a class="dropdown-item" style="cursor:pointer;"  id="btn-theme">Dark</a></li> 
+            <li><a class="dropdown-item" style="cursor:pointer;" id="btn-logout">Cerrar sesión</a></li> 
+      </ul>
+  </div>
 	`; //Se implementa mediante clases de bootstrap el menu desplegable para el usuario.
 
   const btnLogOut=document.getElementById("btn-logout");
@@ -99,7 +100,59 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.clear();
     window.location.href = "login.html";
   }) // Boton de deslogeo.
+  const btnTheme=document.getElementById("btn-theme");
+  btnTheme.addEventListener('click',()=>{
+    
+    localStorage.setItem('dark-light',!JSON.parse(localStorage.getItem('dark-light')))
+
+    themeChanger()
+    if(JSON.parse(localStorage.getItem('dark-light'))){
+      document.getElementById('btn-theme').innerText = 'Light'
+    }else{
+      document.getElementById('btn-theme').innerText = 'Dark'
+    }
+
+  }) // Boton de cambio de theme
+
+      if(!localStorage.getItem('dark-light')){
+        localStorage.setItem('dark-light',false)
+      }
+
+        if(JSON.parse(localStorage.getItem('dark-light'))){
+          const divsSacar = document.getElementsByClassName('dark-light')
+          for (const divs of divsSacar) {
+              divs.classList.remove('dark-light')
+          }
+          themeChanger()
+        }
+      
 });
+
+const themeChanger = ()=>{
+  const divs = document.getElementsByClassName('change')
+  for (const div of divs) {
+    
+    div.classList.toggle('dark-light')
+    if(div.classList.contains('jumbotron') && div.classList.contains('dark-light')){
+      div.style.filter = "invert(90%)"
+    }else{
+      div.style.filter = "invert(0%)"
+    }
+    if(div.tagName === 'LI' && div.classList.contains('dark-light')){
+      div.style.border = "solid 1px white"
+    }else{
+      div.style.border = ""
+    }
+  }
+  if(JSON.parse(localStorage.getItem('dark-light')) == false){
+    const divsSacar = document.getElementsByClassName('dark-light')
+    for (const divs of divsSacar) {
+        divs.classList.remove('dark-light')
+    }
+  }
+} 
+
+
 
 
 /*

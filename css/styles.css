@@ -1162,13 +1162,11 @@ input[type=password]::-ms-clear {
     text-align: center;
     font-family: sans-serif;
     letter-spacing: 5px;
-    color: #000;
     padding-bottom: 8px;
     border-bottom: 4px solid #f09100;
   }
 
   .producto_info__contenedor__informacion__precio {
-    color: #000;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
@@ -1181,7 +1179,6 @@ input[type=password]::-ms-clear {
   }
 
   .producto_info__contenedor__informacion__descripcion {
-    color: #000;
     font-size: 18px;
     margin-left: auto;
     margin-right: auto;
@@ -1195,7 +1192,6 @@ input[type=password]::-ms-clear {
     display: flex;
     font-size: 16px;
     justify-content: space-evenly;
-    color: #34383b;
   }
 
   /*____________comentarios____________*/
@@ -1331,7 +1327,6 @@ input[type=password]::-ms-clear {
   }
 
   .producto_info__contenedor__informacion__descripcion {
-    color: #000;
     font-size: 18px;
     margin-left: auto;
     margin-right: auto;
@@ -1354,7 +1349,6 @@ input[type=password]::-ms-clear {
   .producto_info__contenedor__informacion__otros {
     display: flex;
     justify-content: space-between;
-    color: #34383b;
   }
 
   #product__coments {
@@ -1533,4 +1527,11 @@ input[type=password]::-ms-clear {
 @keyframes rebotar {
   0%{transform: translateY(0);}
   100% {transform: translateY(10px);}
+}
+
+/*-----------------------------------------------------Dark/Light Mode----------------------------------------------*/
+
+.dark-light{
+  background-color: #333333 !important;
+  color: white !important;
 }
