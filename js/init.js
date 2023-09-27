@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
       </ul>
   </div>
 	`; //Se implementa mediante clases de bootstrap el menu desplegable para el usuario.
-
+  
   const btnLogOut=document.getElementById("btn-logout");
   btnLogOut.addEventListener('click',()=>{
     localStorage.clear();
