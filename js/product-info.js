@@ -130,6 +130,7 @@ async function displayComments() {
 			</li>
 			`
 		});
+        /* The api takes a few seconds to bring all the comments, so we put this here to make sure all the comments are loaded to change their class to dark */
         if(JSON.parse(localStorage.getItem('dark-light'))){
             const divs = document.getElementsByClassName('change')
             for (const div of divs) {

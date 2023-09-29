@@ -83,6 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
  
 
 // usando innerHTML con Template strings (tipo ${}) le ponemos el ya contenido de toda la sección con formato html
+// We use bootstrap class to deploy the user menu
 	parentDivs.innerHTML = `
   <div class="dropdown nav-item"> 
       <a class="btn btn-sm btn-warning dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"><div class="navegador__menu_2__lista__link"><span id="data">${userName}</span></div></a>
@@ -93,14 +94,17 @@ document.addEventListener("DOMContentLoaded", () => {
             <li><a class="dropdown-item" style="cursor:pointer;" id="btn-logout">Cerrar sesión</a></li> 
       </ul>
   </div>
-	`; //Se implementa mediante clases de bootstrap el menu desplegable para el usuario.
+	`; 
   
+  // Logout button.
   const btnLogOut=document.getElementById("btn-logout");
   btnLogOut.addEventListener('click',()=>{
     localStorage.clear();
     sessionStorage.clear();
     window.location.href = "login.html";
-  }) // Boton de deslogeo.
+  }) 
+  
+  // Theme Button - Dark/light exchange
   const btnTheme=document.getElementById("btn-theme");
   btnTheme.addEventListener('click',()=>{
     
@@ -113,22 +117,18 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById('btn-theme').innerText = 'Dark'
     }
 
-  }) // Boton de cambio de theme
-
+  }) 
+      // If you enter to another page of the web, this part of the code change the theme to dark or light mode, depends of the user selection.
       if(!localStorage.getItem('dark-light')){
         localStorage.setItem('dark-light',false)
       }
-
+        /* If in the local storage it's true, then it gets all the divs within that page that has the `change` class, and then changes the color */
         if(JSON.parse(localStorage.getItem('dark-light'))){
-          const divsSacar = document.getElementsByClassName('dark-light')
-          for (const divs of divsSacar) {
-              divs.classList.remove('dark-light')
-          }
           themeChanger()
         }
       
 });
-
+// This is the change theme function. Is used to toggle between dark and light themes
 const themeChanger = ()=>{
   const divs = document.getElementsByClassName('change')
   for (const div of divs) {
