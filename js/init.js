@@ -83,14 +83,77 @@ document.addEventListener("DOMContentLoaded", () => {
  
 
 // usando innerHTML con Template strings (tipo ${}) le ponemos el ya contenido de toda la sección con formato html
+// We use bootstrap class to deploy the user menu
 	parentDivs.innerHTML = `
-	<a id="img_carrito" class="d-flex align-items-center me-3 rounded-circle" href="#"><img class="h-100" src="img/carrito.png" alt="carrito de compras"></a>
-      <a href="my-profile.html"><div class="navegador__menu_2__lista__link"><span id="data">${userName}</span></div></a>
-      <a id="img_user" class="d-flex align-items-center rounded-circle" href="my-profile.html"><img class="h-100" src="img/user-Icon.png" alt="logo de usuario (menu de usuario)"></a>
-	`;
-
+  <div class="dropdown nav-item"> 
+      <a class="btn btn-sm btn-warning dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"><div class="navegador__menu_2__lista__link"><span id="data">${userName}</span></div></a>
+      <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+            <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+            <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+            <li><a class="dropdown-item" style="cursor:pointer;"  id="btn-theme">Dark</a></li> 
+            <li><a class="dropdown-item" style="cursor:pointer;" id="btn-logout">Cerrar sesión</a></li> 
+      </ul>
+  </div>
+	`; 
   
+  // Logout button.
+  const btnLogOut=document.getElementById("btn-logout");
+  btnLogOut.addEventListener('click',()=>{
+    localStorage.clear();
+    sessionStorage.clear();
+    window.location.href = "login.html";
+  }) 
+  
+  // Theme Button - Dark/light exchange
+  const btnTheme=document.getElementById("btn-theme");
+  btnTheme.addEventListener('click',()=>{
+    
+    localStorage.setItem('dark-light',!JSON.parse(localStorage.getItem('dark-light')))
+
+    themeChanger()
+    if(JSON.parse(localStorage.getItem('dark-light'))){
+      document.getElementById('btn-theme').innerText = 'Light'
+    }else{
+      document.getElementById('btn-theme').innerText = 'Dark'
+    }
+
+  }) 
+      // If you enter to another page of the web, this part of the code change the theme to dark or light mode, depends of the user selection.
+      if(!localStorage.getItem('dark-light')){
+        localStorage.setItem('dark-light',false)
+      }
+        /* If in the local storage it's true, then it gets all the divs within that page that has the `change` class, and then changes the color */
+        if(JSON.parse(localStorage.getItem('dark-light'))){
+          themeChanger()
+        }
+      
 });
+// This is the change theme function. Is used to toggle between dark and light themes
+const themeChanger = ()=>{
+  const divs = document.getElementsByClassName('change')
+  for (const div of divs) {
+    
+    div.classList.toggle('dark-light')
+    if(div.classList.contains('jumbotron') && div.classList.contains('dark-light')){
+      div.style.filter = "invert(90%)"
+    }else{
+      div.style.filter = "invert(0%)"
+    }
+    if(div.tagName === 'LI' && div.classList.contains('dark-light')){
+      div.style.border = "solid 1px white"
+    }else{
+      div.style.border = ""
+    }
+  }
+  if(JSON.parse(localStorage.getItem('dark-light')) == false){
+    const divsSacar = document.getElementsByClassName('dark-light')
+    for (const divs of divsSacar) {
+        divs.classList.remove('dark-light')
+    }
+  }
+} 
+
+
 
 
 /*

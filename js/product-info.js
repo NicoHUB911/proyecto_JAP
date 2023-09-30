@@ -57,30 +57,54 @@ async function showProductInfo() {
     container.innerHTML = 
     `
 	<div class="producto_info__contenedor d-flex flex-wrap justify-content-center">
-		<div class="producto_info__contenedor__imgCont">		
-			<div class="producto_info__contenedor__imgCont__imgprincipal">
-				<img data-bs-toggle="modal" data-bs-target="#fs-modal" id="imgPrincipal" src="${objectProduct.images[0]}" alt="imagen principal del producto">
-			</div>
-			<div class="producto_info__contenedor__imgCont__imgElegibles d-flex pt-2">
-				<img onclick="changeImg(0)" src="${objectProduct.images[0]}" alt="primer imagen del producto">
-				<img onclick="changeImg(1)" src="${objectProduct.images[1]}" alt="segunda imagen del producto">
-				<img onclick="changeImg(2)" src="${objectProduct.images[2]}" alt="tercera imagen del producto">
-				<img onclick="changeImg(3)" src="${objectProduct.images[3]}" alt="cuarta imagen del producto">
-			</div>
+		<div class="producto_info__contenedor__imgCont carousel slide col-md-5" id="productImageCarousel" data-bs-ride="carousel" data-bs-interval="false">	
+           
+            <div class="carousel-inner active">
+              <div class="carousel-item active producto_info__contenedor__imgCont__imgprincipal">
+         	     <img data-bs-toggle="modal" data-bs-target="#fs-modal" class="d-block w-100" id="imgPrincipal" src="${objectProduct.images[0]}" alt="imagen principal del producto">
+              </div>
+              <div class="carousel-item">
+                  <img data-bs-toggle="modal" data-bs-target="#fs-modal" src="${objectProduct.images[1]}" alt="segunda imagen del producto" class="d-block w-100">
+              </div>
+              <div class="carousel-item">
+                  <img data-bs-toggle="modal" data-bs-target="#fs-modal" src="${objectProduct.images[2]}" alt="tercera imagen del producto" class="d-block w-100">
+              </div>
+              <div class="carousel-item">
+                 <img data-bs-toggle="modal" data-bs-target="#fs-modal" src="${objectProduct.images[3]}" alt="cuarta imagen del producto" class="d-block w-100">
+              </div>
+              <div class="carousel-indicators">
+              <button type="button" data-bs-target="#productImageCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#productImageCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#productImageCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+              <button type="button" data-bs-target="#productImageCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+             </div>  
+             <button class="carousel-control-prev" type="button" data-bs-target="#productImageCarousel" data-bs-slide="prev">
+             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+             <span class="visually-hidden">Previous</span>
+             </button>
+             <button class="carousel-control-next" type="button" data-bs-target="#productImageCarousel" data-bs-slide="next">
+             <span class="carousel-control-next-icon" aria-hidden="true"></span>
+             <span class="visually-hidden">Next</span>
+             </button>
+			
+		    </div>
+        
+
 		</div>
 
-        <div class="producto_info__contenedor__informacion ps-5 p-3">
-            <h1 class="producto_info__contenedor__informacion__titulo">${objectProduct.name}</h1>
-            <h2 class="producto_info__contenedor__informacion__precio"><span>${objectProduct.currency}</span> ${objectProduct.cost}</h2>
-            <p class="producto_info__contenedor__informacion__descripcion"><b>Descripcion: </b>${objectProduct.description}</p>
-            <p class="producto_info__contenedor__informacion__otros"><small>Categoria: <a href="products.html">${objectProduct.category}</a></small><small>Vendidos: ${objectProduct.soldCount}</small></p>
+        <div class="producto_info__contenedor__informacion ps-5 p-3 change">
+            <h1 class="producto_info__contenedor__informacion__titulo ">${objectProduct.name}</h1>
+            <h2 class="producto_info__contenedor__informacion__precio "><span>${objectProduct.currency}</span> ${objectProduct.cost}</h2>
+            <p class="producto_info__contenedor__informacion__descripcion "><b>Descripcion: </b>${objectProduct.description}</p>
+            <p class="producto_info__contenedor__informacion__otros "><small>Categoria: <a href="products.html">${objectProduct.category}</a></small><small>Vendidos: ${objectProduct.soldCount}</small></p>
         </div>
 	</div>
 
     `
 	
 
-    displayComments()
+    displayComments();
+	showRelated(objectProduct);
 }
 
 /* muestra los comentarios del producto incluyendo las estrellas, llama a la funcion fetch dentro de un bloque try
@@ -100,12 +124,19 @@ async function displayComments() {
 	if(comments.length !== 0) {
 		comments.forEach(comment => {
 			divOpinion.innerHTML += `
-			<li class="list-group-item" style="background-color:rgb(255,255,255,0);">
-				<p><span class='fw-bold'>${comment.user} </span> - <span>${comment.dateTime}</span> - <span class="text-nowrap">${displayRating(comment.score)}</span></p>
-				<p class="text-break"><span>${comment.description}</p>
+			<li class="list-group-item change">
+				<p class="change"><span class='fw-bold'>${comment.user} </span> - <span>${comment.dateTime}</span> - <span class="text-nowrap">${displayRating(comment.score)}</span></p>
+				<p class="text-break change"><span>${comment.description}</p>
 			</li>
 			`
 		});
+        /* The api takes a few seconds to bring all the comments, so we put this here to make sure all the comments are loaded to change their class to dark */
+        if(JSON.parse(localStorage.getItem('dark-light'))){
+            const divs = document.getElementsByClassName('change')
+            for (const div of divs) {
+              div.classList.add('dark-light')
+            }
+          }
 	} else {
 		divOpinion.innerHTML = `
 			<li class="list-group-item" style="background-color:#ff6054;">
@@ -121,16 +152,31 @@ function displayRating(rating){
     return checkedStars + uncheckedStars;
 }
 
-// muestra los productos relacionados
-function showRelated(_param) {
-    // para proximas entregas
+// muestra los productos relacionados con sus respectivos links en el apartado dedicado
+function showRelated(productObject) {
+	const arrayRelated = productObject.relatedProducts;
+    const relatedContainer = document.getElementById("related_products");
+	arrayRelated.forEach(product => {
+		relatedContainer.innerHTML += `
+<div class="flex-fill col-12 h-25">
+	<a class="related_productos__contenedor__carta__link" href="#">
+		<div onclick="goToProductInfo(${product.id})" class="releated_products__contenedor__carta card rounded mb-2">
+			<div class="main_productos__contenedor__carta__contenedorimg"><img src="${product.image}" alt="${product.name}" class="main_productos__contenedor__carta__contenedorimg__img"></div>
+		<h4 class="w-100 text-center">${product.name}</h4>  
+		</div>
+	</a>
+</div>
+		`
+	});
 }
 
-// cambia la imagen principal del producto
-function changeImg(i) {
-    const img = document.getElementById("imgPrincipal");
-    img.src = `${apiData.images[i]}`;
+
+// igual a la funcion que se encuentra en en products.js pero recarga la página en lugar de redireccionar
+function goToProductInfo(id) { 
+    localStorage.setItem("IdProducto", id);
+    location.reload();
 }
+
 
 // cambia la imagen del modal
 function changeModalImg(i) {

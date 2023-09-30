@@ -25,14 +25,12 @@
       </ul>
     </div>
     <div class="navegador__menu_2 d-flex align-items-center me-5">
-      <a id="img_carrito" class="d-flex align-items-center me-3 rounded-circle" href="#"><img class="h-100" src="img/carrito.png" alt="carrito de compras"></a>
-      <a id="img_user" class="d-flex align-items-center rounded-circle" href="#"><img class="h-100" src="img/user-Icon.png" alt="logo de usuario (menu de usuario)"></a>
     </div>
   </nav>
 
 
 
-  <main class="d-flex mt-5 min-vh-100" id="product_main">
+  <main class="d-flex mt-5 min-vh-100 change" id="product_main">
 
     <section class="d-flex flex-column" id="product_section">
       <article class="w-100  p-4">
@@ -41,7 +39,7 @@
         </div>
       </article>
   
-      <article class="w-100 p-4">
+      <article class="w-100 p-4 ">
         <div id="product__coments" class="d-flex flex-column py-3">
           <div id="new_comment" class="w-75">
             <h2>Dejá tu comentario</h2>
@@ -70,17 +68,22 @@
             </form>
           </div>
           <h2 class="product__coments__otrasOP pt-3 mt-5">Otras opiniones sobre el producto</h2>
-          <ul id="opiniones" class="d-flex flex-column list-group p-4 w-100 flex-grow-1" >
+          <ul id="opiniones" class="d-flex flex-column list-group p-4 w-100 flex-grow-1 " >
 
           </ul>
         </div>
       </article>
     </section>
 
-    <aside class="d-flex justify-content-center align-items-center p-4" id="aside_related">
-      <div id="related_products">
-        <p>seccion de productos relacionados</p>
+    <aside class="d-flex h-100 align-items-center p-4 sticky-md-top" id="aside_related">
+	  <div class="justify-content-start" >
+	  <div id="related_products" class="row">
+		<div class="col-12 flex-fill">
+		<h4>Productos Relacionados</h4>
+        <!-- seccion de productos relacionados</p> -->
+		</div>
       </div>
+	  </div>
     </aside>
 
   </main>
