@@ -1424,6 +1424,11 @@ input[type=password]::-ms-clear {
   .rating__input:hover~.rating__label .rating__icon--star {
     color: #333333;
   }
+  
+  /* force product image to appear in cart.html when on mobile */
+  .cart__table__img{
+	  min-width: 10vw;
+  }
 }
 
 
