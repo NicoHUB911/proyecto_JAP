@@ -1540,3 +1540,68 @@ input[type=password]::-ms-clear {
   background-color: #333333 !important;
   color: white !important;
 }
+
+/*-------------------------------------------------------CART-------------------------------------------------------*/
+
+
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-group {
+  flex: 1;
+  margin-right: 10px;
+}
+
+input[type="radio"].form-check-input:checked {
+  background-color: #f09100;
+  border-color: #3f4850;
+}
+
+
+#guardarObservaciones {
+  background-color: #fff;
+  color: #3f4850;
+  font-family: sans-serif;
+  outline: none;
+  border: 2px solid #3f4850;
+  margin-top: 10px;
+  cursor: pointer; 
+  margin-right: 10px;
+}
+
+
+#botonesObservaciones {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+
+#cancelarObservaciones {
+  cursor: pointer;
+  margin-top: 28px; 
+}
+
+#cancelarObservaciones a {
+  color: #3f4850; 
+}
+
+#buttonform {
+  background-color: #f09100;
+  color: #3f4850;
+  font-family: sans-serif;
+  font-weight: bold;
+  outline: none;
+  border: 2px solid #3f4850;
+  margin-top: 10px;
+}
+
+#contenedorCompra {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+}
+
