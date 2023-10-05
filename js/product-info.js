@@ -92,21 +92,40 @@ async function showProductInfo() {
 
 		</div>
 
-        <div class="producto_info__contenedor__informacion ps-5 p-3 change">
-            <h1 class="producto_info__contenedor__informacion__titulo ">${objectProduct.name}</h1>
-            <h2 class="producto_info__contenedor__informacion__precio "><span>${objectProduct.currency}</span> ${objectProduct.cost}</h2>
-            <p class="producto_info__contenedor__informacion__descripcion "><b>Descripcion: </b>${objectProduct.description}</p>
-            <p class="producto_info__contenedor__informacion__otros "><small>Categoria: <a href="products.html">${objectProduct.category}</a></small><small>Vendidos: ${objectProduct.soldCount}</small></p>
-        </div>
-	</div>
+        
+        <div class="producto_info__contenedor__informacion ps-3 p-3 change col-md-7">
+        <h1 class="producto_info__contenedor__informacion__titulo">${objectProduct.name}</h1>
+        <h2 class="producto_info__contenedor__informacion__precio"><span>${objectProduct.currency}</span> ${objectProduct.cost}</h2>
+        <p class="producto_info__contenedor__informacion__descripcion"><b>Descripcion: </b>${objectProduct.description}</p>
+        <p class="producto_info__contenedor__informacion__otros"><small>Categoria: <a href="products.html">${objectProduct.category}</a></small><small>Vendidos: ${objectProduct.soldCount}</small></p>
+        <div class="btn btn-success mt-auto" id="btnComprar">Comprar</div>
+    </div>
 
     `
 	
-
+    const btnComprar=document.getElementById('btnComprar');
+    btnComprar.addEventListener('click', function() {
+        addToCart(objectProduct);
+    });
     displayComments();
 	showRelated(objectProduct);
 }
+function addToCart(item){
+    const itemToAdd = {
+        count: 1,
+        currency: item.currency,
+        id: item.id,
+        image: item.images[0],
+        name: item.name,
+        unitCost: item.cost
 
+
+    };
+    
+    alert("El producto fue añadido al carrito")
+    localStorage.setItem('cart',JSON.stringify(itemToAdd));
+    
+}
 /* muestra los comentarios del producto incluyendo las estrellas, llama a la funcion fetch dentro de un bloque try
 Si hay error muestra en el espacio de los comentarios que no se pudieron cargar los mismos.
 En caso contrario, ordena el array de mas reciente a mas antiguo y le hace un foreach para mostrar todos,
