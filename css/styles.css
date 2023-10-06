@@ -222,9 +222,10 @@ body {
     transform: translateY(10px);
   }
 }
-
+/*-aca empieza lo del banner-*/
 .jumbotron {
   position: relative;
+  filter: drop-shadow(0px 0px 5px #fff);
 }
 
 .jumbotron__img {
@@ -352,59 +353,6 @@ body {
   }
 }
 
-/*_______________________________________________________________*/
-/*
-.jumbotron,
-.card-body,
-.container,
-.site-header {
-  font-family: 'Verdana', serif !important;
-}
-
-.jumbotron .display-4 {
-  font-weight: bold;
-}
-
-.jumbotron {
-  height: 50vh;
-  padding: 5em inherit;
-  margin-bottom: 0;
-  background-color: #53C0FB;
-  background: url('../img/cover_back.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  color: black;
-  font-weight: bold;
-}
-
-@media (min-width: 768px) {
-  .jumbotron {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
-  }
-}
-
-.jumbotron p:last-child {
-  margin-bottom: 0;
-}
-
-.jumbotron-heading {
-  font-weight: 300;
-}
-
-.jumbotron .container {
-  max-width: 40rem;
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 10px;
-  text-shadow: 1px 1px 2px grey;
-}
-
-.jumbotron .lead {
-  font-size: 38px;
-}
-*/
-/*_____________________________________________________________*/
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;
