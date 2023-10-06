@@ -52,6 +52,70 @@
 			</table>
 		</div>
 	</div>
+
+  <!-- contenedor para formulario de tipo y datos de envío -->
+  <div class="container" id="form-carrito">
+    <form>
+      <fieldset>
+        <legend>Tipo de envío</legend>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="tipoEnvio" id="premium" value="premium" checked>
+          <label class="form-check-label" for="premium">
+            Premium 2 a 5 días (15%)
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="tipoEnvio" id="express" value="express">
+          <label class="form-check-label" for="express">
+            Express 5 a 8 días (7%)
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="tipoEnvio" id="standard" value="standard">
+          <label class="form-check-label" for="standard">
+            Standard 12 a 15 días (5%)
+          </label>
+        </div>
+      </fieldset>
+      <br>
+  
+      <fieldset>
+        <legend>Dirección de envío</legend>
+        <div class="form-row">
+          <div class="form-group col">
+            <label for="calle">Calle:</label>
+            <input type="text" id="calle" name="calle" class="form-control" required>
+          </div>
+          <div class="form-group col">
+            <label for="numero">Número:</label>
+            <input type="text" id="numero" name="numero" class="form-control" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="esquina">Esquina:</label>
+          <input type="text" id="esquina" name="esquina" class="form-control">
+        </div>
+      </fieldset>
+      <div id="contenedorCompra">
+      <small id="parrafoObservaciones">
+        Haz clic <a href="#" id="mostrarObservaciones">aquí</a> para agregar observaciones.
+      </small>
+      </div>
+      <fieldset style="display: none;" id="campoObservaciones">
+        <br>
+        <legend>Observaciones</legend>
+        <div class="form-group">
+          <label for="observaciones">Escribe tus observaciones:</label>
+          <textarea id="observaciones" name="observaciones" class="form-control"></textarea>
+        </div>
+        <div id="botonesObservaciones">
+        <button id="guardarObservaciones">Guardar</button>
+        <p id="cancelarObservaciones"> <a href="#">Cancelar</a></p>
+        </div>
+      </fieldset>
+      <button type="submit" id="buttonform">Continuar</button>
+    </form>
+  </div>
   </main>
   <footer class="text-muted">
     <div class="container">

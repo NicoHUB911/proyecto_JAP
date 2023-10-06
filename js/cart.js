@@ -120,3 +120,34 @@ function loadCart() {
 //  });
  
 //  displayCart();
+
+// al hacer click en aquí se muestra el campo de observaciones y al al hacer click en en cancelar se oculta
+const mostrarEnlace = document.getElementById("mostrarObservaciones");
+const campoObservaciones = document.getElementById("campoObservaciones");
+const parrafoObservaciones = document.getElementById("parrafoObservaciones");
+const guardarBoton = document.getElementById("guardarObservaciones");
+const cancelarTexto = document.getElementById("cancelarObservaciones");
+
+// Agrega un evento de clic al enlace de "aqui" para mostrar el campo de observaciones y ocultar el parrafo
+mostrarEnlace.addEventListener("click", function(event) {
+  event.preventDefault(); 
+  campoObservaciones.style.display = "block"; 
+  parrafoObservaciones.style.display = "none"; 
+});
+
+// Agrega un evento de clic a "Cancelar" para ocultar el campo de observaciones y mostrar muevamente el parrafo
+cancelarTexto.addEventListener("click", function(event) {
+  event.preventDefault(); 
+  campoObservaciones.style.display = "none"; 
+  parrafoObservaciones.style.display = "block"; 
+});
+
+
+/*
+//  guardar los datos cuando se haga clic en "Guardar" 
+guardarBoton.addEventListener("click", function(event) {
+  event.preventDefault(); 
+  // aquí va la lógica para guardar las observaciones
+});
+
+*/
