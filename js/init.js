@@ -153,6 +153,23 @@ const themeChanger = ()=>{
   }
 } 
 
+function displayMessage(message, type){
+	const alertPlaceholder = document.getElementById('alert-placeholder');
+	const wrapper = document.createElement('div');
+	wrapper.innerHTML =
+    `<div class="alert alert-${type} alert-dismissible" role="alert" style="z-index:2000;">
+     <div>${message}</div>
+     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>`;
+	
+	alertPlaceholder.append(wrapper);
+	
+	 setTimeout(function () { 
+		alertPlaceholder.innerHTML = "";
+     }, 10000); 
+	
+}
+
 
 
 

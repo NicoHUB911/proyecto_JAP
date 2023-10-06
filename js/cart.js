@@ -5,7 +5,10 @@ const CART_TABLE = document.getElementById("cart-table-body");
 
 
 function displayCartItems(a){
-	const listOfArticles = a.articles;
+	let listOfArticles = a.articles;
+	if (loadCart().length > 0){
+		listOfArticles = listOfArticles.concat(loadCart());
+	}
 	
 	CART_TABLE.parentElement.getElementsByTagName("caption")[0].innerHTML = `Hay ${listOfArticles.length} producto${listOfArticles.length > 1? "s " : " "}en su carrito`;
 	// se modifica la etiqueta "caption" de la tabla para mostrar el total de articulos en el carrito
@@ -31,8 +34,6 @@ function displayCartItems(a){
 Al cargar el documento html se llama a la funcion getJSONData() que fue declarada en init.js, se le pasa la URL de la API dada por JaP, y tomando la promesa que devuelve se llama a displayCartItems() con un objecto que contiene la id del usuario y un array con objetos (los productos en su carrito)
 */
 document.addEventListener("DOMContentLoaded", function() {
-   // loadCart()
-
     getJSONData(USER_CART).then(function(resultObj){
         if (resultObj.status === "ok"){
             displayCartItems(resultObj.data)
@@ -61,11 +62,10 @@ unitCost: 15200 (number)
 
 //Loads the cart 
 function loadCart() {
-  cart = JSON.parse(localStorage.getItem('cart'));
-  if (cart.length != 0){
-    displayCartItems(cart);
+  return cart = JSON.parse(localStorage.getItem('cart')) ?? [];
   }
-}
+
+
 // //Remove item from cart
 // obj.removeItemFromCart = function(name) {
 // 	for(var item in cart) {

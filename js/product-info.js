@@ -111,6 +111,8 @@ async function showProductInfo() {
 	showRelated(objectProduct);
 }
 function addToCart(item){
+	let arrayCart = JSON.parse(localStorage.getItem('cart')) ?? [];
+	
     const itemToAdd = {
         count: 1,
         currency: item.currency,
@@ -118,12 +120,11 @@ function addToCart(item){
         image: item.images[0],
         name: item.name,
         unitCost: item.cost
-
-
     };
     
-    alert("El producto fue añadido al carrito")
-    localStorage.setItem('cart',JSON.stringify(itemToAdd));
+	arrayCart.push(itemToAdd);
+    displayMessage("El producto fue añadido al carrito", "success")
+    localStorage.setItem('cart',JSON.stringify(arrayCart));
     
 }
 /* muestra los comentarios del producto incluyendo las estrellas, llama a la funcion fetch dentro de un bloque try
