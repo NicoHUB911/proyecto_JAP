@@ -36,7 +36,7 @@
 .boton_filtrar {
   background-color: #fff;
   color: #3f4850;
-  width: 80px;
+  width: auto;
   font-family: sans-serif;
   font-weight: bold;
   outline: none;
@@ -56,7 +56,7 @@
 .boton_limpiar {
   background-color: #f09100;
   color: #3f4850;
-  width: 80px;
+  width: auto;
   font-family: sans-serif;
   font-weight: bold;
   outline: none;
