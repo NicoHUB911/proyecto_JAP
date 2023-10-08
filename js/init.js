@@ -166,3 +166,28 @@ function displayMessage(message, type){
 		alertPlaceholder.innerHTML = "";
      }, 10000); 
 }
+
+// para poder mover al asistente/"bot"
+const draggable = document.getElementById('draggable');
+let offsetX, offsetY, isDragging = false;
+
+draggable.addEventListener('mousedown', (e) => {
+    e.preventDefault();
+    offsetX = e.clientX - draggable.getBoundingClientRect().left;
+    offsetY = e.clientY - draggable.getBoundingClientRect().top;
+    isDragging = true;
+    draggable.style.cursor = 'grabbing';
+});
+
+document.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    const x = e.clientX - offsetX;
+    const y = e.clientY - offsetY;
+    draggable.style.left = x + 'px';
+    draggable.style.top = y + 'px';
+});
+
+document.addEventListener('mouseup', () => {
+    isDragging = false;
+    draggable.style.cursor = 'grab';
+});

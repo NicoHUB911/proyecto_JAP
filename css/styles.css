@@ -581,3 +581,54 @@ input[type="radio"].form-check-input:checked {
 }
 
 /*=======================================_FIN___CART_=======================================*/
+
+/*====================================_ASISTENTE__"BOT"_====================================*/
+
+.draggable {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border-left: 2px solid #f09100;
+  border-bottom: 2px solid #f09100;
+  box-shadow: -5px 5px 10px #696969;
+  background-color: rgba(255, 255, 255, 0.8);
+  background-image: url("../img/bot.webp");
+  background-size: 100% 100%;
+  position: fixed;
+  top: 150px;
+  cursor: grab;
+  z-index: 500;
+}
+
+.draggable__contenedor{
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.draggable__contenedor__preguntas{
+  position: absolute;
+  top: 25px;
+  left: calc(100% + 5px);
+  width: 250px;
+  height: auto;
+  background-color: rgba(33, 37, 41, 0.9);
+  border-radius: 0px 10px 10px 10px;
+  padding: 10px;
+  color: #fff;
+}
+
+.draggable__contenedor__preguntas button{
+  font-size: 15px;
+  border-radius: 20px;
+  padding: 5px;
+  color: #fff;
+  background-color: #212529e6;
+  border: 2px solid #f09100;
+  margin: 2px;
+}
+
+.draggable__contenedor__preguntas button:active{
+  outline: none;
+  background-color: #f09100;
+}

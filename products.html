@@ -37,6 +37,13 @@
   </nav>
 
   <div id="alert-placeholder"></div>
+  <div id="draggable" class="draggable">
+    <div class="draggable__contenedor">
+      <div class="draggable__contenedor__preguntas">
+        
+      </div>
+    </div>
+  </div>
 
   <!-- Creamos los botones de filtros y les pusimos ids para usarlos en js -->
   <main class="pb-5 pt-5 px-5 d-flex flex-column align-items-between min-vh-100 change">
@@ -62,9 +69,9 @@
         </div>
       </div>
       <div class="col-12 d-flex justify-content-center gap-3 mt-2">
-        <button class="btn_ordenar mb-3 rounded-2 w-auto" id="boton_menorAMayor"><i class="fa-solid fa-arrow-up-short-wide"></i></button>
-        <button class="btn_ordenar mb-3 rounded-2 w-auto" id="boton_mayorAMenor"><i class="fa-solid fa-arrow-down-short-wide"></i></button>
-        <button class="btn_ordenar_rel mb-3 rounded-2 w-auto" id="boton_relevancia"><i class="fa-solid fa-arrow-up-short-wide"></i> Rel</button>
+        <button class="btn_ordenar mb-3 rounded-2 w-auto p-1" id="boton_menorAMayor"><i class="fa-solid fa-arrow-up-short-wide"></i></button>
+        <button class="btn_ordenar mb-3 rounded-2 w-auto p-1" id="boton_mayorAMenor"><i class="fa-solid fa-arrow-down-short-wide"></i></button>
+        <button class="btn_ordenar_rel mb-3 rounded-2 w-auto p-1" id="boton_relevancia"><i class="fa-solid fa-arrow-up-short-wide"></i> Rel</button>
       </div>
       <div class="col-12 text-center">
         <button class="boton_filtrar rounded-2 h-75 mb-3 w-auto" id="boton_Filtrar">Filtrar</button>
