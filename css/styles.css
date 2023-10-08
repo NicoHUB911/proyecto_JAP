@@ -596,7 +596,6 @@ input[type="radio"].form-check-input:checked {
   background-size: 100% 100%;
   position: fixed;
   top: 150px;
-  cursor: grab;
   z-index: 500;
 }
 
@@ -606,12 +605,41 @@ input[type="radio"].form-check-input:checked {
   position: relative;
 }
 
+.draggable__contenedor__check{
+  display: none;
+}
+
+.draggable__contenedor__label{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  cursor: grab;
+}
+
+.draggable__contenedor::after{
+  content: "¿Necesitas ayuda?";
+  position: absolute;
+  top: -30px;
+  right: -120px;
+  border-radius: 20px 20px 20px 0px;
+  border: 2px solid #212529e6;
+  background-color: #fff;
+  padding: 5px;
+  font-size: 15px;
+  color: #000;
+  width: 135px;
+  animation: advice 0.8s ease-in-out infinite;
+  cursor: auto;
+}
+
 .draggable__contenedor__preguntas{
+  display: none;
   position: absolute;
   top: 25px;
   left: calc(100% + 5px);
-  width: 250px;
-  height: auto;
+  width: 300px;
+  min-height: 150px;
   background-color: rgba(33, 37, 41, 0.9);
   border-radius: 0px 10px 10px 10px;
   padding: 10px;
@@ -619,16 +647,28 @@ input[type="radio"].form-check-input:checked {
 }
 
 .draggable__contenedor__preguntas button{
-  font-size: 15px;
+  font-size: 14px;
   border-radius: 20px;
   padding: 5px;
   color: #fff;
   background-color: #212529e6;
   border: 2px solid #f09100;
-  margin: 2px;
+  margin: 1px;
 }
 
-.draggable__contenedor__preguntas button:active{
+.draggable__contenedor__preguntas button:hover{
   outline: none;
   background-color: #f09100;
+}
+
+@keyframes advice {
+  0%{
+    transform: translateY(0px);
+  }
+  50%{
+    transform: translateY(3px);
+  }
+  100%{
+    transform: translateY(0px);
+  }
 }
