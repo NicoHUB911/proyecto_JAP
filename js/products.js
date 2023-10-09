@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const catID = localStorage.getItem("catID"); // Obtener el catID del localStorage
   if (catID) {
     const URL_PRODUCTOS = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`; // link del json con el catID especifico
-    console.log("Cargando productos para la categoría:", catID); // Probar si la función está siendo llamada
+    
 
     fetch(URL_PRODUCTOS)
       .then(response => {
@@ -157,9 +157,10 @@ function procesarDatos(data) {
   /* Si esta funcion viene del fetch, trae data.prodcuts y se guarda en productos, si viene de otro lado,(otro evento) viene sin el products y se guarda en productos */
   let productos  // accedemos dentro de data, al array de objetos que se llama products (los productos/objetos con todas sus propiedades).
   if(data.products){
-    productos = data.products
+    productos = data.products;
+	document.title = data.catName + " - eMercado";
   }else{
-    productos = data
+    productos = data;
   }
   /* Si no estan los productos en el localstorage, se guardan en el localstorage */
     if(!localStorage.getItem('prods'))localStorage.setItem('prods', JSON.stringify(productos))

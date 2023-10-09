@@ -21,6 +21,7 @@ async function fetchData(_url){
 async function showProductInfo() {
     const objectProduct = await fetchData(PRODUCT_URL);
     apiData = objectProduct;
+	document.title = objectProduct.name + " - eMercado";
 	const modalContainer = document.getElementById("img-modal");
     const container = document.getElementById("product__info");
 	
@@ -94,14 +95,40 @@ async function showProductInfo() {
             <p class="producto_info__contenedor__informacion__otros"><small>Categoria: <a href="products.html">${objectProduct.category}</a></small><small>Vendidos: ${objectProduct.soldCount}</small></p>
             <div class="btn btn-success mt-auto" id="btnComprar">Comprar</div>
         </div>
-    `
+    `;
+	
+	checkCart();
 	
     const btnComprar=document.getElementById('btnComprar');
     btnComprar.addEventListener('click', function() {
         addToCart(objectProduct);
+		disableButton();
     });
+	
     displayComments();
 	showRelated(objectProduct);
+	
+	function disableButton(){
+		btnComprar.classList.remove("btn-success");
+		btnComprar.setAttribute("disabled", "");
+		btnComprar.classList.add("disabled");
+		btnComprar.classList.add("btn-outline-success");
+		btnComprar.innerHTML = '&check; En el carrito.';
+	}
+	function checkCart(){
+		const USER_CART = CART_INFO_URL + "25801" + EXT_TYPE;
+		let localCart = (localStorage.cart);
+		try {localCart = JSON.parse(localCart)}
+		catch{localCart = []};
+		getJSONData(USER_CART).then(function(resultObj){
+        if (resultObj.status === "ok"){
+            resultObj.data.articles.concat(localCart).forEach(article => {
+				if (article.id == PRODUCT_ID)
+					disableButton();
+			});
+        }
+    });
+	}
 }
 
 function addToCart(item){

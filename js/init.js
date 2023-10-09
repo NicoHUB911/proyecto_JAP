@@ -165,7 +165,7 @@ function displayMessage(message, type) {
 
   setTimeout(function () {
     alertPlaceholder.innerHTML = "";
-  }, 10000);
+  }, 5000);
 }
 //=======================================_LO_DEL_BOT_=========================================
 
