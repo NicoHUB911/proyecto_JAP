@@ -12,7 +12,7 @@
   <link href="css/styles.css" rel="stylesheet">
 </head>
 
-<body class="change">
+<body>
   <nav id="nav_tag" class="navegador d-flex justify-content-between align-items-center position-fixed top-0 start-0 w-100">
     <div class="navegador__menu_1 h-100 d-flex align-items-center">
       <img class="h-75 ms-3" src="img/logo.png" alt="">
@@ -24,13 +24,15 @@
       </ul>
     </div>
     <div class="navegador__menu_2 d-flex align-items-center me-5">
-     </div>
+      <!-- Espacio dónde irán los botones de la derecha. -->
+    </div>
   </nav>
-  
+
   <div id="alert-placeholder"></div>
   <div id="draggable" class="draggable">
     <div class="draggable__contenedor">
-      <input class="draggable__contenedor__check" type="checkbox" id="checkMenuBot"><label class="draggable__contenedor__label" for="checkMenuBot"></label>
+      <input class="draggable__contenedor__check" type="checkbox" id="checkMenuBot"><label
+        class="draggable__contenedor__label" for="checkMenuBot"></label>
       <div class="draggable__contenedor__preguntas" id="respuestasBOT">
         <!--Aqui va el contenido del asistente/bot-->
         <button onclick="showBotResponses(10)">¿Quienes somos?</button>
@@ -42,101 +44,102 @@
     </div>
   </div>
 
-  <main class="pb-5 min-vh-100 change" >
+  <main class="pb-5 pt-5 min-vh-100 change">
     <div class="text-center p-4 mt-5">
       <h2>Mí carrito</h2>
     </div>
-    <div class="container d-flex justify-content-evenly flex-wrap p-1 "> 
-		<div class="table-responsive w-100">
-			<table class="table table-hover table-bordered table-striped my-2 change">
-				<caption>Productos en su carrito</caption>
-				<thead>
-					<tr>
-					<th scope="col"></th>
-					<th scope="col">Nombre</th>
-					<th scope="col">Costo</th>
-					<th scope="col">Cantidad</th>
-					<th scope="col" class="text-end">Subtotal</th>
-					<th scope="col" title="Vaciar el carrito."><a onclick="removeFromCart('*')" href="#">Limpiar</a></th>
-					</tr>
-				</thead>
-				<tbody id="cart-table-body">
-					<!-- articles in cart will be listed here / aquí se mostrarán los articulos del carrito -->
-				</tbody>
-			</table>
-		</div>
-	</div>
-
-  <!-- contenedor para formulario de tipo y datos de envío -->
-  <div class="container" id="form-carrito">
-    <form>
-      <fieldset>
-        <legend>Tipo de envío</legend>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="tipoEnvio" id="premium" value="premium" checked>
-          <label class="form-check-label" for="premium">
-            Premium 2 a 5 días (15%)
-          </label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="tipoEnvio" id="express" value="express">
-          <label class="form-check-label" for="express">
-            Express 5 a 8 días (7%)
-          </label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="tipoEnvio" id="standard" value="standard">
-          <label class="form-check-label" for="standard">
-            Standard 12 a 15 días (5%)
-          </label>
-        </div>
-      </fieldset>
-      <br>
-  
-      <fieldset>
-        <legend>Dirección de envío</legend>
-        <div class="form-row">
-          <div class="form-group col">
-            <label for="calle">Calle:</label>
-            <input type="text" id="calle" name="calle" class="form-control" required>
-          </div>
-          <div class="form-group col">
-            <label for="numero">Número:</label>
-            <input type="text" id="numero" name="numero" class="form-control" required>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="esquina">Esquina:</label>
-          <input type="text" id="esquina" name="esquina" class="form-control">
-        </div>
-      </fieldset>
-      <div id="contenedorCompra">
-      <small id="parrafoObservaciones">
-        Haz clic <a href="#" id="mostrarObservaciones">aquí</a> para agregar observaciones.
-      </small>
+    <div class="container d-flex justify-content-evenly flex-wrap p-1 ">
+      <div class="table-responsive w-100">
+        <table class="table table-hover table-bordered table-striped my-2 change">
+          <caption>Productos en su carrito</caption>
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Costo</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col" class="text-end">Subtotal</th>
+              <th scope="col" title="Vaciar el carrito."><a onclick="removeFromCart('*')" href="#">Limpiar</a></th>
+            </tr>
+          </thead>
+          <tbody id="cart-table-body">
+            <!-- articles in cart will be listed here / aquí se mostrarán los articulos del carrito -->
+          </tbody>
+        </table>
       </div>
-      <fieldset style="display: none;" id="campoObservaciones">
+    </div>
+
+    <!-- contenedor para formulario de tipo y datos de envío -->
+    <div class="container" id="form-carrito">
+      <form>
+        <fieldset>
+          <legend>Tipo de envío</legend>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="tipoEnvio" id="premium" value="premium" checked>
+            <label class="form-check-label" for="premium">
+              Premium 2 a 5 días (15%)
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="tipoEnvio" id="express" value="express">
+            <label class="form-check-label" for="express">
+              Express 5 a 8 días (7%)
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="tipoEnvio" id="standard" value="standard">
+            <label class="form-check-label" for="standard">
+              Standard 12 a 15 días (5%)
+            </label>
+          </div>
+        </fieldset>
         <br>
-        <legend>Observaciones</legend>
-        <div class="form-group">
-          <label for="observaciones">Escribe tus observaciones:</label>
-          <textarea id="observaciones" name="observaciones" class="form-control"></textarea>
+
+        <fieldset>
+          <legend>Dirección de envío</legend>
+          <div class="form-row">
+            <div class="form-group col">
+              <label for="calle">Calle:</label>
+              <input type="text" id="calle" name="calle" class="form-control" required>
+            </div>
+            <div class="form-group col">
+              <label for="numero">Número:</label>
+              <input type="text" id="numero" name="numero" class="form-control" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="esquina">Esquina:</label>
+            <input type="text" id="esquina" name="esquina" class="form-control">
+          </div>
+        </fieldset>
+        <div id="contenedorCompra">
+          <small id="parrafoObservaciones">
+            Haz clic <a href="#" id="mostrarObservaciones">aquí</a> para agregar observaciones.
+          </small>
         </div>
-        <div id="botonesObservaciones">
-        <button id="guardarObservaciones">Guardar</button>
-        <p id="cancelarObservaciones"> <a href="#">Cancelar</a></p>
-        </div>
-      </fieldset>
-      <button type="submit" id="buttonform">Continuar</button>
-    </form>
-  </div>
+        <fieldset style="display: none;" id="campoObservaciones">
+          <br>
+          <legend>Observaciones</legend>
+          <div class="form-group">
+            <label for="observaciones">Escribe tus observaciones:</label>
+            <textarea id="observaciones" name="observaciones" class="form-control"></textarea>
+          </div>
+          <div id="botonesObservaciones">
+            <button id="guardarObservaciones">Guardar</button>
+            <p id="cancelarObservaciones"> <a href="#">Cancelar</a></p>
+          </div>
+        </fieldset>
+        <button type="submit" id="buttonform">Continuar</button>
+      </form>
+    </div>
   </main>
-  <footer class="text-muted">
+  <footer class="text-muted change">
     <div class="container">
       <p class="float-end">
         <a href="#">Volver arriba</a>
       </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
+      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
+      </p>
     </div>
   </footer>
   <div id="spinner-wrapper">

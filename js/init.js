@@ -67,8 +67,12 @@ nav_btn_responsive.addEventListener("click", () => {
 // para solucionar un bug con el nav movile, a la hora de cambiar la medida de la ventana
 // y tener abierto el nav movile al mismo tiempo.
 window.addEventListener("resize", () => {
+  const listNav = document.querySelector(".navegador__menu_1__lista");
   if (window.innerWidth > 630) {
     nav_contenedor_general.style.height = "50px";
+    listNav.style.display = "flex";
+  }else{
+    listNav.style.display = "none";
   }
 })
 
