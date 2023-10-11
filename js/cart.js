@@ -5,10 +5,11 @@ const CART_TABLE = document.getElementById("cart-table-body");
 
 
 function displayCartItems(a){
+	let listOfArticles = a.articles;
+	if (loadCart().length > 0){
+		listOfArticles = listOfArticles.concat(loadCart());
+	}
 
-	listOfArticles = loadCart();
-	if(listOfArticles.length !== 0){
-		
 	CART_TABLE.innerHTML = "";
 	CART_TABLE.parentElement.getElementsByTagName("caption")[0].innerHTML = `Hay ${listOfArticles.length} producto${listOfArticles.length > 1? "s " : " "}en su carrito.`;
 	// se modifica la etiqueta "caption" de la tabla para mostrar el total de articulos en el carrito
@@ -33,16 +34,7 @@ function displayCartItems(a){
 		  div.classList.add('dark-light')
 		}
 	  }
-	}else{
-		document.getElementById('noprods').innerHTML =  `			
-		<li class="list-group-item" style="background-color:#ff6054;">
-			<h2>El carrito está vacio.</h2>
-		</li>
-		`
-		
-	}
-
-};
+	  };
 
 
 
@@ -50,12 +42,11 @@ function displayCartItems(a){
 Al cargar el documento html se llama a la funcion getJSONData() que fue declarada en init.js, se le pasa la URL de la API dada por JaP, y tomando la promesa que devuelve se llama a displayCartItems() con un objecto que contiene la id del usuario y un array con objetos (los productos en su carrito)
 */
 document.addEventListener("DOMContentLoaded", function reload() {
-/*     getJSONData(USER_CART).then(function(resultObj){
+    getJSONData(USER_CART).then(function(resultObj){
         if (resultObj.status === "ok"){
             displayCartItems(resultObj.data)
         }
-    }); */
-	displayCartItems(loadCart())
+    });
   });
   
 const changeCount = (a) =>{
