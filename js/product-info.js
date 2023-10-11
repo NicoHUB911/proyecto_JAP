@@ -90,20 +90,22 @@ async function showProductInfo() {
         </div>
         <div class="producto_info__contenedor__informacion ps-3 p-3 change col-md-7">
             <h1 class="producto_info__contenedor__informacion__titulo">${objectProduct.name}</h1>
-            <h2 class="producto_info__contenedor__informacion__precio"><span>${objectProduct.currency}</span>${objectProduct.cost}</h2>
-            <p class="producto_info__contenedor__informacion__descripcion"><b>Descripcion: </b>${objectProduct.description}</p>
+            <h2 class="producto_info__contenedor__informacion__precio"><span>${objectProduct.currency + " "}</span>${objectProduct.cost}</h2>
+            <p class="producto_info__contenedor__informacion__descripción"><b>Descripcion: </b>${objectProduct.description}</p>
             <p class="producto_info__contenedor__informacion__otros"><small>Categoria: <a href="products.html">${objectProduct.category}</a></small><small>Vendidos: ${objectProduct.soldCount}</small></p>
             <div class="btn btn-success mt-auto" id="btnComprar">Comprar</div>
         </div>
     `;
 	
-	checkCart();
+
 	
     const btnComprar=document.getElementById('btnComprar');
     btnComprar.addEventListener('click', function() {
         addToCart(objectProduct);
 		disableButton();
     });
+	
+	checkCart();
 	
     displayComments();
 	showRelated(objectProduct);
@@ -115,7 +117,7 @@ async function showProductInfo() {
 		btnComprar.classList.add("btn-outline-success");
 		btnComprar.innerHTML = '&check; En el carrito.';
 	}
-	function checkCart(){
+	/* function checkCart(){
 		const USER_CART = CART_INFO_URL + "25801" + EXT_TYPE;
 		let localCart = (localStorage.cart);
 		try {localCart = JSON.parse(localCart)}
@@ -128,6 +130,15 @@ async function showProductInfo() {
 			});
         }
     });
+	} */
+	function checkCart(){
+		if(localStorage.cart){
+			localCart = JSON.parse(localStorage.cart)
+			localCart.forEach(article => {
+				if (article.id == PRODUCT_ID)
+					disableButton();
+			});
+		}
 	}
 }
 
