@@ -21,6 +21,7 @@ async function fetchData(_url){
 async function showProductInfo() {
     const objectProduct = await fetchData(PRODUCT_URL);
     apiData = objectProduct;
+	document.title = objectProduct.name + " - eMercado";
 	const modalContainer = document.getElementById("img-modal");
     const container = document.getElementById("product__info");
 	
@@ -56,57 +57,108 @@ async function showProductInfo() {
 	
     container.innerHTML = 
     `
-	<div class="producto_info__contenedor d-flex flex-wrap justify-content-center">
-		<div class="producto_info__contenedor__imgCont carousel slide col-md-5" id="productImageCarousel" data-bs-ride="carousel" data-bs-interval="false">	
-           
+    <div class="producto_info__contenedor d-flex flex-wrap justify-content-center">
+        <div class="producto_info__contenedor__imgCont carousel slide col-md-5" id="productImageCarousel" data-bs-ride="carousel" data-bs-interval="false">
             <div class="carousel-inner active">
-              <div class="carousel-item active producto_info__contenedor__imgCont__imgprincipal">
-         	     <img data-bs-toggle="modal" data-bs-target="#fs-modal" class="d-block w-100" id="imgPrincipal" src="${objectProduct.images[0]}" alt="imagen principal del producto">
-              </div>
-              <div class="carousel-item">
-                  <img data-bs-toggle="modal" data-bs-target="#fs-modal" src="${objectProduct.images[1]}" alt="segunda imagen del producto" class="d-block w-100">
-              </div>
-              <div class="carousel-item">
-                  <img data-bs-toggle="modal" data-bs-target="#fs-modal" src="${objectProduct.images[2]}" alt="tercera imagen del producto" class="d-block w-100">
-              </div>
-              <div class="carousel-item">
-                 <img data-bs-toggle="modal" data-bs-target="#fs-modal" src="${objectProduct.images[3]}" alt="cuarta imagen del producto" class="d-block w-100">
-              </div>
-              <div class="carousel-indicators">
-              <button type="button" data-bs-target="#productImageCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-              <button type="button" data-bs-target="#productImageCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-              <button type="button" data-bs-target="#productImageCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-              <button type="button" data-bs-target="#productImageCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
-             </div>  
-             <button class="carousel-control-prev" type="button" data-bs-target="#productImageCarousel" data-bs-slide="prev">
-             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-             <span class="visually-hidden">Previous</span>
-             </button>
-             <button class="carousel-control-next" type="button" data-bs-target="#productImageCarousel" data-bs-slide="next">
-             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-             <span class="visually-hidden">Next</span>
-             </button>
-			
-		    </div>
-        
-
-		</div>
-
-        <div class="producto_info__contenedor__informacion ps-5 p-3 change">
-            <h1 class="producto_info__contenedor__informacion__titulo ">${objectProduct.name}</h1>
-            <h2 class="producto_info__contenedor__informacion__precio "><span>${objectProduct.currency}</span> ${objectProduct.cost}</h2>
-            <p class="producto_info__contenedor__informacion__descripcion "><b>Descripcion: </b>${objectProduct.description}</p>
-            <p class="producto_info__contenedor__informacion__otros "><small>Categoria: <a href="products.html">${objectProduct.category}</a></small><small>Vendidos: ${objectProduct.soldCount}</small></p>
+                <div class="carousel-item active producto_info__contenedor__imgCont__imgprincipal">
+                    <img data-bs-toggle="modal" data-bs-target="#fs-modal" class="d-block w-100" id="imgPrincipal" src="${objectProduct.images[0]}" alt="imagen principal del producto">
+                </div>
+                <div class="carousel-item">
+                    <img data-bs-toggle="modal" data-bs-target="#fs-modal" src="${objectProduct.images[1]}" alt="segunda imagen del producto" class="d-block w-100">
+                </div>
+                <div class="carousel-item">
+                    <img data-bs-toggle="modal" data-bs-target="#fs-modal" src="${objectProduct.images[2]}" alt="tercera imagen del producto" class="d-block w-100">
+                </div>
+                <div class="carousel-item">
+                    <img data-bs-toggle="modal" data-bs-target="#fs-modal" src="${objectProduct.images[3]}" alt="cuarta imagen del producto" class="d-block w-100">
+                </div>
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#productImageCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#productImageCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#productImageCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#productImageCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#productImageCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#productImageCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
         </div>
-	</div>
-
-    `
+        <div class="producto_info__contenedor__informacion ps-3 p-3 change col-md-7">
+            <h1 class="producto_info__contenedor__informacion__titulo">${objectProduct.name}</h1>
+            <h2 class="producto_info__contenedor__informacion__precio"><span>${objectProduct.currency + " "}</span>${objectProduct.cost}</h2>
+            <p class="producto_info__contenedor__informacion__descripción"><b>Descripcion: </b>${objectProduct.description}</p>
+            <p class="producto_info__contenedor__informacion__otros"><small>Categoria: <a href="products.html">${objectProduct.category}</a></small><small>Vendidos: ${objectProduct.soldCount}</small></p>
+            <div class="btn btn-success mt-auto" id="btnComprar">Comprar</div>
+        </div>
+    `;
 	
 
+	
+    const btnComprar=document.getElementById('btnComprar');
+    btnComprar.addEventListener('click', function() {
+        addToCart(objectProduct);
+		disableButton();
+    });
+	
+	checkCart();
+	
     displayComments();
 	showRelated(objectProduct);
+	
+	function disableButton(){
+		btnComprar.classList.remove("btn-success");
+		btnComprar.setAttribute("disabled", "");
+		btnComprar.classList.add("disabled");
+		btnComprar.classList.add("btn-outline-success");
+		btnComprar.innerHTML = '&check; En el carrito.';
+	}
+	/* function checkCart(){
+		const USER_CART = CART_INFO_URL + "25801" + EXT_TYPE;
+		let localCart = (localStorage.cart);
+		try {localCart = JSON.parse(localCart)}
+		catch{localCart = []};
+		getJSONData(USER_CART).then(function(resultObj){
+        if (resultObj.status === "ok"){
+            resultObj.data.articles.concat(localCart).forEach(article => {
+				if (article.id == PRODUCT_ID)
+					disableButton();
+			});
+        }
+    });
+	} */
+	function checkCart(){
+		if(localStorage.cart){
+			localCart = JSON.parse(localStorage.cart)
+			localCart.forEach(article => {
+				if (article.id == PRODUCT_ID)
+					disableButton();
+			});
+		}
+	}
 }
 
+function addToCart(item){
+	let arrayCart = JSON.parse(localStorage.getItem('cart')) ?? [];
+	
+    const itemToAdd = {
+        count: 1,
+        currency: item.currency,
+        id: item.id,
+        image: item.images[0],
+        name: item.name,
+        unitCost: item.cost
+    };
+    
+	arrayCart.push(itemToAdd);
+    displayMessage("El producto fue añadido al carrito", "success")
+    localStorage.setItem('cart',JSON.stringify(arrayCart));
+    
+}
 /* muestra los comentarios del producto incluyendo las estrellas, llama a la funcion fetch dentro de un bloque try
 Si hay error muestra en el espacio de los comentarios que no se pudieron cargar los mismos.
 En caso contrario, ordena el array de mas reciente a mas antiguo y le hace un foreach para mostrar todos,
