@@ -592,7 +592,7 @@ input[type="radio"].form-check-input:checked {
   border-bottom: 2px solid #f09100;
   box-shadow: -5px 5px 10px #696969;
   background-color: rgba(255, 255, 255, 0.8);
-  background-image: url("../img/bot.webp");
+  background-image: url("../img/All/bot.webp");
   background-size: 100% 100%;
   position: fixed;
   top: 150px;
