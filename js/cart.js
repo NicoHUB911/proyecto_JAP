@@ -126,7 +126,7 @@ cancelarTexto.addEventListener("click", function(event) {
 //  guardar los datos cuando se haga clic en "Guardar" 
 guardarBoton.addEventListener("click", function(event) {
   event.preventDefault(); 
-  // aquí va la lógica para guardar las observaciones
+  // lógica para guardar las observaciones
 });
 
 */
@@ -175,3 +175,42 @@ const calculateCosts = () =>{
 
 	
 }
+
+
+//oculta el parrafo, deshabilita los campos dependiendo el metodo de pago seleccionado y lo muestra en la página
+
+const creditCardRadio = document.getElementById("tarjetaCredito");
+const bankTransferRadio = document.getElementById("transferencia");
+const creditCard = document.getElementById("tarjetaPago");
+const bankTransfer = document.getElementById("transferenciaPago");
+const paragraph = document.getElementById("seleccionarPago");
+const inputBankTransfer = [document.getElementById("numeroCuenta")];
+const inputCreditCard = [document.getElementById("numTarjeta"), document.getElementById("codigoSeg"), document.getElementById("vencimiento")];
+
+
+creditCardRadio.addEventListener("change", function() {
+  creditCard.style.display = "block";
+  bankTransfer.style.display = "none";
+  paragraph.style.display = "none";
+});
+
+bankTransferRadio.addEventListener("change", function() {
+  creditCard.style.display = "none";
+  bankTransfer.style.display = "block";
+  paragraph.style.display = "none";
+});
+
+
+// Habilitar campos desde el principio
+inputCreditCard.forEach(campo => campo.disabled = false);
+inputBankTransfer.forEach(campo => campo.disabled = false);
+
+creditCardRadio.addEventListener("change", function() {
+  inputCreditCard.forEach(campo => campo.disabled = false);
+  inputBankTransfer.forEach(campo => campo.disabled = true);
+});
+
+bankTransferRadio.addEventListener("change", function() {
+  inputCreditCard.forEach(campo => campo.disabled = true);
+  inputBankTransfer.forEach(campo => campo.disabled = false);
+});
