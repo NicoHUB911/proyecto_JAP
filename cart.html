@@ -58,7 +58,7 @@
               <th scope="col">Nombre</th>
               <th scope="col">Costo</th>
               <th scope="col">Cantidad</th>
-              <th scope="col" class="text-end">Subtotal</th>
+              <th scope="col" class="text-end">Subtotal (USD)</th>
               <th scope="col" title="Vaciar el carrito."><a onclick="removeFromCart('*')" href="#">Limpiar</a></th>
             </tr>
           </thead>
@@ -72,29 +72,30 @@
 
     <!-- contenedor para formulario de tipo y datos de envío -->
     <div class="container" id="form-carrito">
-      <form>
         <fieldset>
           <legend>Tipo de envío</legend>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="tipoEnvio" id="premium" value="premium" checked>
+            <input class="form-check-input" onchange="calculateCosts()" type="radio" name="tipoEnvio" id="premium" value="0.15" checked>
             <label class="form-check-label" for="premium">
               Premium 2 a 5 días (15%)
             </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="tipoEnvio" id="express" value="express">
+            <input class="form-check-input" onchange="calculateCosts()" type="radio" name="tipoEnvio" id="express" value="0.07">
             <label class="form-check-label" for="express">
               Express 5 a 8 días (7%)
             </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="tipoEnvio" id="standard" value="standard">
+            <input class="form-check-input" onchange="calculateCosts()" type="radio" name="tipoEnvio" id="standard" value="0.05">
             <label class="form-check-label" for="standard">
               Standard 12 a 15 días (5%)
             </label>
           </div>
         </fieldset>
         <br>
+      <form>
+
 
         <fieldset>
           <legend>Dirección de envío</legend>
@@ -133,6 +134,24 @@
         <button type="submit" id="buttonform">Continuar</button>
       </form>
     </div>
+    <!-- Aca poner el coso  de los datos -->
+    <div class="text-center">
+      <h3>Costos</h3>
+      <div class="list-group border change w-75 my-3 mx-auto">
+        <div  class="list-group-item border change d-flex justify-content-between">
+          Subtotal: <span id="showSubtotal"></span>
+        </div>
+        <div class="list-group-item border change d-flex justify-content-between">
+          Envío: <span id="ShowShipment" > </span>
+        </div>
+        <div  class="list-group-item border change d-flex justify-content-between">
+          Total: <span id="showTotal"></span>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Fin -->
   </main>
   <footer class="text-muted change">
     <div class="container">
