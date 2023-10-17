@@ -117,20 +117,7 @@ async function showProductInfo() {
 		btnComprar.classList.add("btn-outline-success");
 		btnComprar.innerHTML = '&check; En el carrito.';
 	}
-	/* function checkCart(){
-		const USER_CART = CART_INFO_URL + "25801" + EXT_TYPE;
-		let localCart = (localStorage.cart);
-		try {localCart = JSON.parse(localCart)}
-		catch{localCart = []};
-		getJSONData(USER_CART).then(function(resultObj){
-        if (resultObj.status === "ok"){
-            resultObj.data.articles.concat(localCart).forEach(article => {
-				if (article.id == PRODUCT_ID)
-					disableButton();
-			});
-        }
-    });
-	} */
+	
 	function checkCart(){
 		if(localStorage.cart){
 			localCart = JSON.parse(localStorage.cart)

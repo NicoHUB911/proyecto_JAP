@@ -1,21 +1,12 @@
-//mock user (to be replaced later)
-//usuario provisto por JaP 
-// const USER_CART = CART_INFO_URL + "25801" + EXT_TYPE;
 const CART_TABLE = document.getElementById("cart-table-body");
 
 /* Currencies Prices */
 let uyu
 /* ------------------ */
 
-// function displayCartItems(a){
-function displayCartItems(a){
-	/*
-	let listOfArticles = a.articles;
-	if (loadCart().length > 0){
-		listOfArticles = listOfArticles.concat(loadCart());
-	} */
+function displayCartItems(){
 	
-	listOfArticles = loadCart() ?? [];
+	listOfArticles = loadCart();
 
 	CART_TABLE.innerHTML = "";
 	CART_TABLE.parentElement.getElementsByTagName("caption")[0].innerHTML = `Hay ${listOfArticles.length} producto${listOfArticles.length != 1? "s " : " "}en su carrito.`;
@@ -30,6 +21,7 @@ function displayCartItems(a){
 		}else{
 			newPriceInUSD = article.unitCost
 		}
+		
 		CART_TABLE.innerHTML += `
 		<tr class="align-middle change calculateCosts" id="${article.id}">
 			<th scope="row" class="col-1"><img src="${article.image}" onclick="goToProductInfo(${article.id})" class="img-fluid cart__table__img" alt="${article.name}"></td>
@@ -55,17 +47,10 @@ function displayCartItems(a){
 /* on document load, calls function getJSONData() from init.js with the API URL which returns a promise, then calls displayCartItems() passing an object with the userID and a list of products in their cart.
 Al cargar el documento html se llama a la funcion getJSONData() que fue declarada en init.js, se le pasa la URL de la API dada por JaP, y tomando la promesa que devuelve se llama a displayCartItems() con un objecto que contiene la id del usuario y un array con objetos (los productos en su carrito)
 */
-document.addEventListener("DOMContentLoaded", async function reload() {
-	await bringPeso ()/* this bring the price of the dolar in pesos UYU */
-    /*
-	getJSONData(USER_CART).then(function(resultObj){
-        if (resultObj.status === "ok"){
-            displayCartItems(resultObj.data)
-        }
-    }); */
-	
+document.addEventListener("DOMContentLoaded", async function (){
+	await bringPeso ();/* this bring the price of the dolar in pesos UYU */
 	displayCartItems();
-	calculateCosts()
+	calculateCosts();
   });
   
 const changeCount = (a) =>{
@@ -82,6 +67,14 @@ const changeCount = (a) =>{
 
 
   calculateCosts()
+  updateItemCount(a.id, newCount);
+}
+
+function updateItemCount(_id, _count){
+	let localCart = loadCart();
+	let i = localCart.findIndex((el) =>  el.id == _id);
+	localCart[i].count = _count;
+	localStorage.setItem('cart',JSON.stringify(localCart));
 }
 
 
@@ -98,13 +91,11 @@ function removeFromCart(id){
 		}
 	else {
 		let localCart = loadCart();
-		newCart = localCart.filter(function(el) { return el.id != id; });
+		let newCart = localCart.filter(function(el) { return el.id != id; });
 		localStorage.setItem('cart',JSON.stringify(newCart));
 		displayMessage("Se ha eliminado el producto del carrito.", "success");
 	}
-	window.document.dispatchEvent(new Event("DOMContentLoaded", {
-		bubbles: true,
-	}));
+	displayCartItems();
 	
 }
 
