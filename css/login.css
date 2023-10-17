@@ -71,7 +71,7 @@ input[type=password]::-ms-clear {
   position: absolute;
   left: 0px;
   bottom: -5px;
-  background-image: url("../img/user_icon.png");
+  background-image: url("../img/Login/user_icon.webp");
   background-size: 100% 100%;
   z-index: 1;
 }
@@ -113,7 +113,7 @@ input[type=password]::-ms-clear {
   position: absolute;
   right: 0px;
   bottom: -5px;
-  background-image: url("../img/pass_icon.png");
+  background-image: url("../img/Login/pass_icon.webp");
   background-size: 100% 100%;
   z-index: 1;
 }
@@ -162,7 +162,7 @@ input[type=password]::-ms-clear {
   right: 55px;
   opacity: 0;
   z-index: 5;
-  background-image: url("../img/ojo_abierto.png");
+  background-image: url("../img/Login/ojo_abierto.webp");
   background-size: 100% 100%;
   user-select: none;
 }
@@ -176,7 +176,7 @@ input[type=password]::-ms-clear {
   right: 55px;
   opacity: 1;
   z-index: 2;
-  background-image: url("../img/ojo_cerrado.png");
+  background-image: url("../img/Login/ojo_cerrado.webp");
   background-size: 100% 100%;
   user-select: none;
 }
