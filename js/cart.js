@@ -202,17 +202,23 @@ function validate() {
 		iterator.classList.add("was-validated");
 		iterator.classList.remove("needs-validation");
 	}
-	if(bankTransfer.checked || creditCard.checked){
+	if(bankTransferRadio.checked || creditCardRadio.checked){
 		paragraph.style.color="black"
+		if (loadCart().length == 0){
+			displayMessage("Debe tener un articulo en el carrito","danger");
+		} else {
+			if(bankTransferRadio.checked && inputBankTransfer.value !=""){
+				displayMessage("Tu compra fue realizada con exito","success");	
+			} else if (creditCardRadio.checked && inputCreditCard[0].value != "" && inputCreditCard[1].value != "" && inputCreditCard[2].value != ""){
+				displayMessage("Tu compra fue realizada con exito","success");
+			} else {
+				displayMessage("Los campos del medio de pago no pueden estar vacios","danger");
+			}
+		}
 	} else {
 		paragraph.style.color="red"
 	}
 	
-	if (loadCart().length == 0){
-		displayMessage("Debe tener un articulo en el carrito","danger")
-	} else {
-		displayMessage("Tu compra fue realizada con exito","success")
-	}
 };
 
 creditCardRadio.addEventListener("change", function () {
