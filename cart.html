@@ -75,9 +75,9 @@
         <fieldset>
           <legend>Tipo de envío</legend>
           <div class="form-check">
-            <input class="form-check-input" onchange="calculateCosts()" type="radio" name="tipoEnvio" id="premium" value="0.15" checked>
-            <label class="form-check-label" for="premium">
-              Premium 2 a 5 días (15%)
+            <input class="form-check-input" onchange="calculateCosts()" type="radio" name="tipoEnvio" id="standard" value="0.05" checked>
+            <label class="form-check-label" for="standard">
+              Standard 12 a 15 días (5%)
             </label>
           </div>
           <div class="form-check">
@@ -87,9 +87,9 @@
             </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" onchange="calculateCosts()" type="radio" name="tipoEnvio" id="standard" value="0.05">
-            <label class="form-check-label" for="standard">
-              Standard 12 a 15 días (5%)
+            <input class="form-check-input" onchange="calculateCosts()" type="radio" name="tipoEnvio" id="premium" value="0.15" >
+            <label class="form-check-label" for="premium">
+              Premium 2 a 5 días (15%)
             </label>
           </div>
         </fieldset>
@@ -172,61 +172,7 @@
       <button type="submit" id="buttonform">Finalizar compra</button>
     </div>
 
-    <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Forma de pago</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        
-          
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="formaPago" id="tarjetaCredito" value="tarjetaCredito" checked>
-            <label class="form-check-label" for="tarjetaCredito">
-              Tarjeta de crédito
-            </label>
-            <br> 
-            <div class="form-row">
-              <div class="form-group col">
-                <label for="numTarjeta">Número de tarjeta:</label>
-                <input type="text" id="numTarjeta" name="numTarjeta" class="form-control">
-                <div class="text-danger d-none creditCard">Debe ingresar un numero de tarjeta</div>
-              </div>
-              <div class="form-group col">        <label for="codigoSeg">Código de seg:</label>
-                <input type="text" id="codigoSeg" name="codigoSeg" class="form-control">
-                <div class="text-danger d-none creditCard">Debe ingresar un codigo de seguridad</div>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="vencimiento">Vencimiento (MM/AA):</label>
-              <input type="text" id="vencimiento" name="vencimiento" class="form-control">
-              <div class="text-danger d-none creditCard">Debe ingresar el vencimiento</div>
-            </div>
-          </div> 
-          <br><hr>
-        
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="formaPago" id="transferencia" value="transferencia">
-            <label class="form-check-label" for="transferencia">
-              Transferencia bancaria
-            </label><br>
-            <div class="form-group">
-              <label for="numeroCuenta">Número de cuenta:</label>
-              <input type="text" id="numeroCuenta" name="numeroCuenta" class="form-control">
-              <div class="text-danger d-none bankTransfer">Debe ingresar un numero de cuenta</div>
-            </div>
-          </div>
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
-      </div>
-    </div>
-  </div>
-</div>
+   
 </form>
 
     
@@ -248,10 +194,65 @@
       <div></div>
     </div>
   </div>
-
+ <!-- Modal -->
+ <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Forma de pago</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+        <form class="needs-validation" id="formCreditCard" novalidate>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="formaPago" id="tarjetaCredito" value="tarjetaCredito" required>
+            <label class="form-check-label" for="tarjetaCredito">
+              Tarjeta de crédito
+            </label>
+            <br> 
+            <div class="form-row">
+              <div class="form-group col">
+                <label for="numTarjeta">Número de tarjeta:</label>
+                <input type="text" id="numTarjeta" name="numTarjeta" class="form-control" required>
+                <div class="invalid-feedback">Debe ingresar un numero de tarjeta</div>
+              </div>
+              <div class="form-group col">        <label for="codigoSeg">Código de seg:</label>
+                <input type="text" id="codigoSeg" name="codigoSeg" class="form-control" required>
+                <div class="invalid-feedback">Debe ingresar un codigo de seguridad</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="vencimiento">Vencimiento (MM/AA):</label>
+              <input type="text" id="vencimiento" name="vencimiento" class="form-control" required>
+              <div class="invalid-feedback">Debe ingresar vencimiento</div>
+            </div>
+          </div> 
+          <br><hr>
+          <form class="needs-validation" id="formBankTransfer" novalidate>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="formaPago" id="transferencia" value="transferencia" required>
+            <label class="form-check-label" for="transferencia">
+              Transferencia bancaria
+            </label><br>
+            <div class="form-group">
+              <label for="numeroCuenta">Número de cuenta:</label>
+              <input type="text" id="numeroCuenta" name="numeroCuenta" class="form-control" required>
+              <div class="invalid-feedback">Debe ingresar un numero de cuenta</div>
+            </div>
+          </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
+  
 </body>
 
 </html>

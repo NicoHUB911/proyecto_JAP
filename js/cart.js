@@ -29,7 +29,7 @@ function displayCartItems() {
 			<td>${article.currency + " " + article.unitCost}</td>
 			<td class="col-1"><input id="UI_amount" type="number" value="${article.count}" class="form-control" onchange="changeCount(${JSON.stringify(article).replaceAll('"', "'")})"  min=1></td>
 			<td class="text-end"> USD <span class="subtotal">${newPriceInUSD.toFixed(2)}</span></td>
-			<td class="col-1 text-center align-middle"><a href="#" title="Quitar este articulo del carrito." onclick="removeFromCart(${article.id})">&#10060;</a></td>
+			<td class="col-1 text-center align-middle"><button class="border-1 rounded-1 border-danger d-flex p-2 ms-3" href="#" title="Quitar este articulo del carrito." onclick="removeFromCart(${article.id})"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#9b2222}</style><path d="M170.5 51.6L151.5 80h145l-19-28.4c-1.5-2.2-4-3.6-6.7-3.6H177.1c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80H368h48 8c13.3 0 24 10.7 24 24s-10.7 24-24 24h-8V432c0 44.2-35.8 80-80 80H112c-44.2 0-80-35.8-80-80V128H24c-13.3 0-24-10.7-24-24S10.7 80 24 80h8H80 93.8l36.7-55.1C140.9 9.4 158.4 0 177.1 0h93.7c18.7 0 36.2 9.4 46.6 24.9zM80 128V432c0 17.7 14.3 32 32 32H336c17.7 0 32-14.3 32-32V128H80zm80 64V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16z"/></svg></button></td>
 		</tr>
 		`;
 	};
@@ -96,6 +96,8 @@ function removeFromCart(id) {
 		displayMessage("Se ha eliminado el producto del carrito.", "success");
 	}
 	displayCartItems();
+	calculateCosts()
+
 
 }
 
@@ -187,32 +189,29 @@ const paragraph = document.getElementById("seleccionarPago");
 const inputBankTransfer = [document.getElementById("numeroCuenta")];
 const inputCreditCard = [document.getElementById("numTarjeta"), document.getElementById("codigoSeg"), document.getElementById("vencimiento")];
 const buttonConfirm = document.getElementById("buttonform");
-const formBuy = document.getElementById("formBuy"); // Se trae el formulario que embarca todos los inputs
+const formBuy = document.getElementsByTagName("form"); // Se trae el formulario que embarca todos los inputs
 let paymentMethod = true; //Se crea una variable para saber si esta cliqueado el radiobutton de creditCard del modal 
-formBuy.addEventListener('submit', (e) => {
+formBuy[0].addEventListener('submit', (e) => {
 	e.preventDefault();
 	e.stopPropagation();
 	validate();
 });
 // Funcion para validar los campos del modal y del formulario en general 
 function validate() {
-	formBuy.classList.add("was-validated");
-	formBuy.classList.remove("needs-validation");
-	if (paymentMethod) {
-		const errorMessage = document.getElementsByClassName("creditCard"); // Se traen los mensajes ocultos de error del modal
-
-		for (let x = 0; x <= inputCreditCard.length - 1; x++) {
-
-
-			if (inputCreditCard[x].value == null || inputCreditCard[x].value == "") { // si hay algun valor vacio dentro de la seccion selecionada:
-				errorMessage[x].classList.remove("d-none");
-				inputCreditCard[x].style.border = "1px solid red";
-				paragraph.style.color = "red";
-
-			}
-		}
-	} else if (!paymentMethod) {
-
+	for (const iterator of formBuy) {
+		iterator.classList.add("was-validated");
+		iterator.classList.remove("needs-validation");
+	}
+	if(bankTransfer.checked || creditCard.checked){
+		paragraph.style.color="black"
+	} else {
+		paragraph.style.color="red"
+	}
+	
+	if (loadCart().length == 0){
+		displayMessage("Debe tener un articulo en el carrito","danger")
+	} else {
+		displayMessage("Tu compra fue realizada con exito","success")
 	}
 };
 
@@ -242,7 +241,7 @@ bankTransferRadio.addEventListener("change", function () {
 
 
 // Habilitar campos desde el principio
-inputCreditCard.forEach(campo => campo.disabled = false);
+inputCreditCard.forEach(campo => campo.disabled = true);
 inputBankTransfer.forEach(campo => campo.disabled = true);
 
 creditCardRadio.addEventListener("change", function () {
