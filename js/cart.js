@@ -24,7 +24,7 @@ function displayCartItems() {
 
 		CART_TABLE.innerHTML += `
 		<tr class="align-middle change calculateCosts" id="${article.id}">
-			<th scope="row" class="col-1"><img src="${article.image}" onclick="goToProductInfo(${article.id})" class="img-fluid cart__table__img" alt="${article.name}"></td>
+			<th scope="row" class="col-1"><img src="${convertToWebp(article.image)}" onclick="goToProductInfo(${article.id})" class="img-fluid cart__table__img" alt="${article.name}"></td>
 			<td onclick="goToProductInfo(${article.id})">${article.name}</td>
 			<td>${article.currency + " " + article.unitCost}</td>
 			<td class="col-1"><input id="UI_amount" type="number" value="${article.count}" class="form-control" onchange="changeCount(${JSON.stringify(article).replaceAll('"', "'")})"  min=1></td>

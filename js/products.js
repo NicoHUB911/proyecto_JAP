@@ -173,7 +173,7 @@ function procesarDatos(data) {
         contenido += `
                     <div onclick="goToProductInfo(${producto.id})" class="main_productos__contenedor__carta change">
                     <a class="main_productos__contenedor__carta__link" href="#">
-                        <div class="main_productos__contenedor__carta__contenedorimg"><img src="${producto.image}" alt="${producto.name}" class="main_productos__contenedor__carta__contenedorimg__img"></div>
+                        <div class="main_productos__contenedor__carta__contenedorimg"><img src="${convertToWebp(producto.image)}" alt="${producto.name}" class="main_productos__contenedor__carta__contenedorimg__img"></div>
                         <div class="main_productos__contenedor__carta__contenido change">
                             <h4 class="main_productos__contenedor__carta__contenido__titulo">${producto.name}</h4>    
                             <p class="main_productos__contenedor__carta__contenido__descripcion change">${producto.description}</p>

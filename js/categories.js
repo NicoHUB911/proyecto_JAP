@@ -28,7 +28,7 @@ function showCategoriesList(){
 
             htmlContentToAppend += `
             <div onclick="setCatID(${category.id})" class="productCont m-1 position-relative rounded cursor-active">
-                <div class="productCont__imgCont"><img src="${category.imgSrc}" alt="${category.description}" class="productCont__imgCont__img position-absolute"></div> 
+                <div class="productCont__imgCont"><img src="${convertToWebp(category.imgSrc)}" alt="${category.description}" class="productCont__imgCont__img position-absolute"></div> 
                 <div class="productCont__Cont position-absolute">
                     <div class="h-100 w-100 position-relative">
                         <div class="productCont__Cont__slider w-100 d-flex flex-column">
