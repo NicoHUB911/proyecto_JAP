@@ -40,6 +40,7 @@ function displayCartItems() {
 			div.classList.add('dark-light')
 		}
 	}
+	document.getElementById("currency-placeholder").innerHTML = `Cotización del dólar: $ ${uyu.toFixed(2)}`;
 };
 
 
@@ -96,9 +97,17 @@ function removeFromCart(id) {
 		displayMessage("Se ha eliminado el producto del carrito.", "success");
 	}
 	displayCartItems();
-	calculateCosts()
+	calculateCosts();
+}
 
-
+function clearForm() {
+	localStorage.removeItem('cart');
+	document.querySelectorAll("form").forEach(form => {
+		form.classList.add("needs-validation");
+		form.classList.remove("was-validated");
+		form.reset()});
+	displayCartItems();
+	calculateCosts();
 }
 
 
@@ -208,9 +217,11 @@ function validate() {
 			displayMessage("Debe tener un articulo en el carrito","danger");
 		} else {
 			if(bankTransferRadio.checked && inputBankTransfer.value !=""){
-				displayMessage("Tu compra fue realizada con exito","success");	
+				displayMessage("Tu compra fue realizada con exito","success");
+				clearForm();
 			} else if (creditCardRadio.checked && inputCreditCard[0].value != "" && inputCreditCard[1].value != "" && inputCreditCard[2].value != ""){
 				displayMessage("Tu compra fue realizada con exito","success");
+				clearForm();
 			} else {
 				displayMessage("Los campos del medio de pago no pueden estar vacios","danger");
 			}
