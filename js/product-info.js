@@ -35,21 +35,21 @@ async function showProductInfo() {
 				<div class="col-md-2">
 					<div class="row g-0">
 						<div class="col-3 col-md-12 mt-1 mb-1">
-							<img onclick="changeModalImg(0)" style="cursor: pointer;" class="img-thumbnail" src="${objectProduct.images[0]}" alt="primer imagen del producto">
+							<img onclick="changeModalImg(0)" style="cursor: pointer;" class="img-thumbnail" src="${convertToWebp(objectProduct.images[0])}" alt="primer imagen del producto">
 						</div>
 						<div class="col-3 col-md-12 mt-1 mb-1">
-							<img onclick="changeModalImg(1)" style="cursor: pointer;" class="img-thumbnail" src="${objectProduct.images[1]}" alt="segunda imagen del producto">
+							<img onclick="changeModalImg(1)" style="cursor: pointer;" class="img-thumbnail" src="${convertToWebp(objectProduct.images[1])}" alt="segunda imagen del producto">
 						</div>
 						<div class="col-3 col-md-12 mt-1 mb-1">
-							<img onclick="changeModalImg(2)" style="cursor: pointer;" class="img-thumbnail" src="${objectProduct.images[2]}" alt="tercera imagen del producto">
+							<img onclick="changeModalImg(2)" style="cursor: pointer;" class="img-thumbnail" src="${convertToWebp(objectProduct.images[2])}" alt="tercera imagen del producto">
 						</div>
 						<div class="col-3 col-md-12 mt-1 mb-1">
-							<img onclick="changeModalImg(3)" style="cursor: pointer;" class="img-thumbnail" src="${objectProduct.images[3]}" alt="cuarta imagen del producto">
+							<img onclick="changeModalImg(3)" style="cursor: pointer;" class="img-thumbnail" src="${convertToWebp(objectProduct.images[3])}" alt="cuarta imagen del producto">
 						</div>
 					</div>
 				</div>
 				<div class="col-12 col-md-10 text-center">
-					<img id="main-modal-img" style="width:95%; max-height: 90vh;"src="${objectProduct.images[0]}" alt="imagen principal del producto">
+					<img id="main-modal-img" style="width:95%; max-height: 90vh;"src="${convertToWebp(objectProduct.images[0])}" alt="imagen principal del producto">
 				</div>
 			</div>
 		</div>
@@ -61,16 +61,16 @@ async function showProductInfo() {
         <div class="producto_info__contenedor__imgCont carousel slide col-md-5" id="productImageCarousel" data-bs-ride="carousel" data-bs-interval="false">
             <div class="carousel-inner active">
                 <div class="carousel-item active producto_info__contenedor__imgCont__imgprincipal">
-                    <img data-bs-toggle="modal" data-bs-target="#fs-modal" class="d-block w-100" id="imgPrincipal" src="${objectProduct.images[0]}" alt="imagen principal del producto">
+                    <img data-bs-toggle="modal" data-bs-target="#fs-modal" class="d-block w-100" id="imgPrincipal" src="${convertToWebp(objectProduct.images[0])}" alt="imagen principal del producto">
                 </div>
                 <div class="carousel-item">
-                    <img data-bs-toggle="modal" data-bs-target="#fs-modal" src="${objectProduct.images[1]}" alt="segunda imagen del producto" class="d-block w-100">
+                    <img data-bs-toggle="modal" data-bs-target="#fs-modal" src="${convertToWebp(objectProduct.images[1])}" alt="segunda imagen del producto" class="d-block w-100">
                 </div>
                 <div class="carousel-item">
-                    <img data-bs-toggle="modal" data-bs-target="#fs-modal" src="${objectProduct.images[2]}" alt="tercera imagen del producto" class="d-block w-100">
+                    <img data-bs-toggle="modal" data-bs-target="#fs-modal" src="${convertToWebp(objectProduct.images[2])}" alt="tercera imagen del producto" class="d-block w-100">
                 </div>
                 <div class="carousel-item">
-                    <img data-bs-toggle="modal" data-bs-target="#fs-modal" src="${objectProduct.images[3]}" alt="cuarta imagen del producto" class="d-block w-100">
+                    <img data-bs-toggle="modal" data-bs-target="#fs-modal" src="${convertToWebp(objectProduct.images[3])}" alt="cuarta imagen del producto" class="d-block w-100">
                 </div>
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#productImageCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -117,20 +117,7 @@ async function showProductInfo() {
 		btnComprar.classList.add("btn-outline-success");
 		btnComprar.innerHTML = '&check; En el carrito.';
 	}
-	/* function checkCart(){
-		const USER_CART = CART_INFO_URL + "25801" + EXT_TYPE;
-		let localCart = (localStorage.cart);
-		try {localCart = JSON.parse(localCart)}
-		catch{localCart = []};
-		getJSONData(USER_CART).then(function(resultObj){
-        if (resultObj.status === "ok"){
-            resultObj.data.articles.concat(localCart).forEach(article => {
-				if (article.id == PRODUCT_ID)
-					disableButton();
-			});
-        }
-    });
-	} */
+	
 	function checkCart(){
 		if(localStorage.cart){
 			localCart = JSON.parse(localStorage.cart)
@@ -213,7 +200,7 @@ function showRelated(productObject) {
 <div class="flex-fill col-12 h-25">
 	<a class="related_productos__contenedor__carta__link" href="#">
 		<div onclick="goToProductInfo(${product.id})" class="releated_products__contenedor__carta card rounded mb-2">
-			<div class="main_productos__contenedor__carta__contenedorimg"><img src="${product.image}" alt="${product.name}" class="main_productos__contenedor__carta__contenedorimg__img"></div>
+			<div class="main_productos__contenedor__carta__contenedorimg"><img src="${convertToWebp(product.image)}" alt="${product.name}" class="main_productos__contenedor__carta__contenedorimg__img"></div>
 		<h4 class="w-100 text-center">${product.name}</h4>  
 		</div>
 	</a>

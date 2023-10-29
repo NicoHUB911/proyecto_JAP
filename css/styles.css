@@ -566,12 +566,16 @@ input[type="radio"].form-check-input:checked {
 
 #buttonform {
   background-color: #f09100;
-  color: #3f4850;
+  color: #212529e6;
   font-family: sans-serif;
   font-weight: bold;
   outline: none;
-  border: 2px solid #3f4850;
+  width: 75%;
+  font-size: larger;
+  padding: 10px;
+  border: 2px solid #212529e6;
   margin-top: 10px;
+  border-radius: 10px;
 }
 
 #contenedorCompra {
@@ -592,7 +596,7 @@ input[type="radio"].form-check-input:checked {
   border-bottom: 2px solid #f09100;
   box-shadow: -5px 5px 10px #696969;
   background-color: rgba(255, 255, 255, 0.8);
-  background-image: url("../img/bot.webp");
+  background-image: url("../img/All/bot.webp");
   background-size: 100% 100%;
   position: fixed;
   top: 150px;

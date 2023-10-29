@@ -255,3 +255,9 @@ checkBot.addEventListener("change",()=>{
     menuBot.style.display = "none";
   }
 });
+
+function convertToWebp(fnString){
+	newName = fnString.slice(0, -3);
+	newName += "webp";
+	return newName;
+}
