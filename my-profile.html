@@ -43,7 +43,7 @@
   </nav>
   
   <div id="alert-placeholder"></div>
-  <div id="draggable" class="draggable">
+  <div id="draggable" class="draggable d-none">
     <div class="draggable__contenedor">
       <input class="draggable__contenedor__check" type="checkbox" id="checkMenuBot"><label class="draggable__contenedor__label" for="checkMenuBot"></label>
       <div class="draggable__contenedor__preguntas" id="respuestasBOT">
@@ -57,11 +57,38 @@
     </div>
   </div>
 
-  <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
+  <main class="p-3">
+    <div class="row ps-3 d-flex align-items-center">
+    <div class="col-10">
+    <h2 class="pt-5 ps-5">Mi perfil</h2>
+   </div>
+   <div class="col-2">
+    <img src="./img/Avatars/user-icon.png" class="img-fluid pt-5" alt="" style="width: 80px;">
+    </div>
+  </div>
+    <div class="container pt-5">
+     
+      <form class="row p-4 needs-validation" novalidate>
+      <div class="col-6">
+      <label for="" class="form-label">Nombre</label>
+      <input type="text" name="inpName1" id="inpName1" class="form-control" required> <br>
+      <label for="" class="form-label">Apellido</label>
+      <input type="text" name="inpSurname1" id="inpSurname1" class="form-control" required> <br>      
+      <label for="" class="form-label">Email</label>
+      <input type="email" name="inpEmail" id="inpEmail" class="form-control" required> <br>
+     </div>
+     <div class="col-6">
+      <label for="" class="form-label">Segundo Nombre <small class="form-text pl-2">(Opcional)</small></label>
+      <input type="text" name="inpName2" id="inpName2" class="form-control"> <br>
+      <label for="" class="form-label">Segundo Apellido <small class="form-text pl-2">(Opcional)</small></label>
+      <input type="text" name="inpSurname2" id="inpSurname2" class="form-control"> <br>
+      <label for="" class="form-label">Teléfono de contacto <small class="form-text pl-2">(Opcional)</small></label> 
+      <input type="tel" name="inpPhone" id="inpPhone" class="form-control"> 
+     </div>
+     <div class="align-content-center text-center pt-3">
+     <input type="submit" value="Guardar cambios" class="btn btn-primary col-4">
+    </div>
+    </form>
     </div>
   </main>
   <footer class="text-muted">
