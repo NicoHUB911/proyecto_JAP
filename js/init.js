@@ -10,12 +10,13 @@ const RES_BOT = "responsesBot.json";
 const nav_btn_responsive = document.getElementById("btn_nav_responsive");
 const nav_contenedor_general = document.getElementById("nav_tag");
 let estado_nav = false;
-
+/*
 document.addEventListener("DOMContentLoaded", function () {
   if (localStorage.getItem("log") === null && sessionStorage.getItem("log") === null) { // compruebo si esta logeado.
     window.location = "login.html"; // lo mando al login.
   }
 });
+*/
 
 let showSpinner = function () {
   document.getElementById("spinner-wrapper").style.display = "block";
@@ -78,7 +79,7 @@ window.addEventListener("resize", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   // obtenemos el nombre de usuario que está en localStorage
-  const userName = localStorage.getItem("usuario");
+  const userName = localStorage.getItem("userName");
 
 
   // obtenemos el div al que le vamos a agregar los tres botones (icono de perfil, nombre de usuario y carrito)

@@ -253,7 +253,7 @@ function uploadComment(message, rating){
    
   const commentObject = {
 	product: PRODUCT_ID,
-    user: localStorage.getItem("usuario"),
+    user: localStorage.getItem("userName"),
     dateTime: formattedDate,
     description: message,
     score: rating,

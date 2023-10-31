@@ -1,4 +1,4 @@
-const user = document.getElementById("usuario");
+const user = document.getElementById("userName");
 const pass = document.getElementById("contraseña");
 const aviso1 = document.getElementById("formulario__Aviso_user");
 const aviso2 = document.getElementById("formulario__Aviso_pass");
@@ -9,7 +9,7 @@ document.getElementById("formulario").addEventListener("submit",(e)=>{
     e.preventDefault(); // Evito que cuando se aprete el submit, se borre los textos de los inputs.
     if (user.value !== "" && pass.value !== "") {
         if (checkboxFrom.checked) {// Lo guarda aunque se cierre la ventana.
-            localStorage.setItem("usuario", `${user.value}`);
+            localStorage.setItem("userName", `${user.value}`);
             localStorage.setItem("contraseña", `${pass.value}`);
             localStorage.setItem("log", `true`);
         }else{// Lo guarda hasta que se cierre la ventana.
@@ -42,6 +42,6 @@ document.addEventListener("DOMContentLoaded",()=>{
     botonEnviar.addEventListener('click',Guardar)
 });
 function Guardar() {
-    const input = document.getElementById("usuario");
-    localStorage.setItem("usuario", input.value);
+    const input = document.getElementById("userName");
+    localStorage.setItem("userName", input.value);
   }
