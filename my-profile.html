@@ -70,7 +70,7 @@
         <h2 class="pt-5 ps-5">Mi perfil</h2>
       </div>
       <div class="col-2">
-        <img src="./img/MyProfile/user-icon.png" class="img-fluid pt-5" alt="" style="width: 80px;">
+        <img id="img" src="./img/MyProfile/user-icon.png" class="img-fluid pt-5" alt="" style="width: 80px;">
       </div>
     </div>
     <div class="container pt-5">
@@ -98,7 +98,7 @@
           <label for="inpPhone" class="form-label">Teléfono de contacto <small class="form-text pl-2">(Opcional)</small></label>
           <input type="tel" name="inpPhone" id="inpPhone" class="form-control" tabindex="6">
           <label for="" class="form-label pt-4">imagen de perfil</label>
-          <input type="file" accept="image/*" class="form-control">
+          <input type="file"  id="file" accept="image/*" class="form-control" onchange="showImg()">
         </div>
         <div class="align-content-center text-center pt-3">
           <input type="submit" value="Guardar cambios" class="btn btn-primary col-4">

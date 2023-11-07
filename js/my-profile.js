@@ -52,6 +52,17 @@ function Validar() {
     }
 }
 
+function showImg(){
+    var archivo = document.getElementById("file").files[0];
+    var reader = new FileReader();
+    if (file) {
+      reader.readAsDataURL(archivo);
+      reader.onloadend = function() {
+        document.getElementById("img").src = reader.result;
+      }
+    }
+  }
+
 
 //    form.classList.add("was-validated");
 //form.classList.remove("needs-validation");
