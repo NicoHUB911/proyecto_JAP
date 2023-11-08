@@ -62,7 +62,7 @@ function showSearchedCategoriesList(categories){
 
             htmlContentToAppend += `
             <div onclick="setCatID(${category.id})" class="productCont m-1 position-relative rounded cursor-active">
-                <div class="productCont__imgCont"><img src="${category.imgSrc}" alt="${category.description}" class="productCont__imgCont__img position-absolute"></div> 
+                <div class="productCont__imgCont"><img src="${convertToWebp(category.imgSrc)}" alt="${category.description}" class="productCont__imgCont__img position-absolute"></div> 
                 <div class="productCont__Cont position-absolute">
                     <div class="h-100 w-100 position-relative">
                         <div class="productCont__Cont__slider w-100 d-flex flex-column">
@@ -85,20 +85,20 @@ function showSearchedCategoriesList(categories){
 }
 
 
-function Buscar(valorDeBusqueda){
-    if (valorDeBusqueda){
-    const SearchedCategoriesArray=currentCategoriesArray.filter(categoria=>{
-        const terminoDeBusqueda = valorDeBusqueda.toLowerCase();
-        const nombre=categoria.name.toLowerCase();
-        const descripcion=categoria.description.toLowerCase();
+function search(query){
+    if (query){
+    const searchedCategoriesArray=currentCategoriesArray.filter(category=>{
+        const queryLower = query.toLowerCase();
+        const name=category.name.toLowerCase();
+        const description=category.description.toLowerCase();
         /*Se pasa el valor de busqueda, asi como la descripcion y el nombre de la categoria 
         correspondiente a minisculas y se devuelven solo los articulos que coinciden */
         
-        return nombre.includes(terminoDeBusqueda) || descripcion.includes(terminoDeBusqueda);
+        return name.includes(queryLower) || description.includes(queryLower);
         
     });
-    console.log(SearchedCategoriesArray);
-    return SearchedCategoriesArray;// Se devuelve el array filtrado.
+    // console.log(searchedCategoriesArray);
+    return searchedCategoriesArray;// Se devuelve el array filtrado.
 } else{
     showCategoriesList(); // si no hay criterio de busqueda se muestran todas las categorias.
     return currentCategoriesArray;
@@ -117,21 +117,21 @@ document.addEventListener("DOMContentLoaded", function(e){
         }
     });
     //Codigo que se encarga de traer el buscador y llamar a la funcion correspondiente cuando se reciba un input
-    const Buscador=this.getElementById("buscador");
-    Buscador.addEventListener('input', ()=>{
-        showSearchedCategoriesList(Buscar(Buscador.value.trim()));
+    const searchField=this.getElementById("buscador");
+    searchField.addEventListener('input', ()=>{
+        showSearchedCategoriesList(search(searchField.value.trim()));
     }); 
 
     document.getElementById("sortAsc").addEventListener("click", function(){ // si apretan el filtro de orden alfabetico...
-        sortAndShowCategories(ORDER_ASC_BY_NAME,Buscar(Buscador.value.trim()));
+        sortAndShowCategories(ORDER_ASC_BY_NAME,search(searchField.value.trim()));
     });
 
     document.getElementById("sortDesc").addEventListener("click", function(){ // si apretan el filtro alfabetico (alreves)...
-        sortAndShowCategories(ORDER_DESC_BY_NAME,Buscar(Buscador.value.trim()));
+        sortAndShowCategories(ORDER_DESC_BY_NAME,search(searchField.value.trim()));
     });
 
     document.getElementById("sortByCount").addEventListener("click", function(){ // si apretan el filtro de cantidad de productos...
-        sortAndShowCategories(ORDER_BY_PROD_COUNT,Buscar(Buscador.value.trim())); // Se agrego adaptacion que hace que tome en cuenta si hay algo ingresado en el buscador
+        sortAndShowCategories(ORDER_BY_PROD_COUNT,search(searchField.value.trim())); // Se agrego adaptacion que hace que tome en cuenta si hay algo ingresado en el buscador
     });
 
     document.getElementById("clearRangeFilter").addEventListener("click", function(){ // limpia los campos de filtro
@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function(e){
 
         minCount = undefined;
         maxCount = undefined;
-        buscador.value = "";
+        searchField.value = "";
 
         showCategoriesList();
     });
@@ -165,7 +165,7 @@ document.addEventListener("DOMContentLoaded", function(e){
             maxCount = undefined;
         }
 
-        sortAndShowCategories(null,Buscar(Buscador.value.trim())); // Se manda a mostrar el resultado de buscar pero filtrado ahora tambien por cantidad
+        sortAndShowCategories(null,search(searchField.value.trim())); // Se manda a mostrar el resultado de buscar pero filtrado ahora tambien por cantidad
     });
 });
 

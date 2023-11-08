@@ -8,23 +8,28 @@ const userName = document.getElementById("inpNameUser");
 
 const form = document.getElementById("formMyPorfile");
 
-document.addEventListener("DOMContentLoaded", function () {
-    if (localStorage.getItem("log") === null && sessionStorage.getItem("log") === null) { // compruebo si esta logeado.
-      window.location = "login.html"; // lo mando al login.
-    }
-  });
+// document.addEventListener("DOMContentLoaded", function () {
+  // });
 
 
 
 
 document.addEventListener("DOMContentLoaded" ,()=>{
-    userName.value = localStorage.getItem("userName");
+	if (localStorage.getItem("log") === null && sessionStorage.getItem("log") === null) { // compruebo si esta logeado.
+		window.location = "login.html"; // lo mando al login.
+		localStorage.setItem("redirectedFrom", "/my-profile.html"); // guardo la página para redireccionar desde el Login.
+    }
+	userName.value = localStorage.getItem("userName");
     inpNameOne.value = localStorage.getItem("name1");
     inpNameTwo.value = localStorage.getItem("name2");
     inpSurnameOne.value = localStorage.getItem("surName1");
     inpSurnameTwo.value = localStorage.getItem("surName2");
     inpEmail.value = localStorage.getItem("email");
     inpPhone.value = localStorage.getItem("phone");
+	
+	// si hay una imágen en localStorage la muestra en el apartado correspondiente
+	if (localStorage.hasOwnProperty("userImage"))
+		document.getElementById("img").src = localStorage.userImage;
 });
 
 
@@ -35,23 +40,27 @@ form.addEventListener("submit", (event)=>{
 
     form.classList.add("was-validated");
     form.classList.remove("needs-validation");
-    Validar();
+    validate();
 });
 
-function Validar() {
+
+// revisa si los campos requeridos no están vaciós.
+function validate() {
     if (inpNameOne.value !== "" && inpSurnameOne.value !== "" && inpEmail.value !== "" && userName.value !== "") {
 
-        localStorage.setItem("userName", `${userName.value}`);
-        localStorage.setItem("name1", `${inpNameOne.value}`);
-        localStorage.setItem("name2", `${inpNameTwo.value}`);
-        localStorage.setItem("surName1", `${inpSurnameOne.value}`);
-        localStorage.setItem("surName2", `${inpSurnameTwo.value}`);
-        localStorage.setItem("email", `${inpEmail.value}`);
-        localStorage.setItem("phone", `${inpPhone.value}`);
+        localStorage.setItem("userName", userName.value);
+        localStorage.setItem("name1", inpNameOne.value);
+        localStorage.setItem("name2", inpNameTwo.value);
+        localStorage.setItem("surName1", inpSurnameOne.value);
+        localStorage.setItem("surName2", inpSurnameTwo.value);
+        localStorage.setItem("email", inpEmail.value);
+        localStorage.setItem("phone", inpPhone.value);
         displayMessage("Se han guardado sus datos correctamente", "success");
     }
 }
 
+
+// Cuando el usuario selecciona una imagen, esta se guarda y se muestra en el apartado correspondiente
 function showImg(){
     var archivo = document.getElementById("file").files[0];
     var reader = new FileReader();
@@ -59,6 +68,7 @@ function showImg(){
       reader.readAsDataURL(archivo);
       reader.onloadend = function() {
         document.getElementById("img").src = reader.result;
+		localStorage.setItem("userImage", reader.result);
       }
     }
   }

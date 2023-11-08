@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
       .then(data => {
         // Aquí tienes acceso a los datos JSON en la variable "data".
         //console.log(data);  Muestra los datos en la consola para verificar.
-        procesarDatos(data); // llamamos a prosesarDatos(datos) para manipular los datos.
+        handleData(data); // llamamos a prosesarDatos(datos) para manipular los datos.
       })
       .catch(error => {
         console.error('Hubo un error:', error);
@@ -70,7 +70,7 @@ localStorage.removeItem('prods')
   boton_Filtrar.addEventListener('click', () =>{
     let nuevosProdsFiltrados = JSON.parse(localStorage.getItem('prods')).filter((producto) => producto.cost >= minPrice.value && producto.cost <= maxPrice.value);
     localStorage.setItem('prodsFiltrados', JSON.stringify(nuevosProdsFiltrados))
-    procesarDatos(nuevosProdsFiltrados)
+    handleData(nuevosProdsFiltrados)
   })
 
   /* Limpia todos los filtros, pone el rango max y min en 0 y limpia local storage productos filtrados y hace re-render */
@@ -81,7 +81,7 @@ localStorage.removeItem('prods')
     minPrice.value = 0
     buscador.value = "";
     localStorage.removeItem('prodsFiltrados')
-    procesarDatos(JSON.parse(localStorage.getItem('prods')))
+    handleData(JSON.parse(localStorage.getItem('prods')))
   })
 
   /* ordena de mayor a menor con los productos filtrados o no filtrados si esta en el localstorage*/
@@ -90,10 +90,10 @@ localStorage.removeItem('prods')
     
     if(JSON.parse(localStorage.getItem('prodsFiltrados'))){
       let newprods2 = JSON.parse(localStorage.getItem('prodsFiltrados')).sort((a,b) => {return a.cost - b.cost});
-      procesarDatos(newprods2)
+      handleData(newprods2)
       
     }else{
-      procesarDatos(newprods)
+      handleData(newprods)
     }
   })
   /* ordena de menor a mayor con los productos filtrados o no filtrados si esta en el localstorage*/
@@ -101,10 +101,10 @@ localStorage.removeItem('prods')
     let newprods = JSON.parse(localStorage.getItem('prods')).sort((a,b) => {return b.cost - a.cost});
     if(JSON.parse(localStorage.getItem('prodsFiltrados'))){
       let newprods2 = JSON.parse(localStorage.getItem('prodsFiltrados')).sort((a,b) => {return b.cost - a.cost});
-      procesarDatos(newprods2)
+      handleData(newprods2)
       
     }else{
-      procesarDatos(newprods)
+      handleData(newprods)
     }
 
   })
@@ -113,10 +113,10 @@ localStorage.removeItem('prods')
     let newprods = JSON.parse(localStorage.getItem('prods')).sort((a,b) => {return b.soldCount - a.soldCount});
     if(JSON.parse(localStorage.getItem('prodsFiltrados'))){
       let newprods2 = JSON.parse(localStorage.getItem('prodsFiltrados')).sort((a,b) => {return b.soldCount - a.soldCount});
-      procesarDatos(newprods2)
+      handleData(newprods2)
       
     }else{
-      procesarDatos(newprods)
+      handleData(newprods)
     }
 
   })
@@ -148,12 +148,12 @@ if (searchTerm) {
 }
 
 // llamamos a la funcion para mostrar los productos filtrados
-procesarDatos(productosFiltrados);
+handleData(productosFiltrados);
 });
 
 /*=======================================================================MOSTRAR_PRODUCTOS=======================================================================*/
 
-function procesarDatos(data) {
+function handleData(data) {
   /* Si esta funcion viene del fetch, trae data.prodcuts y se guarda en productos, si viene de otro lado,(otro evento) viene sin el products y se guarda en productos */
   let productos  // accedemos dentro de data, al array de objetos que se llama products (los productos/objetos con todas sus propiedades).
   if(data.products){
@@ -205,6 +205,6 @@ function procesarDatos(data) {
 /*================================================================MANDAR_AL_PRODUCTO_SELECCIONADO================================================================*/
 
 function goToProductInfo(id) {
-  localStorage.setItem("IdProducto", id);
+  localStorage.setItem("productId", id);
   window.location = "product-info.html";
 }
