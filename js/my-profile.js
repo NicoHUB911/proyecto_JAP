@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (localStorage.getItem("log") === null && sessionStorage.getItem("log") === null) { // compruebo si esta logeado.
       window.location = "login.html"; // lo mando al login.
     }
-  });
+});
 
 
 
@@ -55,7 +55,7 @@ function Validar() {
 function showImg(){
     var archivo = document.getElementById("file").files[0];
     var reader = new FileReader();
-    if (file) {
+    if (archivo) {
       reader.readAsDataURL(archivo);
       reader.onloadend = function() {
         document.getElementById("img").src = reader.result;
@@ -63,6 +63,7 @@ function showImg(){
       }
     }
   }
+  
   if(localStorage.getItem('img')){
     document.getElementById("img").src = localStorage.getItem('img')
   }
@@ -70,3 +71,5 @@ function showImg(){
 
 //    form.classList.add("was-validated");
 //form.classList.remove("needs-validation");
+
+
