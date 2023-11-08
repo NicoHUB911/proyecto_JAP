@@ -64,7 +64,7 @@ function showImg(){
     }
   }
   if(localStorage.getItem('img')){
-    document.getElementById("img").src = localStorage.getItem('img') 
+    document.getElementById("img").src = localStorage.getItem('img')
   }
 
 
