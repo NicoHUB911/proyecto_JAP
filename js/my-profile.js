@@ -59,8 +59,12 @@ function showImg(){
       reader.readAsDataURL(archivo);
       reader.onloadend = function() {
         document.getElementById("img").src = reader.result;
+        localStorage.setItem('img',reader.result)
       }
     }
+  }
+  if(localStorage.getItem('img')){
+    document.getElementById("img").src = localStorage.getItem('img') 
   }
 
 
