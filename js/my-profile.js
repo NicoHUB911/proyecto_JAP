@@ -48,7 +48,7 @@ form.addEventListener("submit", (event)=>{
 function validate() {
     if (inpNameOne.value !== "" && inpSurnameOne.value !== "" && inpEmail.value !== "" && userName.value !== "") {
 
-        localStorage.setItem("userName", userName.value);
+        // localStorage.setItem("userName", userName.value); // no se permite cambiar el nombre de usuario
         localStorage.setItem("name1", inpNameOne.value);
         localStorage.setItem("name2", inpNameTwo.value);
         localStorage.setItem("surName1", inpSurnameOne.value);
