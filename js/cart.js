@@ -49,6 +49,11 @@ function displayCartItems() {
 Al cargar el documento html se llama a la funcion getJSONData() que fue declarada en init.js, se le pasa la URL de la API dada por JaP, y tomando la promesa que devuelve se llama a displayCartItems() con un objecto que contiene la id del usuario y un array con objetos (los productos en su carrito)
 */
 document.addEventListener("DOMContentLoaded", async function () {
+	if (localStorage.getItem("log") === null && sessionStorage.getItem("log") === null) { // compruebo si esta logeado.
+		window.location = "login.html"; // lo mando al login.
+		localStorage.setItem("redirectedFrom", "/cart.html")
+    }
+	UIRemark.value = localStorage.getItem("userRemark") ?? "";
 	await bringPeso();/* this bring the price of the dolar in pesos UYU */
 	displayCartItems();
 	calculateCosts();
@@ -112,38 +117,39 @@ function clearForm() {
 
 
 // al hacer click en aquí se muestra el campo de observaciones y al al hacer click en en cancelar se oculta
-const mostrarEnlace = document.getElementById("mostrarObservaciones");
-const campoObservaciones = document.getElementById("campoObservaciones");
-const parrafoObservaciones = document.getElementById("parrafoObservaciones");
-const guardarBoton = document.getElementById("guardarObservaciones");
-const cancelarTexto = document.getElementById("cancelarObservaciones");
+const showLink = document.getElementById("mostrarObservaciones");
+const commentField = document.getElementById("campoObservaciones");
+const UIRemark= document.getElementById("observaciones");
+const commentParagraph = document.getElementById("parrafoObservaciones");
+const saveBtn = document.getElementById("guardarObservaciones");
+const cancelTxt = document.getElementById("cancelarObservaciones");
 
 // Agrega un evento de clic al enlace de "aqui" para mostrar el campo de observaciones y ocultar el parrafo
-mostrarEnlace.addEventListener("click", function (event) {
+showLink.addEventListener("click", function (event) {
 	event.preventDefault();
-	campoObservaciones.style.display = "block";
-	parrafoObservaciones.style.display = "none";
+	commentField.style.display = "block";
+	commentParagraph.style.display = "none";
 });
 
 // Agrega un evento de clic a "Cancelar" para ocultar el campo de observaciones y mostrar muevamente el parrafo
-cancelarTexto.addEventListener("click", function (event) {
+cancelTxt.addEventListener("click", function (event) {
 	event.preventDefault();
-	campoObservaciones.style.display = "none";
-	parrafoObservaciones.style.display = "block";
+	commentField.style.display = "none";
+	commentParagraph.style.display = "block";
 });
 
 
-/*
+
 //  guardar los datos cuando se haga clic en "Guardar" 
-guardarBoton.addEventListener("click", function(event) {
+saveBtn.addEventListener("click", function(event) {
   event.preventDefault(); 
-  // lógica para guardar las observaciones
+  localStorage.setItem("userRemark", UIRemark.value);
 });
 
-*/
+
 
 function goToProductInfo(id) {
-	localStorage.setItem("IdProducto", id);
+	localStorage.setItem("productId", id);
 	window.location = "product-info.html";
 }
 async function bringPeso() {
@@ -198,6 +204,9 @@ const paragraph = document.getElementById("seleccionarPago");
 const inputBankTransfer = [document.getElementById("numeroCuenta")];
 const inputCreditCard = [document.getElementById("numTarjeta"), document.getElementById("codigoSeg"), document.getElementById("vencimiento")];
 const buttonConfirm = document.getElementById("buttonform");
+const streetField = document.getElementById("calle");
+const addressField = document.getElementById("numero");
+const street2Field = document.getElementById("esquina");
 const formBuy = document.getElementsByTagName("form"); // Se trae el formulario que embarca todos los inputs
 let paymentMethod = true; //Se crea una variable para saber si esta cliqueado el radiobutton de creditCard del modal 
 formBuy[0].addEventListener('submit', (e) => {
@@ -211,19 +220,20 @@ function validate() {
 		iterator.classList.add("was-validated");
 		iterator.classList.remove("needs-validation");
 	}
+	let requiredFields = streetField.value != "" && street2Field.value != "" && addressField.value != "";
 	if(bankTransferRadio.checked || creditCardRadio.checked){
 		paragraph.style.color="black"
 		if (loadCart().length == 0){
 			displayMessage("Debe tener un articulo en el carrito","danger");
 		} else {
-			if(bankTransferRadio.checked && inputBankTransfer.value !=""){
+			if(requiredFields && bankTransferRadio.checked && inputBankTransfer.value !=""){
 				displayMessage("Tu compra fue realizada con exito","success");
 				clearForm();
-			} else if (creditCardRadio.checked && inputCreditCard[0].value != "" && inputCreditCard[1].value != "" && inputCreditCard[2].value != ""){
+			} else if (requiredFields && creditCardRadio.checked && inputCreditCard[0].value != "" && inputCreditCard[1].value != "" && inputCreditCard[2].value != ""){
 				displayMessage("Tu compra fue realizada con exito","success");
 				clearForm();
 			} else {
-				displayMessage("Los campos del medio de pago no pueden estar vacios","danger");
+				displayMessage("Hay campos que no pueden estar vacios","danger");
 			}
 		}
 	} else {
@@ -258,15 +268,15 @@ bankTransferRadio.addEventListener("change", function () {
 
 
 // Habilitar campos desde el principio
-inputCreditCard.forEach(campo => campo.disabled = true);
-inputBankTransfer.forEach(campo => campo.disabled = true);
+inputCreditCard.forEach(field => field.disabled = true);
+inputBankTransfer.forEach(field => field.disabled = true);
 
 creditCardRadio.addEventListener("change", function () {
-	inputCreditCard.forEach(campo => campo.disabled = false);
-	inputBankTransfer.forEach(campo => campo.disabled = true);
+	inputCreditCard.forEach(field => field.disabled = false);
+	inputBankTransfer.forEach(field => field.disabled = true);
 });
 
 bankTransferRadio.addEventListener("change", function () {
-	inputCreditCard.forEach(campo => campo.disabled = true);
-	inputBankTransfer.forEach(campo => campo.disabled = false);
+	inputCreditCard.forEach(field => field.disabled = true);
+	inputBankTransfer.forEach(field => field.disabled = false);
 });

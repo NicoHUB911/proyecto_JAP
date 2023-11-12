@@ -8,14 +8,9 @@ const CART_BUY_URL = "https://japceibal.github.io/emercado-api/cart/buy.json";
 const EXT_TYPE = ".json";
 const RES_BOT = "responsesBot.json";
 const nav_btn_responsive = document.getElementById("btn_nav_responsive");
-const nav_contenedor_general = document.getElementById("nav_tag");
-let estado_nav = false;
+const nav_main_container = document.getElementById("nav_tag");
+let nav_status = false;
 
-document.addEventListener("DOMContentLoaded", function () {
-  if (localStorage.getItem("log") === null && sessionStorage.getItem("log") === null) { // compruebo si esta logeado.
-    window.location = "login.html"; // lo mando al login.
-  }
-});
 
 let showSpinner = function () {
   document.getElementById("spinner-wrapper").style.display = "block";
@@ -53,14 +48,14 @@ let getJSONData = function (url) {
 // para el boton del nav movile
 nav_btn_responsive.addEventListener("click", () => {
   const list = document.querySelector(".navegador__menu_1__lista");
-  if (estado_nav) {
-    estado_nav = false;
+  if (nav_status) {
+    nav_status = false;
     list.style.display = "none";
-    nav_contenedor_general.style.height = "50px";
+    nav_main_container.style.height = "50px";
   } else {
-    estado_nav = true;
+    nav_status = true;
     list.style.display = "inline";
-    nav_contenedor_general.style.height = "260px";
+    nav_main_container.style.height = "260px";
   }
 });
 
@@ -69,7 +64,7 @@ nav_btn_responsive.addEventListener("click", () => {
 window.addEventListener("resize", () => {
   const listNav = document.querySelector(".navegador__menu_1__lista");
   if (window.innerWidth > 630) {
-    nav_contenedor_general.style.height = "50px";
+    nav_main_container.style.height = "50px";
     listNav.style.display = "flex";
   }else{
     listNav.style.display = "none";
@@ -78,7 +73,7 @@ window.addEventListener("resize", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   // obtenemos el nombre de usuario que está en localStorage
-  const userName = localStorage.getItem("usuario");
+  const userName = localStorage.getItem("userName");
 
 
   // obtenemos el div al que le vamos a agregar los tres botones (icono de perfil, nombre de usuario y carrito)
@@ -149,8 +144,8 @@ const themeChanger = () => {
     }
   }
   if (JSON.parse(localStorage.getItem('dark-light')) == false) {
-    const divsSacar = document.getElementsByClassName('dark-light')
-    for (const divs of divsSacar) {
+    const divsToRemove = document.getElementsByClassName('dark-light')
+    for (const divs of divsToRemove) {
       divs.classList.remove('dark-light')
     }
   }
@@ -175,7 +170,7 @@ function displayMessage(message, type) {
 
 // para poder mover al asistente/"bot"
 const draggable = document.getElementById('draggable');
-const menuBot = document.getElementById("respuestasBOT");
+const botMenu = document.getElementById("respuestasBOT");
 const checkBot = document.getElementById("checkMenuBot");
 const labelBot = document.querySelector(".draggable__contenedor__label");
 let offsetX, offsetY, isDragging = false;
@@ -225,7 +220,7 @@ async function showBotResponses(idProd) {
 
     for (const response of responses) {
       if (response.id === idProd) {
-        menuBot.innerHTML = `
+        botMenu.innerHTML = `
           <button class="p-1" onclick="showButtonBOT()">←</button><br>
           ${response.response}
         `;
@@ -239,7 +234,7 @@ async function showBotResponses(idProd) {
 
 // para mostrar los botones del bot
 function showButtonBOT() {
-  menuBot.innerHTML = `
+  botMenu.innerHTML = `
   <button onclick="showBotResponses(10)">¿Quienes somos?</button>
   <button onclick="showBotResponses(11)">¿Como me registro?</button>
   <button onclick="showBotResponses(12)">¿Algun beneficio para clientes frecuentes?</button>
@@ -249,10 +244,10 @@ function showButtonBOT() {
 }
 
 checkBot.addEventListener("change",()=>{
-  if (menuBot.style.display === "none") {
-    menuBot.style.display = "inline"; 
+  if (botMenu.style.display === "none") {
+    botMenu.style.display = "inline"; 
   } else {
-    menuBot.style.display = "none";
+    botMenu.style.display = "none";
   }
 });
 

@@ -1,4 +1,4 @@
-const PRODUCT_ID = localStorage.getItem("IdProducto");
+const PRODUCT_ID = localStorage.getItem("productId");
 const PRODUCT_URL = `https://japceibal.github.io/emercado-api/products/${PRODUCT_ID}.json`;
 const COMMENTS_URL = `https://japceibal.github.io/emercado-api/products_comments/${PRODUCT_ID}.json`;
 const UI_SUBMIT_BUTTON = document.getElementById("btnSubmit");
@@ -21,7 +21,7 @@ async function fetchData(_url){
 async function showProductInfo() {
     const objectProduct = await fetchData(PRODUCT_URL);
     apiData = objectProduct;
-	document.title = objectProduct.name + " - eMercado";
+	document.title = objectProduct.name + " - eMercado"; // cambia el titulo de la pestaña
 	const modalContainer = document.getElementById("img-modal");
     const container = document.getElementById("product__info");
 	
@@ -93,14 +93,18 @@ async function showProductInfo() {
             <h2 class="producto_info__contenedor__informacion__precio"><span>${objectProduct.currency + " "}</span>${objectProduct.cost}</h2>
             <p class="producto_info__contenedor__informacion__descripción"><b>Descripcion: </b>${objectProduct.description}</p>
             <p class="producto_info__contenedor__informacion__otros"><small>Categoria: <a href="products.html">${objectProduct.category}</a></small><small>Vendidos: ${objectProduct.soldCount}</small></p>
-            <div class="btn btn-success mt-auto" id="btnComprar">Comprar</div>
+            <div class="btn btn-success mt-auto" id="purchaseBTN">Comprar</div>
         </div>
     `;
 	
 
 	
-    const btnComprar=document.getElementById('btnComprar');
-    btnComprar.addEventListener('click', function() {
+    const purchaseBTN=document.getElementById('purchaseBTN');
+    purchaseBTN.addEventListener('click', function() {
+	if (localStorage.getItem("log") === null && sessionStorage.getItem("log") === null) { // compruebo si esta logeado.
+		window.location = "login.html"; // lo mando al login.
+		localStorage.setItem("redirectedFrom", "/product-info.html")
+    }	
         addToCart(objectProduct);
 		disableButton();
     });
@@ -111,11 +115,11 @@ async function showProductInfo() {
 	showRelated(objectProduct);
 	
 	function disableButton(){
-		btnComprar.classList.remove("btn-success");
-		btnComprar.setAttribute("disabled", "");
-		btnComprar.classList.add("disabled");
-		btnComprar.classList.add("btn-outline-success");
-		btnComprar.innerHTML = '&check; En el carrito.';
+		purchaseBTN.classList.remove("btn-success");
+		purchaseBTN.setAttribute("disabled", "");
+		purchaseBTN.classList.add("disabled");
+		purchaseBTN.classList.add("btn-outline-success");
+		purchaseBTN.innerHTML = '&check; En el carrito.';
 	}
 	
 	function checkCart(){
@@ -152,17 +156,16 @@ En caso contrario, ordena el array de mas reciente a mas antiguo y le hace un fo
 con template strings se llama a la funcion displayRating para mostrar las estrellas
 */
 async function displayComments() {
-    const divOpinion = document.getElementById('opiniones')
-	divOpinion.innerHTML= "";	
+    const reviewDiv = document.getElementById('opiniones')
+	reviewDiv.innerHTML= "";	
     const APIcomments = await fetchData(COMMENTS_URL); 
-	
-	
+
     let comments = (JSON.parse(localStorage.getItem(`${PRODUCT_ID}_user_comments`))) || [];
     comments = comments.concat(APIcomments.sort((a, b) => {return new Date(b.dateTime) - new Date(a.dateTime)}));
     
 	if(comments.length !== 0) {
 		comments.forEach(comment => {
-			divOpinion.innerHTML += `
+			reviewDiv.innerHTML += `
 			<li class="list-group-item change">
 				<p class="change"><span class='fw-bold'>${comment.user} </span> - <span>${comment.dateTime}</span> - <span class="text-nowrap">${displayRating(comment.score)}</span></p>
 				<p class="text-break change"><span>${comment.description}</p>
@@ -177,9 +180,9 @@ async function displayComments() {
             }
           }
 	} else {
-		divOpinion.innerHTML = `
-			<li class="list-group-item" style="background-color:#ff6054;">
-			<h2>No hay comentarios para mostrar.</h2></li>
+		reviewDiv.innerHTML = `
+			<li class="list-group-item" style="background-color:#c4c4c4;">
+			<h4 class="text-center m-0">No hay comentarios para mostrar.</h4></li>
 		`;
 	}
 }
@@ -212,7 +215,7 @@ function showRelated(productObject) {
 
 // igual a la funcion que se encuentra en en products.js pero recarga la página en lugar de redireccionar
 function goToProductInfo(id) { 
-    localStorage.setItem("IdProducto", id);
+    localStorage.setItem("productId", id);
     location.reload();
 }
 
@@ -225,6 +228,10 @@ function changeModalImg(i) {
 
 
 UI_SUBMIT_BUTTON.addEventListener('click',()=>{
+	if (localStorage.getItem("log") === null && sessionStorage.getItem("log") === null) { // compruebo si esta logeado.
+		window.location = "login.html"; // lo mando al login.
+		localStorage.setItem("redirectedFrom", "/product-info.html")
+    } else {
     const commentText=document.getElementById("UI_comment");
     const starsNumber = document.getElementsByName("rating3"); // Traemos todos los radio button de las estrellas
     let selectedStars = ""; //Variable donde se va a guardar la cantidad de estrellas
@@ -237,6 +244,7 @@ UI_SUBMIT_BUTTON.addEventListener('click',()=>{
     uploadComment(commentText.value, selectedStars) // Se llama a la funcion encargada de cargar y mostrar el comentario y se le envian los objectProduct recibidos.
     commentText.value="";
     starsNumber[0].checked=true; //Se resetean las estrellas y el textarea del comentario
+	}
 });
 
 function uploadComment(message, rating){
@@ -253,7 +261,7 @@ function uploadComment(message, rating){
    
   const commentObject = {
 	product: PRODUCT_ID,
-    user: localStorage.getItem("usuario"),
+    user: localStorage.getItem("userName"),
     dateTime: formattedDate,
     description: message,
     score: rating,
