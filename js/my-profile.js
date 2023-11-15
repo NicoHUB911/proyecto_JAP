@@ -17,7 +17,7 @@ const form = document.getElementById("formMyPorfile");
 document.addEventListener("DOMContentLoaded" ,()=>{
 	if (localStorage.getItem("log") === null && sessionStorage.getItem("log") === null) { // compruebo si esta logeado.
 		window.location = "login.html"; // lo mando al login.
-		localStorage.setItem("redirectedFrom", "/my-profile.html"); // guardo la página para redireccionar desde el Login.
+		localStorage.setItem("redirectedFrom", "my-profile.html"); // guardo la página para redireccionar desde el Login.
     }
 	userName.value = localStorage.getItem("userName");
     inpNameOne.value = localStorage.getItem("name1");

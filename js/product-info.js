@@ -230,7 +230,7 @@ function changeModalImg(i) {
 UI_SUBMIT_BUTTON.addEventListener('click',()=>{
 	if (localStorage.getItem("log") === null && sessionStorage.getItem("log") === null) { // compruebo si esta logeado.
 		window.location = "login.html"; // lo mando al login.
-		localStorage.setItem("redirectedFrom", "/product-info.html")
+		localStorage.setItem("redirectedFrom", "product-info.html")
     } else {
     const commentText=document.getElementById("UI_comment");
     const starsNumber = document.getElementsByName("rating3"); // Traemos todos los radio button de las estrellas

@@ -15,7 +15,7 @@ document.getElementById("formulario").addEventListener("submit",(e)=>{
         }else{// Lo guarda hasta que se cierre la ventana.
             sessionStorage.setItem("log", `true`);
         }
-        window.location = localStorage.redirectedFrom ?? "/index.html"// Redirijo al index.html si no hay una página guardada en localStorage
+        window.location = localStorage.redirectedFrom ?? "index.html"// Redirijo al index.html si no hay una página guardada en localStorage
     } else if (user.value !== "") { // en los else siguientes muestro los cartelitos para especificar donde no se relleno.
         warning2.style.opacity = "1";
     }else if (pass.value !== "") {
