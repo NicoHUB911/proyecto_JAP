@@ -1,11 +1,7 @@
-# CRUD Server
+# eMercado Server
 
-Para ejecutar el proyecto recuerda primero instalar las dependencias con el comando:
-    npm install
+Servidor Nodejs para correr el eMercado en una sola instancia
 
-Y luego trabajas con el comando:
-    npm run dev
 
-Si estás trabajando en la parte del frontend (archivos de la carpeta public) deberás refrescar la página en el navegador para actualizar los cambios, ya que no estás trabajando con Live Server de VS Code.
-
-Suerte!
+para iniciarlo:
+npm run dev app.js  
