@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
   
   const catID = localStorage.getItem("catID"); // Obtener el catID del localStorage
   if (catID) {
-    const URL_PRODUCTOS = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`; // link del json con el catID especifico
+    const URL_PRODUCTOS = `http://localhost:3000/api/${catID}.json`; // link del json con el catID especifico
     
 
     fetch(URL_PRODUCTOS)
