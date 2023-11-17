@@ -51,7 +51,7 @@ Al cargar el documento html se llama a la funcion getJSONData() que fue declarad
 document.addEventListener("DOMContentLoaded", async function () {
 	if (localStorage.getItem("log") === null && sessionStorage.getItem("log") === null) { // compruebo si esta logeado.
 		window.location = "login.html"; // lo mando al login.
-		localStorage.setItem("redirectedFrom", "/cart.html")
+		localStorage.setItem("redirectedFrom", "cart.html")
     }
 	UIRemark.value = localStorage.getItem("userRemark") ?? "";
 	await bringPeso();/* this bring the price of the dolar in pesos UYU */
