@@ -103,7 +103,7 @@ async function showProductInfo() {
     purchaseBTN.addEventListener('click', function() {
 	if (localStorage.getItem("log") === null && sessionStorage.getItem("log") === null) { // compruebo si esta logeado.
 		window.location = "login.html"; // lo mando al login.
-		localStorage.setItem("redirectedFrom", "/product-info.html")
+		localStorage.setItem("redirectedFrom", "product-info.html")
     }	
         addToCart(objectProduct);
 		disableButton();
