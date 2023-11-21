@@ -1,6 +1,6 @@
 const PRODUCT_ID = localStorage.getItem("productId");
-const PRODUCT_URL = `https://japceibal.github.io/emercado-api/products/${PRODUCT_ID}.json`;
-const COMMENTS_URL = `https://japceibal.github.io/emercado-api/products_comments/${PRODUCT_ID}.json`;
+const PRODUCT_URL = PRODUCT_INFO_URL + PRODUCT_ID + EXT_TYPE;
+const COMMENTS_URL = PRODUCT_INFO_COMMENTS_URL + PRODUCT_ID + EXT_TYPE;
 const UI_SUBMIT_BUTTON = document.getElementById("btnSubmit");
 let apiData;
 

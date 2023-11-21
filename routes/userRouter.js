@@ -4,16 +4,13 @@ En este archivo se trabaja la lógica para responder las peticiones al servidor
 const express = require("express");
 const userRouter = express.Router();
 
+/* Controller */
 const userController = require("../controllers/userController");
 
-userRouter.get("/", userController.getUsers);
+userRouter.post("/login", userController.logUser);
 
-userRouter.get("/:id", userController.getUserById);
+// userRouter.put("/:id", userController.updateUser);
 
-userRouter.post("/", userController.createUser);
-
-userRouter.put("/:id", userController.updateUser);
-
-userRouter.delete("/:id", userController.deleteUser);
+// userRouter.delete("/:id", userController.deleteUser);
 
 module.exports = userRouter;

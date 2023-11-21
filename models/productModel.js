@@ -2,21 +2,45 @@
 const fs = require("fs");
 const path = require("path");
 
-const filePath = path.join(__dirname, "../json/cats/cat.json");
-
-const dataCategories = fs.readFileSync(filePath, "utf-8");
-const categories = JSON.parse(dataCategories);
-
 const getCategories = () => {
-  return categories;
+	const filePath = path.join(__dirname, "../json/cats/cat.json");
+	const dataCategories = fs.readFileSync(filePath, "utf-8");
+	return JSON.parse(dataCategories);
 };
 
 const getCatByID = (categoryID) => {
-  const filePath = path.join(__dirname, `../json/cats_products/${categoryID}.json`);
+  const filePath = path.join(__dirname, `../json/cats_products/${categoryID}`);
   const dataProducts = fs.readFileSync(filePath, "utf-8");
-  const products = JSON.parse(dataProducts);
-  return products
+  return JSON.parse(dataProducts);
 };
+
+const getProdByID = (productID) => {
+  const filePath = path.join(__dirname, `../json/products/${productID}`);
+  const productInfo = fs.readFileSync(filePath, "utf-8");
+  return JSON.parse(productInfo)
+};
+
+const getComments = (productID) => {
+  const filePath = path.join(__dirname, `../json/products_comments/${productID}`);
+  const comments = fs.readFileSync(filePath, "utf-8");
+  return JSON.parse(comments);
+};
+
+const getCart = (userID) => {
+  const filePath = path.join(__dirname, `../json/user_cart/${userID}`);
+  const cart = fs.readFileSync(filePath, "utf-8");
+  return JSON.parse(cart);
+};
+
+const getBuyMsg = () => {
+  const filePath = path.join(__dirname, `../json/cart/buy.json`);
+  const buyMSG = fs.readFileSync(filePath, "utf-8");
+  return JSON.parse(buyMSG);
+};
+
+
+
+
 // const getUserById = (id) => {
 //   return users.find((user) => user.id === parseInt(id));
 // };
@@ -52,6 +76,10 @@ const getCatByID = (categoryID) => {
 module.exports = {
   getCategories,
   getCatByID,
+  getProdByID,
+  getComments,
+  getCart,
+  getBuyMsg,
   // updateUser,
   // createUser,
   // deleteUser,

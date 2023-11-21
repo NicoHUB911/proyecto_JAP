@@ -7,9 +7,17 @@ const productRouter = express.Router();
 /* Controller */
 const productCountroller = require("../controllers/productController");
 
-productRouter.get("/category/", productCountroller.getCategories);
+productRouter.get("/cats/", productCountroller.getCategories);
 
-productRouter.get("/category/:categoryID", productCountroller.getCategoryByID);
+productRouter.get("/cats_products/:categoryID", productCountroller.getCategoryByID);
+
+productRouter.get("/products/:productID", productCountroller.getProductByID);
+
+productRouter.get("/products_comments/:productID", productCountroller.getComments);
+
+productRouter.get("/cart/buy.json", productCountroller.getBuyMsg);
+
+productRouter.get("/user_cart/:userID", productCountroller.getCart);
 
 // productRouter.post("/", marketController.createUser);
 

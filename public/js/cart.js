@@ -86,7 +86,7 @@ function updateItemCount(_id, _count) {
 
 //Loads the cart 
 function loadCart() {
-	return cart = JSON.parse(localStorage.getItem('cart')) ?? [];
+	return JSON.parse(localStorage.getItem('cart')) ?? [];
 }
 
 
