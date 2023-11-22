@@ -101,7 +101,7 @@ async function showProductInfo() {
 	
     const purchaseBTN=document.getElementById('purchaseBTN');
     purchaseBTN.addEventListener('click', function() {
-	if (localStorage.getItem("log") === null && sessionStorage.getItem("log") === null) { // compruebo si esta logeado.
+	if (localStorage.getItem("token") === null && sessionStorage.getItem("token") === null) { // compruebo si esta logeado.
 		window.location = "login.html"; // lo mando al login.
 		localStorage.setItem("redirectedFrom", "/product-info.html")
     }	
@@ -122,9 +122,10 @@ async function showProductInfo() {
 		purchaseBTN.innerHTML = '&check; En el carrito.';
 	}
 	
-	function checkCart(){
-		if(localStorage.cart){
-			localCart = JSON.parse(localStorage.cart)
+	async function checkCart(){
+		let cart = await loadCart();
+		if(cart){
+			localCart = cart;
 			localCart.forEach(article => {
 				if (article.id == PRODUCT_ID)
 					disableButton();
@@ -133,8 +134,8 @@ async function showProductInfo() {
 	}
 }
 
-function addToCart(item){
-	let arrayCart = JSON.parse(localStorage.getItem('cart')) ?? [];
+async function addToCart(item){
+	let arrayCart = await loadCart();
 	
     const itemToAdd = {
         count: 1,
@@ -146,8 +147,9 @@ function addToCart(item){
     };
     
 	arrayCart.push(itemToAdd);
-    displayMessage("El producto fue añadido al carrito", "success")
-    localStorage.setItem('cart',JSON.stringify(arrayCart));
+	console.log(arrayCart)
+	postCart(arrayCart);
+    displayMessage("El producto fue añadido al carrito", "success");
     
 }
 /* muestra los comentarios del producto incluyendo las estrellas, llama a la funcion fetch dentro de un bloque try

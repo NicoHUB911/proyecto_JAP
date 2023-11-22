@@ -4,6 +4,7 @@ const PRODUCTS_URL = "http://localhost:3000/api/cats_products/";
 const PRODUCT_INFO_URL = "http://localhost:3000/api/products/";
 const PRODUCT_INFO_COMMENTS_URL = "http://localhost:3000/api/products_comments/";
 const CART_INFO_URL = "http://localhost:3000/api/user_cart/";
+const CART_POST_URL = "http://localhost:3000/users/user_cart/";
 const CART_BUY_URL = "http://localhost:3000/api/cart/buy.json";
 const EXT_TYPE = ".json";
 const RES_BOT = "responsesBot.json";
@@ -256,3 +257,68 @@ function convertToWebp(fnString){
 	newName += "webp";
 	return newName;
 }
+
+
+async function postCart(userCart) {
+
+	
+	postBody = {"user": localStorage.getItem("userID")};
+	postBody.articles = userCart;
+	console.log(postBody);
+
+    try {
+        const response = await fetch(CART_POST_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "token": localStorage.getItem("token"),
+            },
+			body: JSON.stringify(postBody),
+        });
+		
+
+        if (!response.ok) {
+            throw new Error(`Error en la solicitud: ${response.status}`);
+		
+        }
+
+        // const cartData = await response.json();
+		// return cartData.articles;
+    } catch (error) {
+        console.error("Error al cargar el carrito:", error);
+        // Puedes manejar el error de alguna manera, lanzar una excepción o devolver un valor predeterminado.
+        return null;
+    }
+
+}
+
+
+//Loads the cart 
+async function loadCart() {
+    const cartURL = CART_INFO_URL + localStorage.getItem("userID") + EXT_TYPE;
+
+    try {
+        const response = await fetch(cartURL, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "token": localStorage.getItem("token"),
+            },
+        });
+		
+
+        if (!response.ok) {
+            throw new Error(`Error en la solicitud: ${response.status}`);
+		
+        }
+
+        const cartData = await response.json();
+		return cartData.articles;
+    } catch (error) {
+        console.error("Error al cargar el carrito:", error);
+        // Puedes manejar el error de alguna manera, lanzar una excepción o devolver un valor predeterminado.
+        return null;
+    }
+
+}
+

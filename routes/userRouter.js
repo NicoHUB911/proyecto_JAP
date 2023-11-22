@@ -9,6 +9,8 @@ const userController = require("../controllers/userController");
 
 userRouter.post("/login", userController.logUser);
 
+userRouter.post("/user_cart", userController.updateCart);
+
 // userRouter.put("/:id", userController.updateUser);
 
 // userRouter.delete("/:id", userController.deleteUser);

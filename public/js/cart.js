@@ -4,9 +4,8 @@ const CART_TABLE = document.getElementById("cart-table-body");
 let uyu
 /* ------------------ */
 
-function displayCartItems() {
-
-	listOfArticles = loadCart();
+async function displayCartItems() {
+	let listOfArticles = await loadCart();
 
 	CART_TABLE.innerHTML = "";
 	CART_TABLE.parentElement.getElementsByTagName("caption")[0].innerHTML = `Hay ${listOfArticles.length} producto${listOfArticles.length != 1 ? "s " : " "}en su carrito.`;
@@ -49,13 +48,13 @@ function displayCartItems() {
 Al cargar el documento html se llama a la funcion getJSONData() que fue declarada en init.js, se le pasa la URL de la API dada por JaP, y tomando la promesa que devuelve se llama a displayCartItems() con un objecto que contiene la id del usuario y un array con objetos (los productos en su carrito)
 */
 document.addEventListener("DOMContentLoaded", async function () {
-	if (localStorage.getItem("log") === null && sessionStorage.getItem("log") === null) { // compruebo si esta logeado.
+	if (localStorage.getItem("token") === null && sessionStorage.getItem("token") === null) { // compruebo si esta logeado.
 		window.location = "login.html"; // lo mando al login.
 		localStorage.setItem("redirectedFrom", "/cart.html")
     }
 	UIRemark.value = localStorage.getItem("userRemark") ?? "";
 	await bringPeso();/* this bring the price of the dolar in pesos UYU */
-	displayCartItems();
+	await displayCartItems();
 	calculateCosts();
 });
 
@@ -84,21 +83,17 @@ function updateItemCount(_id, _count) {
 }
 
 
-//Loads the cart 
-function loadCart() {
-	return JSON.parse(localStorage.getItem('cart')) ?? [];
-}
 
-
-function removeFromCart(id) {
+async function removeFromCart(id) {
 	if (id == '*') {
 		localStorage.removeItem('cart')
 		displayMessage("Se ha vaciado su carrito correctamente", "success");
 	}
 	else {
-		let localCart = loadCart();
+		let localCart = await loadCart();
 		let newCart = localCart.filter(function (el) { return el.id != id; });
-		localStorage.setItem('cart', JSON.stringify(newCart));
+		// localStorage.setItem('cart', JSON.stringify(newCart));
+		postCart(JSON.stringify(newCart));
 		displayMessage("Se ha eliminado el producto del carrito.", "success");
 	}
 	displayCartItems();

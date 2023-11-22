@@ -6,16 +6,32 @@ const SECRET_KEY = "eMercado_JAP_266.5";
 // logUser primero trae del model a todos los datos del usuario cuyo nombre sea igual al del request y luego verifica que la contraseña enviada se igual a la que está guardada.
 const logUser = (req, res) => {
 	const logInfo = userModel.logUser(req.body);
-	
+	console.log(logInfo);
 	if (logInfo === "not_found") {
 		res.status(500).json({ message: "Invalid username or password"})
 	} else if (logInfo.password === req.body.password)	{
 		const username = logInfo.username;
 		const token = jwt.sign({ username }, SECRET_KEY);
-		res.status(200).json({ token });
+		res.status(200).json({ token, "userID": logInfo.userID });
 	} else {
 		res.status(500).json({ message: "Invalid username or password"})
 	};
+};
+
+const updateCart = (req, res) => {
+	console.log(req.body.user);
+	newCart = req.body.articles;
+	userModel.updateCart(newCart, req.body.user);
+	// console.log(logInfo);
+	// if (logInfo === "not_found") {
+		// res.status(500).json({ message: "Invalid username or password"})
+	// } else if (logInfo.password === req.body.password)	{
+		// const username = logInfo.username;
+		// const token = jwt.sign({ username }, SECRET_KEY);
+		// res.status(200).json({ token });
+	// } else {
+		// res.status(500).json({ message: "Invalid username or password"})
+	// };
 };
 
 
@@ -59,6 +75,7 @@ const logUser = (req, res) => {
 
 module.exports = {
 	logUser,
+	updateCart,
   // updateUser,
   // createUser,
   // deleteUser,

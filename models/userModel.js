@@ -10,6 +10,15 @@ const logUser = (attempt) => {
 	return user;
 };
 
+const updateCart = (newCart, userID) => {
+	const filePath = path.join(__dirname, `../json/user_cart/${userID}.json`);
+	const object = {};
+	object["user"] = userID;
+	object["articles"] = newCart;
+	const cartToSave = JSON.stringify(object);
+	fs.writeFileSync(filePath, cartToSave);
+};
+
 
 // const getUserById = (id) => {
 //   return users.find((user) => user.id === parseInt(id));
@@ -45,6 +54,7 @@ const logUser = (attempt) => {
 
 module.exports = {
 	logUser,
+	updateCart,
   // updateUser,
   // createUser,
   // deleteUser,
