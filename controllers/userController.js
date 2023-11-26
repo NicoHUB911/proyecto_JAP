@@ -13,7 +13,7 @@ const logUser = (req, res) => {
 		const token = jwt.sign({ username }, SECRET_KEY);
 		res.status(200).json({ token, "userID": logInfo.userID });
 	} else {
-		res.status(500).json({ message: "Invalid username or password"})
+		res.status(500).json({ message: "Invalid username or password"});
 	};
 };
 
@@ -23,7 +23,7 @@ const updateCart = (req, res) => {
 		userModel.updateCart(newCart, req.body.user);
 		res.sendStatus(200);
 	} catch{
-		res.status(500);
+		res.status(500).json({ message: "Internal Server Error"});
 	}
 	// console.log(logInfo);
 	// if (logInfo === "not_found") {

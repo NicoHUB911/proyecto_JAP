@@ -1,7 +1,7 @@
 {
-  "name": "taller-grupal-crud",
+  "name": "eMercado-JaP_266.5",
   "version": "1.0.0",
-  "description": "Taller grupal de repaso",
+  "description": "Entrega 8 de Jóvenes a Progamar fase 2",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",

@@ -97,8 +97,7 @@ async function removeFromCart(id) {
 	else {
 		let localCart = await loadCart();
 		let newCart = localCart.filter(function (el) { return el.id != id; });
-		// localStorage.setItem('cart', JSON.stringify(newCart));
-		postCart(JSON.stringify(newCart));
+		postCart(newCart);
 		displayMessage("Se ha eliminado el producto del carrito.", "success");
 	}
 	displayCartItems();
