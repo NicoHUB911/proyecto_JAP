@@ -6,7 +6,6 @@ const SECRET_KEY = "eMercado_JAP_266.5";
 // logUser primero trae del model a todos los datos del usuario cuyo nombre sea igual al del request y luego verifica que la contraseña enviada se igual a la que está guardada.
 const logUser = (req, res) => {
 	const logInfo = userModel.logUser(req.body);
-	console.log(logInfo);
 	if (logInfo === "not_found") {
 		res.status(500).json({ message: "Invalid username or password"})
 	} else if (logInfo.password === req.body.password)	{
@@ -19,9 +18,13 @@ const logUser = (req, res) => {
 };
 
 const updateCart = (req, res) => {
-	console.log(req.body.user);
-	newCart = req.body.articles;
-	userModel.updateCart(newCart, req.body.user);
+	try {
+		newCart = req.body.articles;
+		userModel.updateCart(newCart, req.body.user);
+		res.sendStatus(200);
+	} catch{
+		res.status(500);
+	}
 	// console.log(logInfo);
 	// if (logInfo === "not_found") {
 		// res.status(500).json({ message: "Invalid username or password"})

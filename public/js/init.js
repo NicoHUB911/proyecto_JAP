@@ -264,8 +264,7 @@ async function postCart(userCart) {
 	
 	postBody = {"user": localStorage.getItem("userID")};
 	postBody.articles = userCart;
-	console.log(postBody);
-
+	
     try {
         const response = await fetch(CART_POST_URL, {
             method: "POST",

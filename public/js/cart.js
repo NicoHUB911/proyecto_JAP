@@ -40,6 +40,9 @@ async function displayCartItems() {
 		}
 	}
 	document.getElementById("currency-placeholder").innerHTML = `Cotización del dólar: $ ${uyu.toFixed(2)}`;
+	for (const article of listOfArticles){
+		changeCount(article, from_display = true)
+	};
 };
 
 
@@ -58,7 +61,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 	calculateCosts();
 });
 
-const changeCount = (a) => {
+const changeCount = (a, from_display = false) => {
 	let item = document.getElementById(a.id)
 	let newCount = item.querySelectorAll('input')[0].value
 	let divSubtotal = item.querySelectorAll('.subtotal')[0]
@@ -71,22 +74,24 @@ const changeCount = (a) => {
 	divSubtotal.innerHTML = `${(newPriceInUSD * newCount).toFixed(2)}`
 
 
-	calculateCosts()
-	updateItemCount(a.id, newCount);
+	calculateCosts();
+	if (!from_display){
+		updateItemCount(a.id, newCount);
+	}
 }
 
-function updateItemCount(_id, _count) {
-	let localCart = loadCart();
+async function updateItemCount(_id, _count) {
+	let localCart = await loadCart();
 	let i = localCart.findIndex((el) => el.id == _id);
 	localCart[i].count = _count;
-	localStorage.setItem('cart', JSON.stringify(localCart));
+	postCart(localCart);
 }
 
 
 
 async function removeFromCart(id) {
 	if (id == '*') {
-		localStorage.removeItem('cart')
+		postCart([])
 		displayMessage("Se ha vaciado su carrito correctamente", "success");
 	}
 	else {
@@ -101,13 +106,13 @@ async function removeFromCart(id) {
 }
 
 function clearForm() {
-	localStorage.removeItem('cart');
 	document.querySelectorAll("form").forEach(form => {
 		form.classList.add("needs-validation");
 		form.classList.remove("was-validated");
 		form.reset()});
 	displayCartItems();
 	calculateCosts();
+	removeFromCart("*")
 }
 
 

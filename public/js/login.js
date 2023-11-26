@@ -16,7 +16,7 @@ document.getElementById("formulario").addEventListener("submit",(e)=>{
 			const data= {
 				"username": user.value,
 				"password": pass.value,
-				"remember_me": True
+				"remember_me": 1
 			};
 			postAttempt(data);
 			
@@ -67,6 +67,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     const sendBTN = document.getElementById("boton");
     sendBTN.addEventListener('click',saveToLocal)
 });
+
 function saveToLocal() {
     const input = document.getElementById("userName");
     localStorage.setItem("userName", input.value);
